@@ -1,12 +1,11 @@
 using UnityEngine;
 
-public class PlayerWeapon : MonoBehaviour
+public class PlayerWeaponAim : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private Camera cam;
 
-    [SerializeField] private float rotationSpeed = 15f; // opcional si quieres suavizar
     private float currentAngle;
 
     void Awake()
