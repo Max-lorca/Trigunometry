@@ -3,14 +3,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    //Referencias
-    private Rigidbody2D rbPlayer;
-    private PlayerInput playerInput;
-    //Vectores
-    private Vector2 input;
     //Valores
     [SerializeField] private float velocityMovement;
     [SerializeField] private float jumpForce;
+    [SerializeField] private int life;
+    //Referencias
+    private Rigidbody2D rbPlayer;
+    private PlayerInput playerInput;
+
+    //Vectores
+    private Vector2 input;
+
     //Funciones principales (Start, Update, FixedUpdate, etc)
     void Start()
     {
@@ -34,5 +37,10 @@ public class PlayerController : MonoBehaviour
         {
             rbPlayer.linearVelocity = new Vector2(rbPlayer.linearVelocity.x, jumpForce);
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        this.life -= damage;
     }
 }
