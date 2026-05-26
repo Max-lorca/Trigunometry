@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         input = playerInput.actions["Move"].ReadValue<Vector2>();
+        if(life <= 0){
+            Destroy(this.gameObject);
+        }
+
     }
     private void FixedUpdate()
     {

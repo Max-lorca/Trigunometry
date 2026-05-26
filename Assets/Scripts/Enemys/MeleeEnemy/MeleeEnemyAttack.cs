@@ -9,12 +9,12 @@ public class MeleeEnemyAttack : MonoBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] private float radAttack = 1.5f;
 
-    public Transform puntoAtaque;
-    public LayerMask capaEnemigos; // Para ignorar todo lo que no sea un enemigo con el raycast
+    [SerializeField] public Transform puntoAtaque;
+    [SerializeField] private LayerMask capaJugador; // Para ignorar todo lo que no sea un enemigo con el raycast
 
     private List<Collider2D> hits = new List<Collider2D>();
 
-    private bool canAttack = true;
+    [HideInInspector] public bool canAttack = true;
 
     public IEnumerator AttackPerformance()
     {
@@ -22,7 +22,7 @@ public class MeleeEnemyAttack : MonoBehaviour
 
         ContactFilter2D filtro = new ContactFilter2D();
 
-        filtro.SetLayerMask(capaEnemigos);
+        filtro.SetLayerMask(capaJugador);
         filtro.useLayerMask = true;
 
         int hitsValue = Physics2D.OverlapCircle(

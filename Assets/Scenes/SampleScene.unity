@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7861, y: -0.80882, z: -10}
+  m_LocalPosition: {x: -6.93, y: -1.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 540147508}
   - component: {fileID: 540147510}
   - component: {fileID: 540147511}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ Transform:
   m_GameObject: {fileID: 540147503}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7861, y: -0.80882, z: 0}
+  m_LocalPosition: {x: -6.93, y: -1.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -473,6 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   velocityMovement: 5
   jumpForce: 9
+  life: 5
 --- !u!114 &540147509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +985,7 @@ Transform:
   m_GameObject: {fileID: 698842020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7861, y: -0.80882, z: -10}
+  m_LocalPosition: {x: -6.93, y: -1.01, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1065,6 +1066,7 @@ GameObject:
   - component: {fileID: 1223165250}
   - component: {fileID: 1223165249}
   - component: {fileID: 1223165248}
+  - component: {fileID: 1223165253}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -1084,6 +1086,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d5cb126bc521c929d006570c93f421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemyController
+  velocityMovement: 2
+  rotationAttackVelocity: 5
+  jumpForce: 0
+  life: 2
+  minDistAttack: 3
 --- !u!61 &1223165249
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1156,7 +1163,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1223165251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1227,8 +1234,60 @@ Transform:
   m_LocalPosition: {x: 2.93, y: -0.4356, z: 0}
   m_LocalScale: {x: 0.82925296, y: 1.5795296, z: 1.5795296}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1681505079}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1223165253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223165247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936bf216cc9dfb94db1baaf4b0fe7386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemyAttack
+  damage: 1
+  cooldown: 1
+  radAttack: 1.5
+  puntoAtaque: {fileID: 1681505079}
+  capaJugador:
+    serializedVersion: 2
+    m_Bits: 8
+  canAttack: 1
+--- !u!1 &1681505078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1681505079}
+  m_Layer: 0
+  m_Name: Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1681505079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681505078}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1223165252}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1958795613
 GameObject:
