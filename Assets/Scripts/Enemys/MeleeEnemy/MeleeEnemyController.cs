@@ -6,7 +6,7 @@ public class MeleeEnemyController : MonoBehaviour
     [SerializeField] private float velocityMovement;
     [SerializeField] private float rotationAttackVelocity;
     [SerializeField] private float jumpForce;
-    [SerializeField] private float life;
+    [SerializeField] private float vida;
     [SerializeField] private float minDistAttack;
     //Referencias
     private Rigidbody2D rb;
@@ -34,10 +34,8 @@ public class MeleeEnemyController : MonoBehaviour
 
         distOfPlayer = Vector2.Distance(transform.position, player.position);
 
-        if(life <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+        if(vida <= 0)   Destroy(this.gameObject);
+
         SwitchEstados();
 
         switch (estadoActual)
@@ -70,6 +68,10 @@ public class MeleeEnemyController : MonoBehaviour
     {
         Vector2 dir = (player.position - rb.transform.position).normalized;
         rb.linearVelocity = new Vector2((dir * velocityMovement).x, rb.linearVelocity.y);
+    }
+    public void TomarDaño(float daño)
+    {
+        this.vida -= daño;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -9,10 +9,13 @@ public class DistanceEnemyController : MonoBehaviour
     [SerializeField] private float minDistToMovement;
 
     private float distOfPlayer;
+
     //Referencias
     private Rigidbody2D rb;
     private Transform player;
-    
+    private DistEnemyWeapon weaponController;
+
+    //Estados
     private enum Estados {moverse = 0, disparar = 1}
     private Estados estadoActual = Estados.moverse;
 
@@ -21,11 +24,20 @@ public class DistanceEnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        // Encontrar el script del arma en el objeto hijo
+        Transform weaponTransform = transform.Find("Weapon");
+        if(weaponTransform != null)
+        {
+            weaponController = weaponTransform.GetComponent<DistEnemyWeapon>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(vida <= 0) Destroy(this.gameObject);
+
         distOfPlayer = Vector2.Distance(transform.position, player.position);
 
         CambiarEstados();
@@ -36,6 +48,7 @@ public class DistanceEnemyController : MonoBehaviour
             Movimiento();
                 break;
             case Estados.disparar:
+            if(weaponController.canShoot)   StartCoroutine(weaponController.Shoot());
                 break;
         }
     }
@@ -53,10 +66,10 @@ public class DistanceEnemyController : MonoBehaviour
     private void Movimiento()
     {
         Vector2 dir = (rb.transform.position - player.position).normalized;
-        rb.linearVelocity = new Vector2(dir.x, 0f) * velocidadMovimiento * Time.deltaTime;
+        rb.linearVelocity = new Vector2(dir.x, 0f) * velocidadMovimiento;
     }
-    public void TomarDaño(float damage)
+    public void TomarDaño(float daño)
     {
-        this.vida -= damage;
+        this.vida -= daño;
     }
 }

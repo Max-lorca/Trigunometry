@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProyectileController : MonoBehaviour
 {
-    [HideInInspector] public Vector2 direction; //Dada por la direcci�n del arma utilizada
+    [HideInInspector] public Vector2 direction; //Dada por la dirección del arma utilizada
     //Valores
     [SerializeField] private float damage;
     [SerializeField] private float proyectileSpeed;
@@ -49,9 +49,17 @@ public class ProyectileController : MonoBehaviour
     {
         switch (collision.gameObject.tag)
         {
-            default:
-                Destroy(this.gameObject);
-                break;
+            case "MeleeEnemy":
+                MeleeEnemyController meleeEnemy = collision.gameObject.GetComponent<MeleeEnemyController>();
+                meleeEnemy.TomarDaño(damage);
+            break;
+            case "DistanceEnemy":
+                DistanceEnemyController distEnemy = collision.gameObject.GetComponent<DistanceEnemyController>();
+                distEnemy.TomarDaño(damage);
+            break; 
+            //default:
+            //  Destroy(this.gameObject);
+            //break;
         }
     }
 }

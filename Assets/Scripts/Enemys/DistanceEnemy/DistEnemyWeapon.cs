@@ -15,7 +15,7 @@ public class DistEnemyWeapon : MonoBehaviour
 
     private float currentAngle;
     private Transform player;
-    private bool canShoot = true;
+    [HideInInspector] public bool canShoot = true;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -28,7 +28,7 @@ public class DistEnemyWeapon : MonoBehaviour
         transform.rotation = Quaternion.Euler(0,0,currentAngle);
     }
 
-    private IEnumerator Shoot()
+    public IEnumerator Shoot()
     {
         canShoot = false;
         GameObject projectile = Instantiate(projectilePrefab, aimPoint.position, aimPoint.rotation);

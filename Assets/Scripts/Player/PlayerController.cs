@@ -7,9 +7,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velocityMovement;
     [SerializeField] private float jumpForce;
     [SerializeField] private int life;
+    
     //Referencias
+    private Animator animador;
     private Rigidbody2D rbPlayer;
     private PlayerInput playerInput;
+    private SpriteRenderer spritePlayer;
 
     //Vectores
     private Vector2 input;
@@ -19,14 +22,24 @@ public class PlayerController : MonoBehaviour
     {
         rbPlayer = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        animador = GetComponent<Animator>();
+        spritePlayer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
         input = playerInput.actions["Move"].ReadValue<Vector2>();
-        if(life <= 0){
-            Destroy(this.gameObject);
-        }
 
+        animador.SetFloat("movement", Mathf.Abs(velocityMovement * input.x));
+
+        if(input.x < 0)
+        {
+            spritePlayer.flipX = true;
+        }
+        else if(input.x > 0)
+        {
+            spritePlayer.flipX = false;
+        }
+        if(life <= 0)   Destroy(this.gameObject);
     }
     private void FixedUpdate()
     {
