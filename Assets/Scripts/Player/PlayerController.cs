@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velocityMovement;
     [SerializeField] private float jumpForce;
     [SerializeField] private int life;
+
+    private bool canJump = true;
     
     //Referencias
     private Animator animador;
@@ -17,7 +19,7 @@ public class PlayerController : MonoBehaviour
     //Vectores
     private Vector2 input;
 
-    //Funciones principales (Start, Update, FixedUpdate, etc)
+
     void Start()
     {
         rbPlayer = GetComponent<Rigidbody2D>();
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         input = playerInput.actions["Move"].ReadValue<Vector2>();
 
-        animador.SetFloat("movement", Mathf.Abs(velocityMovement * input.x));
+        animador.SetFloat("movement", Mathf.Abs(input.x));
 
         if(input.x < 0)
         {
@@ -50,14 +52,27 @@ public class PlayerController : MonoBehaviour
     //Funciones Input
     public void JumpAction(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if (ctx.performed && canJump)
         {
+            canJump = false;
             rbPlayer.linearVelocity = new Vector2(rbPlayer.linearVelocity.x, jumpForce);
+            animador.SetBool("jump", true);
         }
     }
 
     public void TakeDamage(int damage)
     {
         this.life -= damage;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collider)
+    {
+        switch (collider.gameObject.tag)
+        {
+            case "Ground":
+            canJump = true;
+            animador.SetBool("jump", false);
+                break;
+        }
     }
 }
