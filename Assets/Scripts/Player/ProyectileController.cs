@@ -2,29 +2,21 @@ using UnityEngine;
 
 public class ProyectileController : MonoBehaviour
 {
-    [HideInInspector] public Vector2 direction; //Dada por la dirección del arma utilizada
-    //Valores
-    [SerializeField] private float damage;
-    [SerializeField] private float proyectileSpeed;
+    [HideInInspector] public Vector2 direction;
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float proyectileSpeed = 8f;
 
-    //Variables de movimiento ondulatorio
     private Vector3 startPosition;
-    private Vector3 endPosition;
     private float time;
 
     [SerializeField] private float frecuency = 10f;
     [SerializeField] private float amplitude = 0.5f;
 
-
-    //Funcion Sin(x). y = a*Sin(w*t)
-    /*
-     * a = amplitud
-     * w = frecuencia
-     */
-    private void Start()
+    void Start()
     {
         startPosition = transform.position;
     }
+
     void Update()
     {
         time += Time.deltaTime;
@@ -47,19 +39,33 @@ public class ProyectileController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (collision.gameObject.tag)
+        string tag = collision.gameObject.tag;
+
+        Debug.Log($"Proyectil chocó con: {tag}");
+
+        if (tag == "MeleeEnemy")
         {
-            case "MeleeEnemy":
-                MeleeEnemyController meleeEnemy = collision.gameObject.GetComponent<MeleeEnemyController>();
+            MeleeEnemyController meleeEnemy = collision.gameObject.GetComponent<MeleeEnemyController>();
+            if (meleeEnemy != null)
+            {
                 meleeEnemy.TomarDaño(damage);
-            break;
-            case "DistanceEnemy":
-                DistanceEnemyController distEnemy = collision.gameObject.GetComponent<DistanceEnemyController>();
+                Debug.Log($"✅ Daño a MeleeEnemy: {damage}");
+            }
+            Destroy(gameObject);
+        }
+        else if (tag == "DistanceEnemy")
+        {
+            DistanceEnemyController distEnemy = collision.gameObject.GetComponent<DistanceEnemyController>();
+            if (distEnemy != null)
+            {
                 distEnemy.TomarDaño(damage);
-            break; 
-            //default:
-            //  Destroy(this.gameObject);
-            //break;
+                Debug.Log($"✅ Daño a DistanceEnemy: {damage}");
+            }
+            Destroy(gameObject);
+        }
+        else if (tag == "Ground")
+        {
+            Destroy(gameObject);
         }
     }
 }

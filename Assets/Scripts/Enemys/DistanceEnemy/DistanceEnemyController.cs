@@ -19,6 +19,10 @@ public class DistanceEnemyController : MonoBehaviour
     private enum Estados {moverse = 0, disparar = 1}
     private Estados estadoActual = Estados.moverse;
 
+    [Header("Drop")]
+    [SerializeField] private GameObject healingItemPrefab;
+    [SerializeField][Range(0f, 1f)] private float dropChance = 0.5f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,7 +40,11 @@ public class DistanceEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(vida <= 0) Destroy(this.gameObject);
+        if (vida <= 0)
+        {
+            TryDropHealingItem();
+            Destroy(this.gameObject);
+        }
 
         distOfPlayer = Vector2.Distance(transform.position, player.position);
 
@@ -48,7 +56,10 @@ public class DistanceEnemyController : MonoBehaviour
             Movimiento();
                 break;
             case Estados.disparar:
-            if(weaponController.canShoot)   StartCoroutine(weaponController.Shoot());
+                if (weaponController.canShoot)
+                {
+                    StartCoroutine(weaponController.Shoot());
+                }
                 break;
         }
     }
@@ -71,5 +82,13 @@ public class DistanceEnemyController : MonoBehaviour
     public void TomarDaño(float daño)
     {
         this.vida -= daño;
+    }
+
+    private void TryDropHealingItem()
+    {
+        if (healingItemPrefab != null && Random.value <= dropChance)
+        {
+            Instantiate(healingItemPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

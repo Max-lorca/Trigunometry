@@ -18,6 +18,10 @@ public class MeleeEnemyController : MonoBehaviour
     private enum estados{ moverse = 0, atacar = 1 }
     private estados estadoActual = estados.moverse;
 
+    [Header("Drop")]
+    [SerializeField] private GameObject healingItemPrefab;
+    [SerializeField][Range(0f, 1f)] private float dropChance = 0.5f;
+
 
     void Start()
     {
@@ -34,7 +38,11 @@ public class MeleeEnemyController : MonoBehaviour
 
         distOfPlayer = Vector2.Distance(transform.position, player.position);
 
-        if(vida <= 0)   Destroy(this.gameObject);
+        if (vida <= 0)
+        {
+            TryDropHealingItem();
+            Destroy(this.gameObject);
+        }
 
         SwitchEstados();
 
@@ -85,5 +93,14 @@ public class MeleeEnemyController : MonoBehaviour
                 break;
         }
         */
+    }
+
+
+    private void TryDropHealingItem()
+    {
+        if (healingItemPrefab != null && Random.value <= dropChance)
+        {
+            Instantiate(healingItemPrefab, transform.position, Quaternion.identity);
+        }
     }
 }
