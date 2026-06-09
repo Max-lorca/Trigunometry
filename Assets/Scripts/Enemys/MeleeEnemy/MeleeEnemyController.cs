@@ -1,19 +1,22 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class MeleeEnemyController : MonoBehaviour
 {
     //Valores
     [SerializeField] private float velocityMovement;
     [SerializeField] private float rotationAttackVelocity;
-    [SerializeField] private float jumpForce;
     [SerializeField] private float vida;
     [SerializeField] private float minDistAttack;
+    private float distOfPlayer;
+    private bool isDead = false;
     //Referencias
     private Rigidbody2D rb;
     private Transform player;
     private MeleeEnemyAttack attack;
-    private float distOfPlayer;
-    
+    private Animator animator;
+    private SpriteRenderer spriteEnemy;
     //Logica del enemigo
     private enum estados{ moverse = 0, atacar = 1 }
     private estados estadoActual = estados.moverse;
@@ -28,6 +31,8 @@ public class MeleeEnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         attack = GetComponent<MeleeEnemyAttack>();
+        animator = GetComponent<Animator>();
+        spriteEnemy = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -38,11 +43,12 @@ public class MeleeEnemyController : MonoBehaviour
 
         distOfPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (vida <= 0)
+        if (vida <= 0 && !isDead)
         {
-            TryDropHealingItem();
-            Destroy(this.gameObject);
+            StartCoroutine(DeadSecuence());
+            return;
         }
+        if(isDead) return;
 
         SwitchEstados();
 
@@ -52,8 +58,11 @@ public class MeleeEnemyController : MonoBehaviour
             MoveToPlayer();
                 break;
             case estados.atacar:
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            animator.SetFloat("movement", 0f);
                 if (attack.canAttack)
                 {
+                    animator.SetTrigger("isAttacking");
                     StartCoroutine(attack.AttackPerformance());        
                 }
                 break;
@@ -75,10 +84,22 @@ public class MeleeEnemyController : MonoBehaviour
     private void MoveToPlayer()
     {
         Vector2 dir = (player.position - rb.transform.position).normalized;
-        rb.linearVelocity = new Vector2((dir * velocityMovement).x, rb.linearVelocity.y);
+        float movement = (dir*velocityMovement).x;
+        if(movement < -0.1f)
+        {
+            spriteEnemy.flipX = true;
+        }
+        else if(movement > 0.1f)
+        {
+            spriteEnemy.flipX = false;
+        }
+        rb.linearVelocity = new Vector2(movement, rb.linearVelocity.y);
+        animator.SetFloat("movement", Mathf.Abs(movement));
+
     }
     public void TomarDaño(float daño)
     {
+        animator.SetTrigger("takeDamage");
         this.vida -= daño;
     }
 
@@ -94,13 +115,31 @@ public class MeleeEnemyController : MonoBehaviour
         }
         */
     }
-
-
     private void TryDropHealingItem()
     {
         if (healingItemPrefab != null && Random.value <= dropChance)
         {
             Instantiate(healingItemPrefab, transform.position, Quaternion.identity);
         }
+    }
+
+    private IEnumerator DeadSecuence()
+    {
+        isDead = true;
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
+        animator.SetBool("isDead", true);
+
+        yield return new WaitForEndOfFrame();
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        float tiempoAnimacion = stateInfo.length;
+
+        yield return new WaitForSeconds(tiempoAnimacion);
+
+        TryDropHealingItem();
+        Destroy(this.gameObject);
     }
 }

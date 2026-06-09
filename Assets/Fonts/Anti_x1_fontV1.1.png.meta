@@ -1,0 +1,4949 @@
+fileFormatVersion: 2
+guid: 5c60af4098d503e638ba6a6e1d6028d6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5633758919259016529
+    second: Anti_x1_fontV1.1_0
+  - first:
+      213: -2134727765691450336
+    second: Anti_x1_fontV1.1_1
+  - first:
+      213: 5359320817096256428
+    second: Anti_x1_fontV1.1_2
+  - first:
+      213: -339073654179018906
+    second: Anti_x1_fontV1.1_3
+  - first:
+      213: 6381296462202805543
+    second: Anti_x1_fontV1.1_4
+  - first:
+      213: -2236694993736686397
+    second: Anti_x1_fontV1.1_5
+  - first:
+      213: 8379283532130195661
+    second: Anti_x1_fontV1.1_6
+  - first:
+      213: 4894323949344414418
+    second: Anti_x1_fontV1.1_7
+  - first:
+      213: -843281488494355690
+    second: Anti_x1_fontV1.1_8
+  - first:
+      213: 847696773818868004
+    second: Anti_x1_fontV1.1_9
+  - first:
+      213: 4031873132345215813
+    second: Anti_x1_fontV1.1_10
+  - first:
+      213: -5038602751738628417
+    second: Anti_x1_fontV1.1_11
+  - first:
+      213: -6163636859893544696
+    second: Anti_x1_fontV1.1_12
+  - first:
+      213: 6897351739034779454
+    second: Anti_x1_fontV1.1_13
+  - first:
+      213: -7599920142266135762
+    second: Anti_x1_fontV1.1_14
+  - first:
+      213: 4573104297891150614
+    second: Anti_x1_fontV1.1_15
+  - first:
+      213: -4914362790452127647
+    second: Anti_x1_fontV1.1_16
+  - first:
+      213: 7250432363360608508
+    second: Anti_x1_fontV1.1_17
+  - first:
+      213: -8347109716762892832
+    second: Anti_x1_fontV1.1_18
+  - first:
+      213: 516077492586710263
+    second: Anti_x1_fontV1.1_19
+  - first:
+      213: 8038519546619193504
+    second: Anti_x1_fontV1.1_20
+  - first:
+      213: 230197774935104889
+    second: Anti_x1_fontV1.1_21
+  - first:
+      213: 5385135789285721219
+    second: Anti_x1_fontV1.1_22
+  - first:
+      213: -5991809775934876306
+    second: Anti_x1_fontV1.1_23
+  - first:
+      213: 3713224904017580296
+    second: Anti_x1_fontV1.1_24
+  - first:
+      213: -7479353827456308537
+    second: Anti_x1_fontV1.1_25
+  - first:
+      213: -2036354413032976268
+    second: Anti_x1_fontV1.1_26
+  - first:
+      213: -6170930835304583255
+    second: Anti_x1_fontV1.1_27
+  - first:
+      213: 9117290713657654583
+    second: Anti_x1_fontV1.1_28
+  - first:
+      213: -6388572775651268345
+    second: Anti_x1_fontV1.1_29
+  - first:
+      213: -5703783743087811137
+    second: Anti_x1_fontV1.1_30
+  - first:
+      213: 4479803815926425311
+    second: Anti_x1_fontV1.1_31
+  - first:
+      213: 5323415895454641572
+    second: Anti_x1_fontV1.1_32
+  - first:
+      213: 8099809018909814688
+    second: Anti_x1_fontV1.1_33
+  - first:
+      213: 8090244223085414697
+    second: Anti_x1_fontV1.1_34
+  - first:
+      213: 935499079326083221
+    second: Anti_x1_fontV1.1_35
+  - first:
+      213: 2984184941713626199
+    second: Anti_x1_fontV1.1_36
+  - first:
+      213: -5456298508861648673
+    second: Anti_x1_fontV1.1_37
+  - first:
+      213: 5967281026662994538
+    second: Anti_x1_fontV1.1_38
+  - first:
+      213: -1076781870888664039
+    second: Anti_x1_fontV1.1_39
+  - first:
+      213: -775466061540993949
+    second: Anti_x1_fontV1.1_40
+  - first:
+      213: 6221384829878970021
+    second: Anti_x1_fontV1.1_41
+  - first:
+      213: 3400953375906289903
+    second: Anti_x1_fontV1.1_42
+  - first:
+      213: 4170832407934225043
+    second: Anti_x1_fontV1.1_43
+  - first:
+      213: -3639317706809081155
+    second: Anti_x1_fontV1.1_44
+  - first:
+      213: -8959814206605517357
+    second: Anti_x1_fontV1.1_45
+  - first:
+      213: 580359571277084356
+    second: Anti_x1_fontV1.1_46
+  - first:
+      213: 784234037337032120
+    second: Anti_x1_fontV1.1_47
+  - first:
+      213: -8931783391957413387
+    second: Anti_x1_fontV1.1_48
+  - first:
+      213: 7418813486472854664
+    second: Anti_x1_fontV1.1_49
+  - first:
+      213: 5173693783352351818
+    second: Anti_x1_fontV1.1_50
+  - first:
+      213: 7343453243051615814
+    second: Anti_x1_fontV1.1_51
+  - first:
+      213: -5876903446864487284
+    second: Anti_x1_fontV1.1_52
+  - first:
+      213: 8353782731252436188
+    second: Anti_x1_fontV1.1_53
+  - first:
+      213: 5876530258577460623
+    second: Anti_x1_fontV1.1_54
+  - first:
+      213: -2179975305282181069
+    second: Anti_x1_fontV1.1_55
+  - first:
+      213: -3396915221737790771
+    second: Anti_x1_fontV1.1_56
+  - first:
+      213: 8889633201255630170
+    second: Anti_x1_fontV1.1_57
+  - first:
+      213: -3276692663163892607
+    second: Anti_x1_fontV1.1_58
+  - first:
+      213: 2751708540873885652
+    second: Anti_x1_fontV1.1_59
+  - first:
+      213: 4395310013215592726
+    second: Anti_x1_fontV1.1_60
+  - first:
+      213: -3219369794458489928
+    second: Anti_x1_fontV1.1_61
+  - first:
+      213: 2014018404249815940
+    second: Anti_x1_fontV1.1_62
+  - first:
+      213: 729663427112648976
+    second: Anti_x1_fontV1.1_63
+  - first:
+      213: -8316480770565654878
+    second: Anti_x1_fontV1.1_64
+  - first:
+      213: 2548852232571865726
+    second: Anti_x1_fontV1.1_65
+  - first:
+      213: -4132837231586571874
+    second: Anti_x1_fontV1.1_66
+  - first:
+      213: 5340483493108582508
+    second: Anti_x1_fontV1.1_67
+  - first:
+      213: 1296940212778959631
+    second: Anti_x1_fontV1.1_68
+  - first:
+      213: -8290995679393129216
+    second: Anti_x1_fontV1.1_69
+  - first:
+      213: 4422438723185024138
+    second: Anti_x1_fontV1.1_70
+  - first:
+      213: -639219382630947995
+    second: Anti_x1_fontV1.1_71
+  - first:
+      213: -3421825234641611103
+    second: Anti_x1_fontV1.1_72
+  - first:
+      213: 7426656375480814867
+    second: Anti_x1_fontV1.1_73
+  - first:
+      213: -7670379595873181416
+    second: Anti_x1_fontV1.1_74
+  - first:
+      213: -945388868040947546
+    second: Anti_x1_fontV1.1_75
+  - first:
+      213: -5604908615887097184
+    second: Anti_x1_fontV1.1_76
+  - first:
+      213: 7279187732128652951
+    second: Anti_x1_fontV1.1_77
+  - first:
+      213: -4419896878498332215
+    second: Anti_x1_fontV1.1_78
+  - first:
+      213: 867184077340193857
+    second: Anti_x1_fontV1.1_79
+  - first:
+      213: -52588809658270356
+    second: Anti_x1_fontV1.1_80
+  - first:
+      213: 6530231630677578079
+    second: Anti_x1_fontV1.1_81
+  - first:
+      213: -3738953755483070331
+    second: Anti_x1_fontV1.1_82
+  - first:
+      213: -4870891420427636132
+    second: Anti_x1_fontV1.1_83
+  - first:
+      213: 3501382632199626043
+    second: Anti_x1_fontV1.1_84
+  - first:
+      213: 425140605542077450
+    second: Anti_x1_fontV1.1_85
+  - first:
+      213: 5661472626101056612
+    second: Anti_x1_fontV1.1_86
+  - first:
+      213: -85925420289167435
+    second: Anti_x1_fontV1.1_87
+  - first:
+      213: -1397896823229425245
+    second: Anti_x1_fontV1.1_88
+  - first:
+      213: 9026976409992869827
+    second: Anti_x1_fontV1.1_89
+  - first:
+      213: -6418347865316402925
+    second: Anti_x1_fontV1.1_90
+  - first:
+      213: 7085583347401574733
+    second: Anti_x1_fontV1.1_91
+  - first:
+      213: 323656848621613323
+    second: Anti_x1_fontV1.1_92
+  - first:
+      213: -6104396519780923016
+    second: Anti_x1_fontV1.1_93
+  - first:
+      213: 4421669524731266362
+    second: Anti_x1_fontV1.1_94
+  - first:
+      213: 5063559745725278767
+    second: Anti_x1_fontV1.1_95
+  - first:
+      213: 7498142843022191152
+    second: Anti_x1_fontV1.1_96
+  - first:
+      213: 6113575419399033457
+    second: Anti_x1_fontV1.1_97
+  - first:
+      213: 1851545181218158784
+    second: Anti_x1_fontV1.1_98
+  - first:
+      213: 1372929691048526127
+    second: Anti_x1_fontV1.1_99
+  - first:
+      213: 3773688948261802280
+    second: Anti_x1_fontV1.1_100
+  - first:
+      213: 2225012645382063278
+    second: Anti_x1_fontV1.1_101
+  - first:
+      213: -4049219316579233482
+    second: Anti_x1_fontV1.1_102
+  - first:
+      213: 5996835916786581306
+    second: Anti_x1_fontV1.1_103
+  - first:
+      213: 1152020737506347749
+    second: Anti_x1_fontV1.1_104
+  - first:
+      213: 6752117269554747643
+    second: Anti_x1_fontV1.1_105
+  - first:
+      213: 236729450520899615
+    second: Anti_x1_fontV1.1_106
+  - first:
+      213: 7763888189721387886
+    second: Anti_x1_fontV1.1_107
+  - first:
+      213: 7446488152106404315
+    second: Anti_x1_fontV1.1_108
+  - first:
+      213: 6890783518546341739
+    second: Anti_x1_fontV1.1_109
+  - first:
+      213: 3204044060475069910
+    second: Anti_x1_fontV1.1_110
+  - first:
+      213: 5024804066113531580
+    second: Anti_x1_fontV1.1_111
+  - first:
+      213: -6185688570257947583
+    second: Anti_x1_fontV1.1_112
+  - first:
+      213: 9099366545866954188
+    second: Anti_x1_fontV1.1_113
+  - first:
+      213: 7938418623226787443
+    second: Anti_x1_fontV1.1_114
+  - first:
+      213: 1879793489020564312
+    second: Anti_x1_fontV1.1_115
+  - first:
+      213: 2411181574509087477
+    second: Anti_x1_fontV1.1_116
+  - first:
+      213: -2919280569650253480
+    second: Anti_x1_fontV1.1_117
+  - first:
+      213: -6218796109404426770
+    second: Anti_x1_fontV1.1_118
+  - first:
+      213: 7464486131294942464
+    second: Anti_x1_fontV1.1_119
+  - first:
+      213: -7552936851804438588
+    second: Anti_x1_fontV1.1_120
+  - first:
+      213: -7513361007904380937
+    second: Anti_x1_fontV1.1_121
+  - first:
+      213: 1998659697321391465
+    second: Anti_x1_fontV1.1_122
+  - first:
+      213: 8047987423196953869
+    second: Anti_x1_fontV1.1_123
+  - first:
+      213: -8607812692944936490
+    second: Anti_x1_fontV1.1_124
+  - first:
+      213: 4819529997061157299
+    second: Anti_x1_fontV1.1_125
+  - first:
+      213: -4074706692253928374
+    second: Anti_x1_fontV1.1_126
+  - first:
+      213: -8937007446635298304
+    second: Anti_x1_fontV1.1_127
+  - first:
+      213: 3318318927328078960
+    second: Anti_x1_fontV1.1_128
+  - first:
+      213: -8345865757168044227
+    second: Anti_x1_fontV1.1_129
+  - first:
+      213: 6456752162735662373
+    second: Anti_x1_fontV1.1_130
+  - first:
+      213: 1188887594610494219
+    second: Anti_x1_fontV1.1_131
+  - first:
+      213: -4808048341727329793
+    second: Anti_x1_fontV1.1_132
+  - first:
+      213: 8325695751589349154
+    second: Anti_x1_fontV1.1_133
+  - first:
+      213: -4742962024367437833
+    second: Anti_x1_fontV1.1_134
+  - first:
+      213: -4122174137356115682
+    second: Anti_x1_fontV1.1_135
+  - first:
+      213: 6366164896133264499
+    second: Anti_x1_fontV1.1_136
+  - first:
+      213: -439877846162845832
+    second: Anti_x1_fontV1.1_137
+  - first:
+      213: 2425680057178912286
+    second: Anti_x1_fontV1.1_138
+  - first:
+      213: 4258238031708051116
+    second: Anti_x1_fontV1.1_139
+  - first:
+      213: -3145276512645707272
+    second: Anti_x1_fontV1.1_140
+  - first:
+      213: 2108117541361080581
+    second: Anti_x1_fontV1.1_141
+  - first:
+      213: 1396870494625078509
+    second: Anti_x1_fontV1.1_142
+  - first:
+      213: -4620998871012594301
+    second: Anti_x1_fontV1.1_143
+  - first:
+      213: -793499430017238215
+    second: Anti_x1_fontV1.1_144
+  - first:
+      213: -4950687243524415485
+    second: Anti_x1_fontV1.1_145
+  - first:
+      213: 7499824515031650771
+    second: Anti_x1_fontV1.1_146
+  - first:
+      213: 3712288962927262262
+    second: Anti_x1_fontV1.1_147
+  - first:
+      213: -6833164876150275897
+    second: Anti_x1_fontV1.1_148
+  - first:
+      213: 1904635210739453702
+    second: Anti_x1_fontV1.1_149
+  - first:
+      213: -2760887129439208206
+    second: Anti_x1_fontV1.1_150
+  - first:
+      213: 2198747997614111710
+    second: Anti_x1_fontV1.1_151
+  - first:
+      213: 2991553969336989012
+    second: Anti_x1_fontV1.1_152
+  - first:
+      213: 7951293940852351180
+    second: Anti_x1_fontV1.1_153
+  - first:
+      213: 8148981220954489211
+    second: Anti_x1_fontV1.1_154
+  - first:
+      213: 8224109339377824473
+    second: Anti_x1_fontV1.1_155
+  - first:
+      213: -7934111981081938864
+    second: Anti_x1_fontV1.1_156
+  - first:
+      213: -1022434810694921918
+    second: Anti_x1_fontV1.1_157
+  - first:
+      213: -6334695346493674156
+    second: Anti_x1_fontV1.1_158
+  - first:
+      213: -8980581032581124735
+    second: Anti_x1_fontV1.1_159
+  - first:
+      213: -8896025011814864311
+    second: Anti_x1_fontV1.1_160
+  - first:
+      213: -6415544253672251057
+    second: Anti_x1_fontV1.1_161
+  - first:
+      213: -5603012000943583549
+    second: Anti_x1_fontV1.1_162
+  - first:
+      213: 4400391728761109602
+    second: Anti_x1_fontV1.1_163
+  - first:
+      213: 70908362872863808
+    second: Anti_x1_fontV1.1_164
+  - first:
+      213: 3402232045475603899
+    second: Anti_x1_fontV1.1_165
+  - first:
+      213: -5306297945956147009
+    second: Anti_x1_fontV1.1_166
+  - first:
+      213: -1705870054306111591
+    second: Anti_x1_fontV1.1_167
+  - first:
+      213: -4485867094118269700
+    second: Anti_x1_fontV1.1_168
+  - first:
+      213: 8389596734523609417
+    second: Anti_x1_fontV1.1_169
+  - first:
+      213: 9019197033191856054
+    second: Anti_x1_fontV1.1_170
+  - first:
+      213: -7415964682117470269
+    second: Anti_x1_fontV1.1_171
+  - first:
+      213: -2162560605080675538
+    second: Anti_x1_fontV1.1_172
+  - first:
+      213: 7898906253156829484
+    second: Anti_x1_fontV1.1_173
+  - first:
+      213: -4035362056693957736
+    second: Anti_x1_fontV1.1_174
+  - first:
+      213: -7810681297348021217
+    second: Anti_x1_fontV1.1_175
+  - first:
+      213: -7049863961208858097
+    second: Anti_x1_fontV1.1_176
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 262
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2b063ac1ed0d1b0800000000000000
+      internalID: -5633758919259016529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_1
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c3cc9486cef52e0800000000000000
+      internalID: -2134727765691450336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_2
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cabe06463e1206a40800000000000000
+      internalID: 5359320817096256428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_3
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66747f9de4e5b4bf0800000000000000
+      internalID: -339073654179018906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_4
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72d1e04a25bee8850800000000000000
+      internalID: 6381296462202805543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_5
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c42e63f0c9a5f0e0800000000000000
+      internalID: -2236694993736686397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_6
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc896e42af1394470800000000000000
+      internalID: 8379283532130195661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_7
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2da5c5063b12ce340800000000000000
+      internalID: 4894323949344414418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_8
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 263
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b91a044ff0c44f0800000000000000
+      internalID: -843281488494355690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_9
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 421e7b879bf93cb00800000000000000
+      internalID: 847696773818868004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_10
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 264
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54bc0e8804714f730800000000000000
+      internalID: 4031873132345215813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_11
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb630523e79431ab0800000000000000
+      internalID: -5038602751738628417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_12
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 263
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8098a89aeec567aa0800000000000000
+      internalID: -6163636859893544696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_13
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 262
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3f3718ecd058bf50800000000000000
+      internalID: 6897351739034779454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_14
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2b04ee85e8a78690800000000000000
+      internalID: -7599920142266135762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_15
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 262
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b3d9c212ee67f30800000000000000
+      internalID: 4573104297891150614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 246
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16814b9541daccbb0800000000000000
+      internalID: -4914362790452127647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_17
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 245
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf0ea1ee1d5be9460800000000000000
+      internalID: 7250432363360608508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_18
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e5e22fffeb192c80800000000000000
+      internalID: -8347109716762892832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_19
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f48436ceb9792700800000000000000
+      internalID: 516077492586710263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_20
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 246
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a8654010fe8e8f60800000000000000
+      internalID: 8038519546619193504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_21
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d971b18a3d13300800000000000000
+      internalID: 230197774935104889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_22
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 246
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3844e9bf778dbba40800000000000000
+      internalID: 5385135789285721219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_23
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6550b731c0d8dca0800000000000000
+      internalID: -5991809775934876306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_24
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 245
+        width: 5
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8011a1f6066088330800000000000000
+      internalID: 3713224904017580296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_25
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 245
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ca220d325ff33890800000000000000
+      internalID: -7479353827456308537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_26
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470de5e437a6db3e0800000000000000
+      internalID: -2036354413032976268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_27
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 246
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9af6a2ca9137c5aa0800000000000000
+      internalID: -6170930835304583255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_28
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 247
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73d388d399f178e70800000000000000
+      internalID: 9117290713657654583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_29
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 247
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 709239d98ea3757a0800000000000000
+      internalID: -6388572775651268345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_30
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 247
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb56a95d7e618d0b0800000000000000
+      internalID: -5703783743087811137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_31
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd6ebb7e5d57b2e30800000000000000
+      internalID: 4479803815926425311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_32
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 247
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aded306d8290e940800000000000000
+      internalID: 5323415895454641572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_33
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 247
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0afef98536d486070800000000000000
+      internalID: 8099809018909814688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_34
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 246
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9298927c142564070800000000000000
+      internalID: 8090244223085414697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_35
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 246
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 598afe6c47f8bfc00800000000000000
+      internalID: 935499079326083221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_36
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 231
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75419e2c464f96920800000000000000
+      internalID: 2984184941713626199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_37
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 246
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd0dec63a655744b0800000000000000
+      internalID: -5456298508861648673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_38
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 246
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a621d2d4a7a00d250800000000000000
+      internalID: 5967281026662994538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 229
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 914c91de7908e01f0800000000000000
+      internalID: -1076781870888664039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_40
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 230
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3645a72c9bdfc35f0800000000000000
+      internalID: -775466061540993949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_41
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 230
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a6a0fb5a8cc65650800000000000000
+      internalID: 6221384829878970021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_42
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 230
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe85f8c831d923f20800000000000000
+      internalID: 3400953375906289903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_43
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 230
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39a4b9c1af5c1e930800000000000000
+      internalID: 4170832407934225043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_44
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 230
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db20bdcd3db8e7dc0800000000000000
+      internalID: -3639317706809081155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_45
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 230
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dd97c1437858a380800000000000000
+      internalID: -8959814206605517357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_46
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 230
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c6f7f784f9dd0800800000000000000
+      internalID: 580359571277084356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_47
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 231
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b58e30b3b822ea00800000000000000
+      internalID: 784234037337032120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_48
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 231
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f115afd35eeb0480800000000000000
+      internalID: -8931783391957413387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_49
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 231
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88c77143f8be4f660800000000000000
+      internalID: 7418813486472854664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_50
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 231
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4c1d55a517acc740800000000000000
+      internalID: 5173693783352351818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_51
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 231
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64628c831df29e560800000000000000
+      internalID: 7343453243051615814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_52
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 231
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8c9f56c37b017ea0800000000000000
+      internalID: -5876903446864487284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_53
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 231
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdc081342299ee370800000000000000
+      internalID: 8353782731252436188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_54
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 232
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8d085e8221ad8150800000000000000
+      internalID: 5876530258577460623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_55
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 232
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3382885820c2fb1e0800000000000000
+      internalID: -2179975305282181069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_56
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 232
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc2a33c7a9bbbd0d0800000000000000
+      internalID: -3396915221737790771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_57
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 232
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a554c581c425e5b70800000000000000
+      internalID: 8889633201255630170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_58
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 231
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18cccfd2269d682d0800000000000000
+      internalID: -3276692663163892607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_59
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 231
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d74238b658003620800000000000000
+      internalID: 2751708540873885652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 214
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 611de6f6b274ffc30800000000000000
+      internalID: 4395310013215592726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_61
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 214
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bbeda89a308253d0800000000000000
+      internalID: -3219369794458489928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_62
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 214
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48bc864611b33fb10800000000000000
+      internalID: 2014018404249815940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_63
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 215
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 011c4a26509402a00800000000000000
+      internalID: 729663427112648976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_64
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 215
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a631114dcce59c80800000000000000
+      internalID: -8316480770565654878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_65
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 215
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a4863e9975f5320800000000000000
+      internalID: 2548852232571865726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_66
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 218
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9906c04f6635a6c0800000000000000
+      internalID: -4132837231586571874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_67
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 195
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c68039f11753d1a40800000000000000
+      internalID: 5340483493108582508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_68
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 196
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f030c958048aff110800000000000000
+      internalID: 1296940212778959631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_69
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 194
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00d597f6b5770fc80800000000000000
+      internalID: -8290995679393129216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_70
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 196
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8c10607698af5d30800000000000000
+      internalID: 4422438723185024138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_71
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 197
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 563ecb4bb590127f0800000000000000
+      internalID: -639219382630947995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_72
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 195
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a618b5241c3380d0800000000000000
+      internalID: -3421825234641611103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_73
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 200
+        width: 24
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31d8c6910a8c01760800000000000000
+      internalID: 7426656375480814867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_74
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 200
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 811239f95665d8590800000000000000
+      internalID: -7670379595873181416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_75
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 197
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a88fc955dd41e2f0800000000000000
+      internalID: -945388868040947546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_76
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a2f5875f4d5732b0800000000000000
+      internalID: -5604908615887097184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_77
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 181
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79ed8e2fcaed40560800000000000000
+      internalID: 7279187732128652951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_78
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 179
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c1cf35e43f59a2c0800000000000000
+      internalID: -4419896878498332215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_79
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 179
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 144bcb4e25bd80c00800000000000000
+      internalID: 867184077340193857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_80
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 184
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6d782991ca254ff0800000000000000
+      internalID: -52588809658270356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_81
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 181
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f519e87c11b00aa50800000000000000
+      internalID: 6530231630677578079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_82
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 181
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 580a1d48e519c1cc0800000000000000
+      internalID: -3738953755483070331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_83
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 181
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c52b9e96f0e176cb0800000000000000
+      internalID: -4870891420427636132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 163
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3d1bfee3f8679030800000000000000
+      internalID: 3501382632199626043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_85
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 163
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a041ee4d02766e500800000000000000
+      internalID: 425140605542077450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_86
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 163
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 464f9509b57919e40800000000000000
+      internalID: 5661472626101056612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_87
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 167
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bfec76194bbecef0800000000000000
+      internalID: -85925420289167435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_88
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 170
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a953c2ee3ca99ce0800000000000000
+      internalID: -1397896823229425245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_89
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 169
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c7b479c733464d70800000000000000
+      internalID: 9026976409992869827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_90
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 164
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 319dde25f927de6a0800000000000000
+      internalID: -6418347865316402925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_91
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 165
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d494b40738c055260800000000000000
+      internalID: 7085583347401574733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_92
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 166
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b01b633603cdd7400800000000000000
+      internalID: 323656848621613323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_93
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 165
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 879c35e25b3d84ba0800000000000000
+      internalID: -6104396519780923016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_94
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 165
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3507c7710dec5d30800000000000000
+      internalID: 4421669524731266362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_95
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 164
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2a2ce6c2c0654640800000000000000
+      internalID: 5063559745725278767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_96
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 168
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03aa9795031ce0860800000000000000
+      internalID: 7498142843022191152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_97
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 148
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 172d6dce378c7d450800000000000000
+      internalID: 6113575419399033457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_98
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 148
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8381c488202b910800000000000000
+      internalID: 1851545181218158784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_99
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 149
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f21c888a740ad0310800000000000000
+      internalID: 1372929691048526127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_100
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 143
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82156f5ca16de5430800000000000000
+      internalID: 3773688948261802280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_101
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 148
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea400cc5635d0ee10800000000000000
+      internalID: 2225012645382063278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_102
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 166
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63115a93c784ec7c0800000000000000
+      internalID: -4049219316579233482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_103
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 150
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3f3e546e7a093350800000000000000
+      internalID: 5996835916786581306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_104
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 147
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ea03f0d1ccccff00800000000000000
+      internalID: 1152020737506347749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_105
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 149
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf85795e1e654bd50800000000000000
+      internalID: 6752117269554747643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_106
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 148
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f10fb265e28094300800000000000000
+      internalID: 236729450520899615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_107
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 148
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e63a1387c2fdebb60800000000000000
+      internalID: 7763888189721387886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_108
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 143
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd9057a658d375760800000000000000
+      internalID: 7446488152106404315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_109
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 116
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6f2217e91bf0af50800000000000000
+      internalID: 6890783518546341739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_110
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 116
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d51155e81d077c20800000000000000
+      internalID: 3204044060475069910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_111
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 116
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbea2a2fca0bbb540800000000000000
+      internalID: 5024804066113531580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_112
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 116
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 144c49eb405082aa0800000000000000
+      internalID: -6185688570257947583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_113
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 116
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc51977b9a1774e70800000000000000
+      internalID: 9099366545866954188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_114
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 116
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37637c3adadea2e60800000000000000
+      internalID: 7938418623226787443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_115
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 117
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 853b92cf73e561a10800000000000000
+      internalID: 1879793489020564312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_116
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 116
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fac495fddc367120800000000000000
+      internalID: 2411181574509087477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_117
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 100
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 851fb46f9c1ac77d0800000000000000
+      internalID: -2919280569650253480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_118
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 100
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eed2e5813e562b9a0800000000000000
+      internalID: -6218796109404426770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_119
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 102
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0053aae769e279760800000000000000
+      internalID: 7464486131294942464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_120
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 100
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cf3d3153f39e2790800000000000000
+      internalID: -7552936851804438588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_121
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 86
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f7a69688fd2bb790800000000000000
+      internalID: -7513361007904380937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_122
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 86
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9653bb5c76aacbb10800000000000000
+      internalID: 1998659697321391465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_123
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 86
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0d377cdbe130bf60800000000000000
+      internalID: 8047987423196953869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_124
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 86
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d12bef36f7ea8880800000000000000
+      internalID: -8607812692944936490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_125
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 86
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b17b235ff862e240800000000000000
+      internalID: 4819529997061157299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_126
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 86
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a443c442adbb377c0800000000000000
+      internalID: -4074706692253928374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_127
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 86
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 002484cd31f59f380800000000000000
+      internalID: -8937007446635298304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_128
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 86
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07c68d2bb790d0e20800000000000000
+      internalID: 3318318927328078960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_129
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 86
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d37f6e8ef478d2c80800000000000000
+      internalID: -8345865757168044227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_130
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 86
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5252896f1edfa9950800000000000000
+      internalID: 6456752162735662373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_131
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 87
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0b80a2e7f6cf7010800000000000000
+      internalID: 1188887594610494219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_132
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 85
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff1cf60e181664db0800000000000000
+      internalID: -4808048341727329793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_133
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 84
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2274675bc20da8370800000000000000
+      internalID: 8325695751589349154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_134
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 84
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f7496a0b2d9d2eb0800000000000000
+      internalID: -4742962024367437833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_135
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e11269856781bc6c0800000000000000
+      internalID: -4122174137356115682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_136
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 72
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 374b59f5e39295850800000000000000
+      internalID: 6366164896133264499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_137
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 72
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87f46e2fd6d35e9f0800000000000000
+      internalID: -439877846162845832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_138
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 72
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e16f5e2092fb9a120800000000000000
+      internalID: 2425680057178912286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_139
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 72
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca65401cdec481b30800000000000000
+      internalID: 4258238031708051116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_140
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 72
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f98f571dabb954d0800000000000000
+      internalID: -3145276512645707272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_141
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 72
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509d89d0cb9814d10800000000000000
+      internalID: 2108117541361080581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_142
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 72
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dec1a5d505ea26310800000000000000
+      internalID: 1396870494625078509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_143
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 72
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38d20d9820aeedfb0800000000000000
+      internalID: -4620998871012594301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_144
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 72
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93bf858f87cecf4f0800000000000000
+      internalID: -793499430017238215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_145
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 73
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3006baf8e20ab4bb0800000000000000
+      internalID: -4950687243524415485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_146
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 69
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d15a3029aab41860800000000000000
+      internalID: 7499824515031650771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_147
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 68
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63af1eaa423b48330800000000000000
+      internalID: 3712288962927262262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_148
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 71
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c00361bfb8bb21a0800000000000000
+      internalID: -6833164876150275897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_149
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 53
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60f83da02af9e6a10800000000000000
+      internalID: 1904635210739453702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_150
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 53
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fcf3d898cb5fa9d0800000000000000
+      internalID: -2760887129439208206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_151
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 56
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edbf36487a5838e10800000000000000
+      internalID: 2198747997614111710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_152
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 56
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 455bdb43c72248920800000000000000
+      internalID: 2991553969336989012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_153
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 54
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc0683126bba85e60800000000000000
+      internalID: 7951293940852351180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_154
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 59
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b71425cce3ff61170800000000000000
+      internalID: 8148981220954489211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_155
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 54
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d27697fed7e12270800000000000000
+      internalID: 8224109339377824473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_156
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 54
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 054b07f903f54e190800000000000000
+      internalID: -7934111981081938864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_157
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 56
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 241198ee4f49fc1f0800000000000000
+      internalID: -1022434810694921918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_158
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 54
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45dacef1524a618a0800000000000000
+      internalID: -6334695346493674156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_159
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 59
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18d246cc1219e5380800000000000000
+      internalID: -8980581032581124735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_160
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 34
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ae8c98268fa8480800000000000000
+      internalID: -8896025011814864311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_161
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 34
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4121170e7867f6a0800000000000000
+      internalID: -6415544253672251057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_162
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 34
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cec18b654a1e32b0800000000000000
+      internalID: -5603012000943583549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_163
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 40
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26c7f5986f4511d30800000000000000
+      internalID: 4400391728761109602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_164
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 40
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04c34a4c7caebf000800000000000000
+      internalID: 70908362872863808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_165
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 42
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb526020508273f20800000000000000
+      internalID: 3402232045475603899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_166
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 40
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb026e2d12e3c56b0800000000000000
+      internalID: -5306297945956147009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_167
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 38
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99f9b1449388358e0800000000000000
+      internalID: -1705870054306111591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_168
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 36
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfc777125affeb1c0800000000000000
+      internalID: -4485867094118269700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_169
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 37
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9419e02b7c5dd6470800000000000000
+      internalID: 8389596734523609417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_170
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 16
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b758aa7aef9a2d70800000000000000
+      internalID: 9019197033191856054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_171
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 3
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c7ab8fb963351990800000000000000
+      internalID: -7415964682117470269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_172
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 3
+        width: 23
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2b99e0669a0df1e0800000000000000
+      internalID: -2162560605080675538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_173
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 3
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c294685136d8e9d60800000000000000
+      internalID: 7898906253156829484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_174
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 3
+        width: 25
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89bbaa6f6938ff7c0800000000000000
+      internalID: -4035362056693957736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_175
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 3
+        width: 24
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f14b8c92eb2ea9390800000000000000
+      internalID: -7810681297348021217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_176
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 5
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0a515d341ad92e90800000000000000
+      internalID: -7049863961208858097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_177
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 167
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4e3474531578cf88aeb8900bdf52b4e
+      internalID: 1488392110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_178
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 154
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b81c11b840d6dd0ba83c814f249fe6
+      internalID: -1302150730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_179
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 143
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5873f737d3c2386c798a112c30cbb566
+      internalID: 630711452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_180
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 116
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25c621ce9275f233b82133c7a220337c
+      internalID: -1453331434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_181
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 167
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffdb99ea549dd8f9a9a28209a9d0d7a7
+      internalID: -151222194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_182
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 43
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c389cab83a302c82dab6b5f3562947cd
+      internalID: -372809965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_183
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 195
+        width: 5
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fac96f3396e511b05a851ffe4c81e679
+      internalID: 689167551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_184
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 231
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3f2354ddafebcd8f86ba5b2cb16c661
+      internalID: 2027225276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_185
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 150
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8d1d50bf5ac21fe8e153a643aac932
+      internalID: 1650586095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anti_x1_fontV1.1_186
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 149
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1001108a78b769c35b7d19ef99f0a983
+      internalID: 1778093266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: de5c53880aea134ffa5c723f52d91246
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Anti_x1_fontV1.1_0: -5633758919259016529
+      Anti_x1_fontV1.1_1: -2134727765691450336
+      Anti_x1_fontV1.1_10: 4031873132345215813
+      Anti_x1_fontV1.1_100: 3773688948261802280
+      Anti_x1_fontV1.1_101: 2225012645382063278
+      Anti_x1_fontV1.1_102: -4049219316579233482
+      Anti_x1_fontV1.1_103: 5996835916786581306
+      Anti_x1_fontV1.1_104: 1152020737506347749
+      Anti_x1_fontV1.1_105: 6752117269554747643
+      Anti_x1_fontV1.1_106: 236729450520899615
+      Anti_x1_fontV1.1_107: 7763888189721387886
+      Anti_x1_fontV1.1_108: 7446488152106404315
+      Anti_x1_fontV1.1_109: 6890783518546341739
+      Anti_x1_fontV1.1_11: -5038602751738628417
+      Anti_x1_fontV1.1_110: 3204044060475069910
+      Anti_x1_fontV1.1_111: 5024804066113531580
+      Anti_x1_fontV1.1_112: -6185688570257947583
+      Anti_x1_fontV1.1_113: 9099366545866954188
+      Anti_x1_fontV1.1_114: 7938418623226787443
+      Anti_x1_fontV1.1_115: 1879793489020564312
+      Anti_x1_fontV1.1_116: 2411181574509087477
+      Anti_x1_fontV1.1_117: -2919280569650253480
+      Anti_x1_fontV1.1_118: -6218796109404426770
+      Anti_x1_fontV1.1_119: 7464486131294942464
+      Anti_x1_fontV1.1_12: -6163636859893544696
+      Anti_x1_fontV1.1_120: -7552936851804438588
+      Anti_x1_fontV1.1_121: -7513361007904380937
+      Anti_x1_fontV1.1_122: 1998659697321391465
+      Anti_x1_fontV1.1_123: 8047987423196953869
+      Anti_x1_fontV1.1_124: -8607812692944936490
+      Anti_x1_fontV1.1_125: 4819529997061157299
+      Anti_x1_fontV1.1_126: -4074706692253928374
+      Anti_x1_fontV1.1_127: -8937007446635298304
+      Anti_x1_fontV1.1_128: 3318318927328078960
+      Anti_x1_fontV1.1_129: -8345865757168044227
+      Anti_x1_fontV1.1_13: 6897351739034779454
+      Anti_x1_fontV1.1_130: 6456752162735662373
+      Anti_x1_fontV1.1_131: 1188887594610494219
+      Anti_x1_fontV1.1_132: -4808048341727329793
+      Anti_x1_fontV1.1_133: 8325695751589349154
+      Anti_x1_fontV1.1_134: -4742962024367437833
+      Anti_x1_fontV1.1_135: -4122174137356115682
+      Anti_x1_fontV1.1_136: 6366164896133264499
+      Anti_x1_fontV1.1_137: -439877846162845832
+      Anti_x1_fontV1.1_138: 2425680057178912286
+      Anti_x1_fontV1.1_139: 4258238031708051116
+      Anti_x1_fontV1.1_14: -7599920142266135762
+      Anti_x1_fontV1.1_140: -3145276512645707272
+      Anti_x1_fontV1.1_141: 2108117541361080581
+      Anti_x1_fontV1.1_142: 1396870494625078509
+      Anti_x1_fontV1.1_143: -4620998871012594301
+      Anti_x1_fontV1.1_144: -793499430017238215
+      Anti_x1_fontV1.1_145: -4950687243524415485
+      Anti_x1_fontV1.1_146: 7499824515031650771
+      Anti_x1_fontV1.1_147: 3712288962927262262
+      Anti_x1_fontV1.1_148: -6833164876150275897
+      Anti_x1_fontV1.1_149: 1904635210739453702
+      Anti_x1_fontV1.1_15: 4573104297891150614
+      Anti_x1_fontV1.1_150: -2760887129439208206
+      Anti_x1_fontV1.1_151: 2198747997614111710
+      Anti_x1_fontV1.1_152: 2991553969336989012
+      Anti_x1_fontV1.1_153: 7951293940852351180
+      Anti_x1_fontV1.1_154: 8148981220954489211
+      Anti_x1_fontV1.1_155: 8224109339377824473
+      Anti_x1_fontV1.1_156: -7934111981081938864
+      Anti_x1_fontV1.1_157: -1022434810694921918
+      Anti_x1_fontV1.1_158: -6334695346493674156
+      Anti_x1_fontV1.1_159: -8980581032581124735
+      Anti_x1_fontV1.1_16: -4914362790452127647
+      Anti_x1_fontV1.1_160: -8896025011814864311
+      Anti_x1_fontV1.1_161: -6415544253672251057
+      Anti_x1_fontV1.1_162: -5603012000943583549
+      Anti_x1_fontV1.1_163: 4400391728761109602
+      Anti_x1_fontV1.1_164: 70908362872863808
+      Anti_x1_fontV1.1_165: 3402232045475603899
+      Anti_x1_fontV1.1_166: -5306297945956147009
+      Anti_x1_fontV1.1_167: -1705870054306111591
+      Anti_x1_fontV1.1_168: -4485867094118269700
+      Anti_x1_fontV1.1_169: 8389596734523609417
+      Anti_x1_fontV1.1_17: 7250432363360608508
+      Anti_x1_fontV1.1_170: 9019197033191856054
+      Anti_x1_fontV1.1_171: -7415964682117470269
+      Anti_x1_fontV1.1_172: -2162560605080675538
+      Anti_x1_fontV1.1_173: 7898906253156829484
+      Anti_x1_fontV1.1_174: -4035362056693957736
+      Anti_x1_fontV1.1_175: -7810681297348021217
+      Anti_x1_fontV1.1_176: -7049863961208858097
+      Anti_x1_fontV1.1_177: 1488392110
+      Anti_x1_fontV1.1_178: -1302150730
+      Anti_x1_fontV1.1_179: 630711452
+      Anti_x1_fontV1.1_18: -8347109716762892832
+      Anti_x1_fontV1.1_180: -1453331434
+      Anti_x1_fontV1.1_181: -151222194
+      Anti_x1_fontV1.1_182: -372809965
+      Anti_x1_fontV1.1_183: 689167551
+      Anti_x1_fontV1.1_184: 2027225276
+      Anti_x1_fontV1.1_185: 1650586095
+      Anti_x1_fontV1.1_186: 1778093266
+      Anti_x1_fontV1.1_19: 516077492586710263
+      Anti_x1_fontV1.1_2: 5359320817096256428
+      Anti_x1_fontV1.1_20: 8038519546619193504
+      Anti_x1_fontV1.1_21: 230197774935104889
+      Anti_x1_fontV1.1_22: 5385135789285721219
+      Anti_x1_fontV1.1_23: -5991809775934876306
+      Anti_x1_fontV1.1_24: 3713224904017580296
+      Anti_x1_fontV1.1_25: -7479353827456308537
+      Anti_x1_fontV1.1_26: -2036354413032976268
+      Anti_x1_fontV1.1_27: -6170930835304583255
+      Anti_x1_fontV1.1_28: 9117290713657654583
+      Anti_x1_fontV1.1_29: -6388572775651268345
+      Anti_x1_fontV1.1_3: -339073654179018906
+      Anti_x1_fontV1.1_30: -5703783743087811137
+      Anti_x1_fontV1.1_31: 4479803815926425311
+      Anti_x1_fontV1.1_32: 5323415895454641572
+      Anti_x1_fontV1.1_33: 8099809018909814688
+      Anti_x1_fontV1.1_34: 8090244223085414697
+      Anti_x1_fontV1.1_35: 935499079326083221
+      Anti_x1_fontV1.1_36: 2984184941713626199
+      Anti_x1_fontV1.1_37: -5456298508861648673
+      Anti_x1_fontV1.1_38: 5967281026662994538
+      Anti_x1_fontV1.1_39: -1076781870888664039
+      Anti_x1_fontV1.1_4: 6381296462202805543
+      Anti_x1_fontV1.1_40: -775466061540993949
+      Anti_x1_fontV1.1_41: 6221384829878970021
+      Anti_x1_fontV1.1_42: 3400953375906289903
+      Anti_x1_fontV1.1_43: 4170832407934225043
+      Anti_x1_fontV1.1_44: -3639317706809081155
+      Anti_x1_fontV1.1_45: -8959814206605517357
+      Anti_x1_fontV1.1_46: 580359571277084356
+      Anti_x1_fontV1.1_47: 784234037337032120
+      Anti_x1_fontV1.1_48: -8931783391957413387
+      Anti_x1_fontV1.1_49: 7418813486472854664
+      Anti_x1_fontV1.1_5: -2236694993736686397
+      Anti_x1_fontV1.1_50: 5173693783352351818
+      Anti_x1_fontV1.1_51: 7343453243051615814
+      Anti_x1_fontV1.1_52: -5876903446864487284
+      Anti_x1_fontV1.1_53: 8353782731252436188
+      Anti_x1_fontV1.1_54: 5876530258577460623
+      Anti_x1_fontV1.1_55: -2179975305282181069
+      Anti_x1_fontV1.1_56: -3396915221737790771
+      Anti_x1_fontV1.1_57: 8889633201255630170
+      Anti_x1_fontV1.1_58: -3276692663163892607
+      Anti_x1_fontV1.1_59: 2751708540873885652
+      Anti_x1_fontV1.1_6: 8379283532130195661
+      Anti_x1_fontV1.1_60: 4395310013215592726
+      Anti_x1_fontV1.1_61: -3219369794458489928
+      Anti_x1_fontV1.1_62: 2014018404249815940
+      Anti_x1_fontV1.1_63: 729663427112648976
+      Anti_x1_fontV1.1_64: -8316480770565654878
+      Anti_x1_fontV1.1_65: 2548852232571865726
+      Anti_x1_fontV1.1_66: -4132837231586571874
+      Anti_x1_fontV1.1_67: 5340483493108582508
+      Anti_x1_fontV1.1_68: 1296940212778959631
+      Anti_x1_fontV1.1_69: -8290995679393129216
+      Anti_x1_fontV1.1_7: 4894323949344414418
+      Anti_x1_fontV1.1_70: 4422438723185024138
+      Anti_x1_fontV1.1_71: -639219382630947995
+      Anti_x1_fontV1.1_72: -3421825234641611103
+      Anti_x1_fontV1.1_73: 7426656375480814867
+      Anti_x1_fontV1.1_74: -7670379595873181416
+      Anti_x1_fontV1.1_75: -945388868040947546
+      Anti_x1_fontV1.1_76: -5604908615887097184
+      Anti_x1_fontV1.1_77: 7279187732128652951
+      Anti_x1_fontV1.1_78: -4419896878498332215
+      Anti_x1_fontV1.1_79: 867184077340193857
+      Anti_x1_fontV1.1_8: -843281488494355690
+      Anti_x1_fontV1.1_80: -52588809658270356
+      Anti_x1_fontV1.1_81: 6530231630677578079
+      Anti_x1_fontV1.1_82: -3738953755483070331
+      Anti_x1_fontV1.1_83: -4870891420427636132
+      Anti_x1_fontV1.1_84: 3501382632199626043
+      Anti_x1_fontV1.1_85: 425140605542077450
+      Anti_x1_fontV1.1_86: 5661472626101056612
+      Anti_x1_fontV1.1_87: -85925420289167435
+      Anti_x1_fontV1.1_88: -1397896823229425245
+      Anti_x1_fontV1.1_89: 9026976409992869827
+      Anti_x1_fontV1.1_9: 847696773818868004
+      Anti_x1_fontV1.1_90: -6418347865316402925
+      Anti_x1_fontV1.1_91: 7085583347401574733
+      Anti_x1_fontV1.1_92: 323656848621613323
+      Anti_x1_fontV1.1_93: -6104396519780923016
+      Anti_x1_fontV1.1_94: 4421669524731266362
+      Anti_x1_fontV1.1_95: 5063559745725278767
+      Anti_x1_fontV1.1_96: 7498142843022191152
+      Anti_x1_fontV1.1_97: 6113575419399033457
+      Anti_x1_fontV1.1_98: 1851545181218158784
+      Anti_x1_fontV1.1_99: 1372929691048526127
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

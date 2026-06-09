@@ -44,5 +44,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2598562005
+    locked: 0
+  - name: Plataforms
+    uniqueID: 1941493259
+    locked: 0
+  - name: Mobs
+    uniqueID: 2012117117
+    locked: 0
+  - name: Weapons
+    uniqueID: 2270390607
+    locked: 0
+  - name: Items
+    uniqueID: 3204144923
+    locked: 0
   m_RenderingLayers:
   - Default
