@@ -4,14 +4,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     //Valores
+    [Header("Stats")]
     [SerializeField] private float velocityMovement;
     [SerializeField] private float jumpForce;
-
-    [Header("Vida")]
     [SerializeField] private int maxLife = 4;
     private int currentLife;
-    private HealthUIController healthUI;
-
     private bool canJump = true;
 
     //Referencias
@@ -19,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rbPlayer;
     private PlayerInput playerInput;
     private SpriteRenderer spritePlayer;
+    private HealthUIController healthUI;
+    private TimeStopManager timeStopController;
 
     //Vectores
     private Vector2 input;
@@ -30,6 +29,8 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         animador = GetComponent<Animator>();
         spritePlayer = GetComponent<SpriteRenderer>();
+        timeStopController = GetComponent<TimeStopManager>();
+
 
         currentLife = maxLife;
 
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentLife -= damage;
-        Debug.Log($"Player daño: {currentLife}/{maxLife}");
+        Debug.Log($"Player daï¿½o: {currentLife}/{maxLife}");
 
         if (healthUI != null)
             healthUI.UpdateHealth(currentLife, maxLife);
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Player murió!");
+        Debug.Log("Player muriï¿½!");
         gameObject.SetActive(false);
     }
 
@@ -103,6 +104,13 @@ public class PlayerController : MonoBehaviour
             canJump = false;
             rbPlayer.linearVelocity = new Vector2(rbPlayer.linearVelocity.x, jumpForce);
             animador.SetBool("jump", true);
+        }
+    }
+    public void TimeStop(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            timeStopController.TryTimeStop();
         }
     }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ProyectileController : MonoBehaviour
 {
@@ -12,11 +13,21 @@ public class ProyectileController : MonoBehaviour
     [SerializeField] private float frecuency = 10f;
     [SerializeField] private float amplitude = 0.5f;
 
-    void Start()
-    {
-        startPosition = transform.position;
-    }
+    private ObjectPool<ProyectileController> _poolOrigen;
 
+    public void ConfigurarPool(ObjectPool<ProyectileController> pool)
+    {
+        _poolOrigen = pool;
+    }
+    public void ResetProyectile(Vector3 nuevaPosicionInicial)
+    {
+        startPosition = nuevaPosicionInicial;
+        time = 0f;
+    }
+    public void SetDirection(Vector2 dir)
+    {
+        direction = dir;
+    }
     void Update()
     {
         time += Time.deltaTime;
@@ -31,41 +42,39 @@ public class ProyectileController : MonoBehaviour
 
         transform.position = offset + basePosition;
     }
-
-    public void SetDirection(Vector2 dir)
+    private void DevolverAlPool()
     {
-        direction = dir.normalized;
+        if (_poolOrigen != null)
+        {
+            _poolOrigen.Release(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
 
-        Debug.Log($"Proyectil chocó con: {tag}");
-
-        if (tag == "MeleeEnemy")
-        {
+       switch(tag)
+       {
+        case "MeleeEnemy":
             MeleeEnemyController meleeEnemy = collision.gameObject.GetComponent<MeleeEnemyController>();
-            if (meleeEnemy != null)
-            {
-                meleeEnemy.TomarDaño(damage);
-                Debug.Log($"✅ Daño a MeleeEnemy: {damage}");
-            }
-            Destroy(gameObject);
-        }
-        else if (tag == "DistanceEnemy")
-        {
+            meleeEnemy?.TomarDaño(damage);
+            DevolverAlPool();
+        break;
+        case "DistanceEnemy":
             DistanceEnemyController distEnemy = collision.gameObject.GetComponent<DistanceEnemyController>();
-            if (distEnemy != null)
-            {
-                distEnemy.TomarDaño(damage);
-                Debug.Log($"✅ Daño a DistanceEnemy: {damage}");
-            }
-            Destroy(gameObject);
-        }
-        else if (tag == "Ground")
-        {
-            Destroy(gameObject);
+            distEnemy?.TomarDaño(damage);
+            DevolverAlPool();
+        break;
+        case "Ground":
+            DevolverAlPool();
+        break;
         }
     }
+
+    
 }
