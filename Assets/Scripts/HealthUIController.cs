@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -25,7 +25,7 @@ public class HealthUIController : MonoBehaviour
         {
             circleFillImage.type = Image.Type.Filled;
             circleFillImage.fillMethod = Image.FillMethod.Radial360;
-            circleFillImage.fillOrigin = (int)Image.Origin360.Bottom;
+            circleFillImage.fillOrigin = (int)Image.Origin360.Right;
         }
     }
 

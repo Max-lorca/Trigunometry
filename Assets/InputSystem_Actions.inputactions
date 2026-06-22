@@ -115,9 +115,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TimeStop",
+                    "name": "AnalisisTimeStop",
                     "type": "Button",
                     "id": "ab5e488f-814b-4b2c-a2f4-6eb080d6f760",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "a10f46d7-a9d4-450b-bd01-13642ae60830",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -550,7 +559,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TimeStop",
+                    "action": "AnalisisTimeStop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8cf05744-626c-46cd-9bd1-352a7be9c05d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

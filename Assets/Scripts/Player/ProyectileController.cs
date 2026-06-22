@@ -3,16 +3,19 @@ using UnityEngine.Pool;
 
 public class ProyectileController : MonoBehaviour
 {
+    [Header("Variables")]
     [HideInInspector] public Vector2 direction;
     [SerializeField] private float damage = 10f;
     [SerializeField] private float proyectileSpeed = 8f;
+    [SerializeField] private float frecuency = 10f;
+    [SerializeField] private float amplitude = 0.5f;
 
     private Vector3 startPosition;
     private float time;
 
-    [SerializeField] private float frecuency = 10f;
-    [SerializeField] private float amplitude = 0.5f;
-
+    // Referencias
+    [Header("Particulas")]
+    [SerializeField] private GameObject explotionParticle;
     private ObjectPool<ProyectileController> _poolOrigen;
 
     public void ConfigurarPool(ObjectPool<ProyectileController> pool)
@@ -28,6 +31,26 @@ public class ProyectileController : MonoBehaviour
     {
         direction = dir;
     }
+    private void CrearExplosion()
+    {
+        Instantiate(explotionParticle , transform.position, Quaternion.identity);
+    }
+    private void DevolverAlPool()
+    {
+        if (_poolOrigen != null)
+        {
+            _poolOrigen.Release(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Impacto()
+    {
+        CrearExplosion();
+        DevolverAlPool();
+    }
     void Update()
     {
         time += Time.deltaTime;
@@ -42,18 +65,6 @@ public class ProyectileController : MonoBehaviour
 
         transform.position = offset + basePosition;
     }
-    private void DevolverAlPool()
-    {
-        if (_poolOrigen != null)
-        {
-            _poolOrigen.Release(this);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -61,17 +72,18 @@ public class ProyectileController : MonoBehaviour
        switch(tag)
        {
         case "MeleeEnemy":
-            MeleeEnemyController meleeEnemy = collision.gameObject.GetComponent<MeleeEnemyController>();
-            meleeEnemy?.TomarDaño(damage);
-            DevolverAlPool();
+            collision.GetComponent<MeleeEnemyController>()?.TomarDaño(damage);
+            Impacto();
         break;
         case "DistanceEnemy":
-            DistanceEnemyController distEnemy = collision.gameObject.GetComponent<DistanceEnemyController>();
-            distEnemy?.TomarDaño(damage);
-            DevolverAlPool();
+            collision.GetComponent<DistanceEnemyController>()?.TomarDaño(damage);
+            Impacto();
         break;
         case "Ground":
-            DevolverAlPool();
+            Impacto();
+        break;
+        case "Pared":
+            Impacto();
         break;
         }
     }

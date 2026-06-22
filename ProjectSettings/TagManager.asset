@@ -8,6 +8,7 @@ TagManager:
   - DistanceEnemy
   - MeleeEnemy
   - Pared
+  - HighLight
   layers:
   - Default
   - TransparentFX

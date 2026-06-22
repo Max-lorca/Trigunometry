@@ -110,6 +110,7 @@ MonoBehaviour:
   proyectileSpeed: 3
   frecuency: 6
   amplitude: 10
+  explotionParticle: {fileID: 632983800386883047, guid: 67b12c1955e805eb0bb45a28224d3ff3, type: 3}
 --- !u!61 &4670316037062238055
 BoxCollider2D:
   m_ObjectHideFlags: 0

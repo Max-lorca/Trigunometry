@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private bool canJump = true;
 
     //Referencias
+    [SerializeField] private ParticleSystem walkParticle;
+    private Transform walkParticleTransform;
     private Animator animador;
     private Rigidbody2D rbPlayer;
     private PlayerInput playerInput;
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
         animador = GetComponent<Animator>();
         spritePlayer = GetComponent<SpriteRenderer>();
         timeStopController = GetComponent<TimeStopManager>();
+
+        walkParticleTransform = walkParticle.GetComponent<Transform>();
 
 
         currentLife = maxLife;
@@ -50,11 +54,19 @@ public class PlayerController : MonoBehaviour
 
         if (input.x < 0)
         {
+            walkParticle.Play();
+            walkParticleTransform.localScale = new Vector3(-1,1,1);
             spritePlayer.flipX = true;
         }
         else if (input.x > 0)
         {
+            walkParticle.Play();
+            walkParticleTransform.localScale = new Vector3(1,1,1);
             spritePlayer.flipX = false;
+        }
+        else if(input.x == 0)
+        {
+            walkParticle.Stop();
         }
 
         if (currentLife <= 0)
@@ -106,11 +118,18 @@ public class PlayerController : MonoBehaviour
             animador.SetBool("jump", true);
         }
     }
-    public void TimeStop(InputAction.CallbackContext ctx)
+    public void AnalisisTimeStop(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
-            timeStopController.TryTimeStop();
+            timeStopController.TryTimeStop("analisis");
+        }
+    }
+    public void MenuTimeStop(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            timeStopController.TryTimeStop("menu");
         }
     }
 
