@@ -14,7 +14,7 @@ public class WeaponSwitcher : MonoBehaviour
     {
         weaponShootInput = GetComponent<WeaponShoot>();
         EquipWeapon(0);
-        actualWeaponInstance.SetActive(false);
+        actualWeaponInstance.SetActive(true);
     }
     private void EquipWeapon(int index)
     {

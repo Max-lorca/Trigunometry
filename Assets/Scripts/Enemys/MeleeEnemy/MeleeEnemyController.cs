@@ -9,16 +9,20 @@ public class MeleeEnemyController : MonoBehaviour
     [SerializeField] private float rotationAttackVelocity;
     [SerializeField] private float vida;
     [SerializeField] private float minDistAttack;
+    [SerializeField] private float minDistSpawn;
+    [SerializeField] private float dirTimeChange;
     private float distOfPlayer;
     private bool isDead = false;
+    private bool isSpawn = false;
     //Referencias
+    [SerializeField] private GameObject spawnParticlePrefab;
     private Rigidbody2D rb;
     private Transform player;
     private MeleeEnemyAttack attack;
     private Animator animator;
     private SpriteRenderer spriteEnemy;
     //Logica del enemigo
-    private enum estados{ moverse = 0, atacar = 1 }
+    private enum estados{ moverse = 0, atacar = 1, buscar = 2, aparecer = 3}
     private estados estadoActual = estados.moverse;
 
     [Header("Drop")]
@@ -33,6 +37,10 @@ public class MeleeEnemyController : MonoBehaviour
         attack = GetComponent<MeleeEnemyAttack>();
         animator = GetComponent<Animator>();
         spriteEnemy = GetComponent<SpriteRenderer>();
+
+        Color c = spriteEnemy.color;
+        c.a = 0f;
+        spriteEnemy.color = c;
     }
 
     void Update()
@@ -54,6 +62,12 @@ public class MeleeEnemyController : MonoBehaviour
 
         switch (estadoActual)
         {
+            case estados.aparecer:
+                SpawnSecuence();
+            break;
+            case estados.buscar:
+
+            break;
             case estados.moverse:
             MoveToPlayer();
                 break;
@@ -70,7 +84,16 @@ public class MeleeEnemyController : MonoBehaviour
     }
     private void SwitchEstados()
     {
-        if(distOfPlayer >= minDistAttack)
+        if(distOfPlayer < minDistSpawn && !isSpawn)
+        {
+            estadoActual = estados.aparecer;
+            isSpawn = true;
+        }
+        else if(distOfPlayer < minDistSpawn && isSpawn)
+        {
+            estadoActual = estados.buscar;
+        }
+        else if(distOfPlayer >= minDistAttack)
         {
             estadoActual = estados.moverse;
         }
@@ -79,6 +102,22 @@ public class MeleeEnemyController : MonoBehaviour
             estadoActual = estados.atacar;
         }
 
+    }
+    // Terminar logica de la función para la patruya sin waypoints
+    private IEnumerator BuscarPlayer()
+    {
+        Vector2 dir = Vector2.right;
+        rb.linearVelocity += dir*velocityMovement;
+        yield return new WaitForSeconds(dirTimeChange);
+        dir = Vector2.right * -1;
+        
+    }
+    private void SpawnSecuence()
+    {
+        Color c = spriteEnemy.color;
+        c.a = 1f;
+        spriteEnemy.color = c;
+        Instantiate(spawnParticlePrefab, transform.position, Quaternion.identity);
     }
 
     private void MoveToPlayer()
@@ -101,19 +140,6 @@ public class MeleeEnemyController : MonoBehaviour
     {
         animator.SetTrigger("takeDamage");
         this.vida -= daño;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        /*
-        switch (collision.gameObject.tag)
-        {
-            case "Player":
-                PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-                player.TakeDamage(1);
-                break;
-        }
-        */
     }
     private void TryDropHealingItem()
     {

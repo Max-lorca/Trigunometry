@@ -56,7 +56,7 @@ public class TimeStopManager : MonoBehaviour
     {
         isAnalysisActive = true;
 
-        GameManager.Instance.OnHighLights(true);
+        GameManager.Instance.isTimeStopped = true;
 
         Time.timeScale = 0f;
 
@@ -83,7 +83,7 @@ public class TimeStopManager : MonoBehaviour
 
         mathSymbolsParticle.Stop();
 
-        GameManager.Instance.OnHighLights(false);
+        GameManager.Instance.isTimeStopped = false;
 
         Time.timeScale = 1f;
         isAnalysisActive = false;
@@ -119,7 +119,6 @@ public class TimeStopManager : MonoBehaviour
             }
 
             menuCanvasGroup.alpha = 0f;
-
             menuCanvasGroup.interactable = false;
             menuCanvasGroup.blocksRaycasts = false;
 

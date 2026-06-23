@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int maxLife = 4;
     private int currentLife;
     private bool canJump = true;
+    private bool isMoving = false;
 
     //Referencias
     [SerializeField] private ParticleSystem walkParticle;
     private Transform walkParticleTransform;
+    [SerializeField] private ParticleSystem lifeParticle;
     private Animator animador;
     private Rigidbody2D rbPlayer;
     private PlayerInput playerInput;
@@ -23,7 +25,6 @@ public class PlayerController : MonoBehaviour
 
     //Vectores
     private Vector2 input;
-
 
     void Start()
     {
@@ -54,17 +55,25 @@ public class PlayerController : MonoBehaviour
 
         if (input.x < 0)
         {
-            walkParticle.Play();
+            isMoving = true;
             walkParticleTransform.localScale = new Vector3(-1,1,1);
             spritePlayer.flipX = true;
         }
         else if (input.x > 0)
         {
-            walkParticle.Play();
+            isMoving = true;
             walkParticleTransform.localScale = new Vector3(1,1,1);
             spritePlayer.flipX = false;
         }
-        else if(input.x == 0)
+        else
+        {
+            isMoving = false;
+        }
+        if (isMoving)
+        {
+            walkParticle.Play();
+        }
+        else
         {
             walkParticle.Stop();
         }
@@ -96,6 +105,7 @@ public class PlayerController : MonoBehaviour
     public void Heal(int amount)
     {
         currentLife = Mathf.Min(currentLife + amount, maxLife);
+        lifeParticle.Play();
         Debug.Log($"Player curado: {currentLife}/{maxLife}");
 
         if (healthUI != null)

@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [HideInInspector] 
-    public List<GameObject> HighLights;
+    [HideInInspector] public bool isTimeStopped = false;
 
 
     private void Awake()
@@ -21,34 +20,7 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        RefreshHighlights();
-        OnHighLights(false);
-    }
-
-
-    public void RefreshHighlights()
-    {
-        HighLights = GameObject.FindGameObjectsWithTag("HighLight").ToList();
-    }
-
-
-    public void OnHighLights(bool active)
-    {
-        foreach(GameObject highLight in HighLights)
-        {
-            if(highLight != null)
-                highLight.SetActive(active);
-        }
-    }
-
-
     public void ResetScene()
     {
         Debug.Log("Intentando reiniciar escena...");
