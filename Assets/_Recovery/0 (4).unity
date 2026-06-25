@@ -936,7 +936,7 @@ MonoBehaviour:
   maxLife: 4
   walkParticle: {fileID: 1928699641}
   lifeParticle: {fileID: 1187089989}
-  menuManager: {fileID: 1891449118}
+  menuManager: {fileID: 0}
 --- !u!114 &540147509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1225,8 +1225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimeStopManager
   canvasGroupEfect: {fileID: 109713189}
   mathSymbolsParticle: {fileID: 839272844}
-  transitionTime: 1
-  effectTime: 5
+  transitionTime: 0
+  effectTime: 0
 --- !u!1 &562790002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,7 +1372,7 @@ GameObject:
   - component: {fileID: 673431438}
   - component: {fileID: 673431440}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Trigunometry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1508,7 +1508,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6fc1d24d116c244a89f5e21d2c7cb081, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 2
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -30790,7 +30790,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 045e2497904106c54a21037e0562e413, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 2
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

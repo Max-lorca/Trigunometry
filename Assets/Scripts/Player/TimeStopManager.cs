@@ -1,81 +1,65 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 using System.Collections;
-using System.Collections.Generic;
 
 public class TimeStopManager : MonoBehaviour
 {
     [Header("UI y Efectos")]
     [SerializeField] private CanvasGroup canvasGroupEfect;
-    [SerializeField] private CanvasGroup menuCanvasGroup;
     [SerializeField] private ParticleSystem mathSymbolsParticle;
-    [System.Serializable]
-    public class TimeStopConfig
-    {
-        public float effectTime;
-        public float transitionTime;
-    }
-    [SerializeField] private TimeStopConfig analisis;
-    [SerializeField] private TimeStopConfig menu;
-    private const string MODO_MENU = "menu";
-    private const string MODO_ANALISIS = "analisis";
+    [SerializeField] private float transitionTime;
+    [SerializeField] private float effectTime;
     private Transform player;
-    
-    private bool menuActivo = false;
     private bool isAnalysisActive = false;
 
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
         var main = mathSymbolsParticle.main;
         main.useUnscaledTime = true;
+
+        canvasGroupEfect.alpha = 0f;
     }
-    void Update()
+
+    private void Update()
     {
-        Transform particlePosition = mathSymbolsParticle.GetComponent<Transform>();
-        particlePosition.position = player.position;
-    }
-    public void TryTimeStop(string nombreModo)
-    {
-        switch (nombreModo)
+        if (mathSymbolsParticle.isPlaying)
         {
-            case MODO_MENU:
-                StartCoroutine(ActivarMenu());
-            break;
-
-            case MODO_ANALISIS:
-                if(!isAnalysisActive) StartCoroutine(ActivarModoAnalisis());
-            break;
-
-            default:
-                Debug.LogWarning("Modo de TimeStop desconocido:" + nombreModo);
-            break;
+            mathSymbolsParticle.transform.position = player.position;
         }
     }
+
+    public void TryTimeStop()
+    {
+        if (!isAnalysisActive)
+        {
+            StartCoroutine(ActivarModoAnalisis());
+        }
+    }
+
     private IEnumerator ActivarModoAnalisis()
     {
         isAnalysisActive = true;
 
         GameManager.Instance.isTimeStopped = true;
-
         Time.timeScale = 0f;
 
         mathSymbolsParticle.transform.position = player.position;
         mathSymbolsParticle.Play();
 
-        while(canvasGroupEfect.alpha < 1f)
+        while (canvasGroupEfect.alpha < 1f)
         {
-            canvasGroupEfect.alpha += Time.unscaledDeltaTime * analisis.transitionTime;
+            canvasGroupEfect.alpha += Time.unscaledDeltaTime * transitionTime;
             yield return null;
         }
 
         canvasGroupEfect.alpha = 1f;
 
-        yield return new WaitForSecondsRealtime(analisis.effectTime);
+        yield return new WaitForSecondsRealtime(effectTime);
 
-        while(canvasGroupEfect.alpha > 0f)
+        while (canvasGroupEfect.alpha > 0f)
         {
-            canvasGroupEfect.alpha -= Time.unscaledDeltaTime * analisis.transitionTime;
+            canvasGroupEfect.alpha -= Time.unscaledDeltaTime * transitionTime;
             yield return null;
         }
 
@@ -84,45 +68,8 @@ public class TimeStopManager : MonoBehaviour
         mathSymbolsParticle.Stop();
 
         GameManager.Instance.isTimeStopped = false;
-
         Time.timeScale = 1f;
+
         isAnalysisActive = false;
-    }
-    private IEnumerator ActivarMenu()
-    {
-        menuActivo = !menuActivo;
-
-
-        if(menuActivo)
-        {
-            Time.timeScale = 0f;
-
-            menuCanvasGroup.interactable = true;
-            menuCanvasGroup.blocksRaycasts = true;
-
-
-            while(menuCanvasGroup.alpha < 1f)
-            {
-                menuCanvasGroup.alpha += Time.unscaledDeltaTime * menu.transitionTime;
-                yield return null;
-            }
-
-            menuCanvasGroup.alpha = 1f;
-        }
-        else
-        {
-
-            while(menuCanvasGroup.alpha > 0f)
-            {
-                menuCanvasGroup.alpha -= Time.unscaledDeltaTime * menu.transitionTime;
-                yield return null;
-            }
-
-            menuCanvasGroup.alpha = 0f;
-            menuCanvasGroup.interactable = false;
-            menuCanvasGroup.blocksRaycasts = false;
-
-            Time.timeScale = 1f;
-        }
     }
 }

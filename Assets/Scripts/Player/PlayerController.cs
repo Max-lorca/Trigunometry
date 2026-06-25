@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem walkParticle;
     private Transform walkParticleTransform;
     [SerializeField] private ParticleSystem lifeParticle;
+    [SerializeField] private MenuManager menuManager;
     private Animator animador;
     private Rigidbody2D rbPlayer;
     private PlayerInput playerInput;
@@ -132,14 +133,14 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.performed)
         {
-            timeStopController.TryTimeStop("analisis");
+            timeStopController.TryTimeStop();
         }
     }
     public void MenuTimeStop(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
-            timeStopController.TryTimeStop("menu");
+            menuManager.ToggleMenu();
         }
     }
 
