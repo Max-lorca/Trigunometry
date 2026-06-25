@@ -10,10 +10,14 @@ public class MeleeEnemyController : MonoBehaviour
     [SerializeField] private float vida;
     [SerializeField] private float minDistAttack;
     [SerializeField] private float minDistSpawn;
+    [SerializeField] private float distanciaDeteccion;
     [SerializeField] private float dirTimeChange;
+    private int patrolDir = 1;
+    private float patrolTimer;
     private float distOfPlayer;
     private bool isDead = false;
     private bool isSpawn = false;
+    private bool spawning = false;
     //Referencias
     [SerializeField] private GameObject spawnParticlePrefab;
     private Rigidbody2D rb;
@@ -22,8 +26,8 @@ public class MeleeEnemyController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteEnemy;
     //Logica del enemigo
-    private enum estados{ moverse = 0, atacar = 1, buscar = 2, aparecer = 3}
-    private estados estadoActual = estados.moverse;
+    private enum estados{ oculto, moverse, atacar, buscar, aparecer}
+    private estados estadoActual = estados.oculto;
 
     [Header("Drop")]
     [SerializeField] private GameObject healingItemPrefab;
@@ -62,62 +66,108 @@ public class MeleeEnemyController : MonoBehaviour
 
         switch (estadoActual)
         {
+            case estados.oculto:
+                rb.linearVelocity = Vector2.zero;
+            break;
             case estados.aparecer:
-                SpawnSecuence();
+                if (!spawning)
+                {
+                    StartCoroutine(SpawnSecuence());
+                }
             break;
             case estados.buscar:
-
+                BuscarPlayer();
             break;
             case estados.moverse:
-            MoveToPlayer();
-                break;
+                MoveToPlayer();
+            break;
             case estados.atacar:
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            animator.SetFloat("movement", 0f);
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+                animator.SetFloat("movement", 0f);
+
                 if (attack.canAttack)
                 {
                     animator.SetTrigger("isAttacking");
                     StartCoroutine(attack.AttackPerformance());        
                 }
-                break;
+             break;
         }
     }
     private void SwitchEstados()
     {
-        if(distOfPlayer < minDistSpawn && !isSpawn)
+
+        if (!isSpawn)
         {
-            estadoActual = estados.aparecer;
-            isSpawn = true;
+            if(distOfPlayer <= minDistSpawn)
+            {
+                estadoActual = estados.aparecer;
+            }
+            else
+            {
+                estadoActual = estados.oculto;
+            }
+            
         }
-        else if(distOfPlayer < minDistSpawn && isSpawn)
+        else
         {
-            estadoActual = estados.buscar;
+            if(distOfPlayer <= minDistAttack)
+            {
+                estadoActual = estados.atacar;
+            }
+            else if(distOfPlayer <= distanciaDeteccion)
+            {
+                estadoActual = estados.moverse;
+            }
+            else
+            {
+                estadoActual = estados.buscar;
+            }
         }
-        else if(distOfPlayer >= minDistAttack)
+    }
+    // Patruya sin necesitadad de waypoints, lo mas probable es que el personaje se caiga si se coloca mucho tiempo de transición para cambiar de dirección
+    // Claramente no es la mejor manera de hacer que un personaje patruye sin embargo sirve por el momento
+    private void BuscarPlayer() // 
+    {
+        patrolTimer += Time.deltaTime;
+
+        if(patrolTimer >= dirTimeChange)
         {
-            estadoActual = estados.moverse;
-        }
-        else if(distOfPlayer <= minDistAttack)
-        {
-            estadoActual = estados.atacar;
+            patrolDir *= -1;
+            patrolTimer = 0;
         }
 
-    }
-    // Terminar logica de la función para la patruya sin waypoints
-    private IEnumerator BuscarPlayer()
-    {
-        Vector2 dir = Vector2.right;
-        rb.linearVelocity += dir*velocityMovement;
-        yield return new WaitForSeconds(dirTimeChange);
-        dir = Vector2.right * -1;
+        spriteEnemy.flipX = patrolDir < 0;
+        rb.linearVelocity = new Vector2(
+            patrolDir*velocityMovement,
+             rb.linearVelocity.y
+        );
+        animator.SetFloat("movement", 1f);
         
     }
-    private void SpawnSecuence()
+    private IEnumerator SpawnSecuence()
     {
-        Color c = spriteEnemy.color;
-        c.a = 1f;
-        spriteEnemy.color = c;
+        spawning = true;
+        rb.linearVelocity = Vector2.zero;
+        
         Instantiate(spawnParticlePrefab, transform.position, Quaternion.identity);
+        
+        float t = 0f;
+        float duration = 1f;
+
+        while( t < duration)
+        {
+            t += Time.deltaTime;
+            Color c = spriteEnemy.color;
+            c.a = t / duration;
+            spriteEnemy.color = c;    
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+        
+        isSpawn = true;
+        spawning = false;
     }
 
     private void MoveToPlayer()

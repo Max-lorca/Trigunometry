@@ -1374,6 +1374,7 @@ GameObject:
   - component: {fileID: 673431437}
   - component: {fileID: 673431439}
   - component: {fileID: 673431438}
+  - component: {fileID: 673431440}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1499,6 +1500,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673431436}
   m_CullTransparentMesh: 1
+--- !u!95 &673431440
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673431436}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6fc1d24d116c244a89f5e21d2c7cb081, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &698842020
 GameObject:
   m_ObjectHideFlags: 0
@@ -30637,6 +30660,7 @@ GameObject:
   - component: {fileID: 1076273836}
   - component: {fileID: 1076273835}
   - component: {fileID: 1076273834}
+  - component: {fileID: 1076273837}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -30661,7 +30685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 655, y: 280}
+  m_AnchoredPosition: {x: 627, y: 280}
   m_SizeDelta: {x: 350.999, y: 66.92651}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1076273834
@@ -30758,6 +30782,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076273832}
   m_CullTransparentMesh: 1
+--- !u!95 &1076273837
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076273832}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 045e2497904106c54a21037e0562e413, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1179894288
 GameObject:
   m_ObjectHideFlags: 0
@@ -35737,16 +35783,36 @@ PrefabInstance:
       value: MeleeEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4045342232878889038, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: minDistSpawn
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045342232878889038, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: dirTimeChange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045342232878889038, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: minDistAttack
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045342232878889038, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: healingItemPrefab
       value: 
       objectReference: {fileID: 9025440471347290295, guid: a70f07a29569a3f61908b6225d807848, type: 3}
+    - target: {fileID: 4045342232878889038, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: distanciaDeteccion
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045342232878889038, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: spawnParticlePrefab
+      value: 
+      objectReference: {fileID: 5950067022240317755, guid: 7db5894fe6c9b0734bab5ec02b6d2a07, type: 3}
     - target: {fileID: 7410831109379109706, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.2
+      value: 28.55
       objectReference: {fileID: 0}
     - target: {fileID: 7410831109379109706, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: -1.16
       objectReference: {fileID: 0}
     - target: {fileID: 7410831109379109706, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_LocalPosition.z
@@ -38036,7 +38102,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891449112}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
