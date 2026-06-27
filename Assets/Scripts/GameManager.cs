@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [HideInInspector] public bool isTimeStopped = false;
+    private List<GameObject> enemys;
 
 
     private void Awake()

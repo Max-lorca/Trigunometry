@@ -9,7 +9,7 @@ public class WeaponData : MonoBehaviour
     //Referencias
     [SerializeField] private ProyectileController projectilePrefab;
     [SerializeField] private Transform projectileSpawn;
-    [SerializeField] private ParticleSystem particleShoot;
+    [SerializeField] private GameObject particleShoot;
     private ObjectPool<ProyectileController> _pool;
     //Valores
     [SerializeField] private float shootCooldown = 0.5f;
@@ -42,13 +42,12 @@ public class WeaponData : MonoBehaviour
     private IEnumerator Shoot()
     {
         canShoot = false;
-        particleShoot.Play();
+        Instantiate(particleShoot, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
         ProyectileController proyectil = _pool.Get();
         proyectil.transform.position = projectileSpawn.position;
         proyectil.ResetProyectile(projectileSpawn.position);
         proyectil.SetDirection(projectileSpawn.right);
         yield return new WaitForSeconds(shootCooldown);
-        particleShoot.Stop();
         canShoot = true;
     }
 }
