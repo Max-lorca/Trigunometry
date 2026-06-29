@@ -58,4 +58,42 @@ public class WeaponData : MonoBehaviour
 
         canShoot = true;
     }
+
+    /// <summary>
+    /// Disparo especial al acertar el análisis trigonométrico: apunta directo
+    /// al enemigo seleccionado, viaja con tiempo no escalado (porque durante el
+    /// modo análisis Time.timeScale = 0) y aplica el daño con bonificación
+    /// directamente al llegar a destino, sin depender de la física para el impacto.
+    /// No respeta el cooldown normal: es un disparo garantizado, no un tiro más.
+    /// Lo llama AnalysisModeController sobre el arma actualmente equipada
+    /// (weaponShoot.currentWeapon).
+    /// </summary>
+    public void DispararAnalisisExitoso(IAnalizable objetivo, float multiplicadorDano)
+    {
+        StartCoroutine(DisparoBonus(objetivo, multiplicadorDano));
+    }
+
+    private IEnumerator DisparoBonus(IAnalizable objetivo, float multiplicadorDano)
+    {
+        Vector3 origen = projectileSpawn.position;
+        Vector3 destino = objetivo.AnalysisTransform.position;
+        Vector2 direccion = ((Vector2)(destino - origen)).normalized;
+        float distancia = Vector2.Distance(origen, destino);
+
+        Instantiate(particleShoot, origen, Quaternion.LookRotation(Vector3.forward, direccion));
+        audioSource.PlayOneShot(shootAudioClip);
+
+        ProyectileController proyectil = _pool.Get();
+        proyectil.transform.position = origen;
+        proyectil.ResetProyectile(origen);
+        proyectil.SetDirection(direccion);
+        proyectil.ConfigurarDisparoEspecial(multiplicadorDano, distancia);
+
+        // Esperamos (en tiempo real) lo que tarde en llegar visualmente al objetivo
+        // antes de aplicar el daño, para que el golpe coincida con el impacto visual.
+        float tiempoDeViaje = distancia / proyectil.VelocidadActual;
+        yield return new WaitForSecondsRealtime(tiempoDeViaje);
+
+        objetivo.RecibirDanoAnalisis(proyectil.DanoActual);
+    }
 }

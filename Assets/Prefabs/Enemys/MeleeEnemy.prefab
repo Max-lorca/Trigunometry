@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4045342232878889038}
   - component: {fileID: 4475611590488675608}
   - component: {fileID: 8952063507859487317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MeleeEnemy
   m_TagString: MeleeEnemy
   m_Icon: {fileID: 0}
@@ -185,8 +185,15 @@ MonoBehaviour:
   rotationAttackVelocity: 5
   vida: 4
   minDistAttack: 3
-  healingItemPrefab: {fileID: 0}
+  minDistSpawn: 0
+  distanciaDeteccion: 0
+  dirTimeChange: 0
+  spawnParticlePrefab: {fileID: 5950067022240317755, guid: 7db5894fe6c9b0734bab5ec02b6d2a07, type: 3}
+  healingItemPrefab: {fileID: 9025440471347290295, guid: a70f07a29569a3f61908b6225d807848, type: 3}
   dropChance: 0.5
+  anguloGrados: 60
+  funcionTrig: 0
+  colorSeleccion: {r: 1, g: 0.85, b: 0.2, a: 1}
 --- !u!114 &4475611590488675608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2015628773014410120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

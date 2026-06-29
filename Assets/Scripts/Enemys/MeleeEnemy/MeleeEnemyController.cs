@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class MeleeEnemyController : MonoBehaviour
+public class MeleeEnemyController : MonoBehaviour, IAnalizable
 {
     //Valores
     [SerializeField] private float velocityMovement;
@@ -33,6 +33,15 @@ public class MeleeEnemyController : MonoBehaviour
     [SerializeField] private GameObject healingItemPrefab;
     [SerializeField][Range(0f, 1f)] private float dropChance = 0.5f;
 
+    [Header("Análisis Trigonométrico")]
+    [SerializeField] private float anguloGrados;
+    [SerializeField] private FuncionTrig funcionTrig;
+    [SerializeField] private Color colorSeleccion = new Color(1f, 0.85f, 0.2f);
+
+    // Se activa cuando el jugador resuelve correctamente el análisis sobre este enemigo.
+    // Si el golpe que recibe a continuación lo mata, el drop de vidas se garantiza al 100%.
+    private bool dropGarantizadoAnalisis = false;
+    private Color colorOriginal;
 
     void Start()
     {
@@ -45,6 +54,7 @@ public class MeleeEnemyController : MonoBehaviour
         Color c = spriteEnemy.color;
         c.a = 0f;
         spriteEnemy.color = c;
+        colorOriginal = new Color(1f, 1f, 1f, 0f);
     }
 
     void Update()
@@ -193,7 +203,17 @@ public class MeleeEnemyController : MonoBehaviour
     }
     private void TryDropHealingItem()
     {
-        if (healingItemPrefab != null && Random.value <= dropChance)
+        if (healingItemPrefab == null) return;
+
+        if (dropGarantizadoAnalisis)
+        {
+            // Bonificación garantizada al 100% por resolver el análisis trigonométrico: 2 vidas.
+            Instantiate(healingItemPrefab, transform.position, Quaternion.identity);
+            Instantiate(healingItemPrefab, transform.position + Vector3.up * 0.3f, Quaternion.identity);
+            return;
+        }
+
+        if (Random.value <= dropChance)
         {
             Instantiate(healingItemPrefab, transform.position, Quaternion.identity);
         }
@@ -217,5 +237,57 @@ public class MeleeEnemyController : MonoBehaviour
 
         TryDropHealingItem();
         Destroy(this.gameObject);
+    }
+
+    // ----- Implementación de IAnalizable -----
+
+    public Transform AnalysisTransform => transform;
+
+    public string FuncionTrigonometrica => funcionTrig.ToString().ToLower();
+
+    public float AnguloGrados => anguloGrados;
+
+    public float ValorCorrecto
+    {
+        get
+        {
+            float rad = anguloGrados * Mathf.Deg2Rad;
+            switch (funcionTrig)
+            {
+                case FuncionTrig.Sin: return Mathf.Sin(rad);
+                case FuncionTrig.Cos: return Mathf.Cos(rad);
+                case FuncionTrig.Tan: return Mathf.Tan(rad);
+                default: return 0f;
+            }
+        }
+    }
+
+    public void OnSeleccionado()
+    {
+        Color c = spriteEnemy.color;
+        spriteEnemy.color = new Color(colorSeleccion.r, colorSeleccion.g, colorSeleccion.b, c.a);
+    }
+
+    public void OnDeseleccionado()
+    {
+        Color c = spriteEnemy.color;
+        spriteEnemy.color = new Color(1f, 1f, 1f, c.a);
+    }
+
+    public void OnAnalisisExitoso(float multiplicadorDano)
+    {
+        // El daño en sí lo aplica el proyectil del arma (ya con el multiplicador incluido)
+        // a través de TomarDaño(). Aquí solo garantizamos el drop si ese golpe lo mata.
+        dropGarantizadoAnalisis = true;
+    }
+
+    public void OnAnalisisFallido()
+    {
+        // Espacio para feedback de error (sonido, flash rojo, etc.) si lo quieres agregar.
+    }
+
+    public void RecibirDanoAnalisis(float dano)
+    {
+        TomarDaño(dano);
     }
 }
