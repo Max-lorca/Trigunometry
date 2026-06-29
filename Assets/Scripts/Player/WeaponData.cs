@@ -10,6 +10,8 @@ public class WeaponData : MonoBehaviour
     [SerializeField] private ProyectileController projectilePrefab;
     [SerializeField] private Transform projectileSpawn;
     [SerializeField] private GameObject particleShoot;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip shootAudioClip;
     private ObjectPool<ProyectileController> _pool;
     //Valores
     [SerializeField] private float shootCooldown = 0.5f;
@@ -18,6 +20,8 @@ public class WeaponData : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         _pool = new ObjectPool<ProyectileController>(
             createFunc: () =>
             {
@@ -43,11 +47,15 @@ public class WeaponData : MonoBehaviour
     {
         canShoot = false;
         Instantiate(particleShoot, projectileSpawn.transform.position, projectileSpawn.transform.rotation);
+
+        audioSource.PlayOneShot(shootAudioClip);
         ProyectileController proyectil = _pool.Get();
         proyectil.transform.position = projectileSpawn.position;
         proyectil.ResetProyectile(projectileSpawn.position);
         proyectil.SetDirection(projectileSpawn.right);
+
         yield return new WaitForSeconds(shootCooldown);
+
         canShoot = true;
     }
 }

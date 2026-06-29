@@ -5,9 +5,14 @@ using UnityEngine.InputSystem;
 
 public class WeaponSwitcher : MonoBehaviour
 {
+    [Header("Configuración")]
     [SerializeField] private List<GameObject> weaponsPrefabs;
     [SerializeField] private Transform weaponSpawn;
     [SerializeField] private TextMeshPro weaponText;
+    [Header("Audio")]
+    [SerializeField] private AudioClip switchWeaponAudio;
+
+    private AudioSource audioSource;
 
     private GameObject actualWeaponInstance;
     private WeaponShoot weaponShootInput;
@@ -20,6 +25,7 @@ public class WeaponSwitcher : MonoBehaviour
     {
         weaponShootInput = GetComponent<WeaponShoot>();
         fadeController = GetComponent<FadeController>();
+        audioSource = GetComponent<AudioSource>();
 
         Color c = weaponText.color;
         c.a = 0f;
@@ -42,6 +48,7 @@ public class WeaponSwitcher : MonoBehaviour
             weaponSpawn);
 
         weaponShootInput.currentWeapon = actualWeaponInstance.GetComponent<WeaponData>();
+        audioSource.PlayOneShot(switchWeaponAudio);
         actualWeaponInstance.SetActive(true);
     }
 

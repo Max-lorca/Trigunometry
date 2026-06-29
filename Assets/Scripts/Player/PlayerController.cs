@@ -16,7 +16,11 @@ public class PlayerController : MonoBehaviour
     [Header("Animation Config")]
     [SerializeField] private float dieLagTime;
     [SerializeField] private float spawnLagTime;
-
+    [Header("Audios")]
+    [SerializeField] private AudioClip walkAudio;
+    [SerializeField] private AudioClip jumpAudio;
+    [SerializeField] private AudioClip deadAudio;
+    [SerializeField] private AudioClip spawnAudio;
 
     private int currentLife;
     private bool canJump = true;
