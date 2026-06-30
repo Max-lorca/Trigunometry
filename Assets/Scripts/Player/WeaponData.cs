@@ -96,4 +96,21 @@ public class WeaponData : MonoBehaviour
 
         objetivo.RecibirDanoAnalisis(proyectil.DanoActual);
     }
+
+    public float ObtenerMultiplicadorContraEnemigo(IAnalizable enemigo)
+    {
+        EnemyAnalizable enemyAnalizable = enemigo as EnemyAnalizable;
+        if (enemyAnalizable == null) return 1f;
+
+        string nombreArma = gameObject.name.ToLower();
+
+        if (nombreArma.Contains("seno") || nombreArma.Contains("sin"))
+            return enemyAnalizable.multiplicadorSeno;
+        else if (nombreArma.Contains("coseno") || nombreArma.Contains("cos"))
+            return enemyAnalizable.multiplicadorCoseno;
+        else if (nombreArma.Contains("tangente") || nombreArma.Contains("tan"))
+            return enemyAnalizable.multiplicadorTangente;
+
+        return 1f;
+    }
 }

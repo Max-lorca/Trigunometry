@@ -1210,6 +1210,42 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1 &527311198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3665854133921909830, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+  m_PrefabInstance: {fileID: 1276911073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &527311201 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4045342232878889038, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+  m_PrefabInstance: {fileID: 1276911073}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527311198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d5cb126bc521c929d006570c93f421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemyController
+--- !u!114 &527311205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527311198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf5700a28a79a341a5c34891a8442e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnalizable
+  funcionTrigonometrica: sin
+  anguloGrados: 45
+  valorCorrecto: 0.7071
+  meleeEnemy: {fileID: 527311201}
+  distanceEnemy: {fileID: 2015030561}
+  multiplicadorSeno: 0.5
+  multiplicadorCoseno: 2
+  multiplicadorTangente: 1
 --- !u!1 &540147503
 GameObject:
   m_ObjectHideFlags: 0
@@ -113423,7 +113459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3665854133921909830, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4045342232878889038, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: minDistSpawn
@@ -113495,7 +113531,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7410831109379109706, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1894049380}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3665854133921909830, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 527311205}
   m_SourcePrefab: {fileID: 100100000, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
 --- !u!1 &1299296303
 GameObject:
@@ -122674,13 +122713,14 @@ GameObject:
   - component: {fileID: 2015030561}
   - component: {fileID: 2015030566}
   - component: {fileID: 2015030567}
+  - component: {fileID: 2015030568}
   m_Layer: 0
   m_Name: DistanceEnemy
   m_TagString: DistanceEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2015030561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122884,6 +122924,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265fdf13d93dc5b58a80c2b5754131b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FadeController
+--- !u!114 &2015030568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015030560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf5700a28a79a341a5c34891a8442e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnalizable
+  funcionTrigonometrica: sin
+  anguloGrados: 45
+  valorCorrecto: 0.7071
+  meleeEnemy: {fileID: 527311201}
+  distanceEnemy: {fileID: 2015030561}
+  multiplicadorSeno: 2
+  multiplicadorCoseno: 0.5
+  multiplicadorTangente: 1
 --- !u!1 &2094771653
 GameObject:
   m_ObjectHideFlags: 0

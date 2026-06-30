@@ -142,5 +142,14 @@ public class ProyectileController : MonoBehaviour
         }
     }
 
-    
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        proyectileSpeed = newSpeed;
+    }
+
 }

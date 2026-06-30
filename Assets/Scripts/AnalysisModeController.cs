@@ -3,12 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
-/// <summary>
-/// Se encarga de TODO lo que pasa una vez que el tiempo ya está congelado
-/// (lo activa/desactiva TimeStopManager): detectar clic sobre un enemigo,
-/// mostrar la pregunta trigonométrica, validar la respuesta y disparar
-/// el tiro bonus garantizado con el arma actualmente equipada.
-/// </summary>
 public class AnalysisModeController : MonoBehaviour
 {
     [Header("Detección de enemigos")]
@@ -19,7 +13,7 @@ public class AnalysisModeController : MonoBehaviour
     [SerializeField] private GameObject panelAnalisis;
     [SerializeField] private TMP_Text textoPregunta;
     [SerializeField] private TMP_InputField inputRespuesta;
-    [SerializeField] private Image barraTiempo; // fillAmount = tiempo restante (opcional)
+    [SerializeField] private Image barraTiempo;
 
     [Header("Configuración")]
     [SerializeField] private float tiempoLimiteRespuesta = 5f;
@@ -28,7 +22,7 @@ public class AnalysisModeController : MonoBehaviour
 
     [Header("Referencias")]
     [SerializeField] private TimeStopManager timeStopManager;
-    [SerializeField] private WeaponShoot weaponShoot; // expone weaponShoot.currentWeapon (arma equipada)
+    [SerializeField] private WeaponShoot weaponShoot;
 
     private IAnalizable enemigoActual;
     private Coroutine corrutinaTimer;
@@ -42,8 +36,10 @@ public class AnalysisModeController : MonoBehaviour
 
     private void Update()
     {
+        if (timeStopManager == null) return;
         if (!timeStopManager.IsAnalysisActive) return;
 
+        // Solo permitir selección si no hay enemigo seleccionado
         if (enemigoActual == null && Input.GetMouseButtonDown(0))
         {
             IntentarSeleccionar();
@@ -94,7 +90,7 @@ public class AnalysisModeController : MonoBehaviour
         if (enemigoActual == null) return;
 
         if (!float.TryParse(inputRespuesta.text, out float valorIngresado))
-            return; // entrada inválida, no cuenta como intento fallido todavía
+            return;
 
         if (Mathf.Abs(valorIngresado - enemigoActual.ValorCorrecto) <= toleranciaError)
         {
@@ -110,11 +106,12 @@ public class AnalysisModeController : MonoBehaviour
     {
         if (corrutinaTimer != null) StopCoroutine(corrutinaTimer);
 
-        // El enemigo marca su drop garantizado de 2 vidas si este golpe lo mata.
         enemigoActual.OnAnalisisExitoso(multiplicadorDanoBonus);
 
-        // El arma actualmente equipada dispara el tiro bonus garantizado.
-        weaponShoot.currentWeapon.DispararAnalisisExitoso(enemigoActual, multiplicadorDanoBonus);
+        if (weaponShoot != null && weaponShoot.currentWeapon != null)
+        {
+            weaponShoot.currentWeapon.DispararAnalisisExitoso(enemigoActual, multiplicadorDanoBonus);
+        }
 
         FinalizarSeleccion();
     }
