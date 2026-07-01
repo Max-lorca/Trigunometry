@@ -110,7 +110,7 @@ MonoBehaviour:
   damage: 1
   proyectileSpeed: 10
   frecuency: 10
-  amplitude: 1.5
+  amplitude: 0.75
   explotionParticle: {fileID: 632983800386883047, guid: 67b12c1955e805eb0bb45a28224d3ff3, type: 3}
 --- !u!61 &814570580478074738
 BoxCollider2D:

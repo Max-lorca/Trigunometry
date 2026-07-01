@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float deadFade;
     [SerializeField][Range(0f, 1f)] private float spawnFade;
     [SerializeField][Range(0f, 10f)] private float fadeTime;
+
+    [Header("Shake Camera Config")] 
+    [SerializeField] [Range(0f, 5f)] private float duration;
+    [SerializeField] [Range(0f, 2f)] private float magnitude;
     [Header("Animation Config")]
     [SerializeField] private float dieLagTime;
     [SerializeField] private float spawnLagTime;
@@ -32,13 +36,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem walkParticle;
     [SerializeField] private GameObject deadParticle;
     [SerializeField] private GameObject spawnParticle;
-    private Transform walkParticleTransform;
     [SerializeField] private ParticleSystem lifeParticle;
     [SerializeField] private CanvasManager menuCanvasManager;
-    private CanvasGroup menuCanvasGroup;
     [SerializeField] private CanvasManager deadCanvasManager;
+    private CameraShake cameraShake;
     private CanvasGroup deadCanvasGroup;
-
+    private CanvasGroup menuCanvasGroup;
+    private Transform walkParticleTransform;
     private Animator animador;
     private Rigidbody2D rbPlayer;
     private PlayerInput playerInput;
@@ -60,7 +64,7 @@ public class PlayerController : MonoBehaviour
         fadeController = GetComponent<FadeController>();
         menuCanvasGroup = menuCanvasManager.GetComponent<CanvasGroup>();
         deadCanvasGroup = deadCanvasManager.GetComponent<CanvasGroup>();
-
+        cameraShake = GetComponent<CameraShake>();
         walkParticleTransform = walkParticle.transform;
 
         currentLife = maxLife;
@@ -131,9 +135,8 @@ public class PlayerController : MonoBehaviour
         currentLife -= damage;
 
         Debug.Log($"Player daño: {currentLife}/{maxLife}");
-
-        CameraShake shake = Camera.main.GetComponent<CameraShake>();
-        shake.Shake(0.15f, 0.2f);
+        
+        cameraShake.Shake(duration, magnitude);
 
         if (healthUI != null)
             healthUI.UpdateHealth(currentLife, maxLife);

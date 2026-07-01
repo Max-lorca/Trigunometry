@@ -108,9 +108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProyectileController
   direction: {x: 0, y: 0}
   damage: 0.5
-  proyectileSpeed: 1
+  proyectileSpeed: 15
   frecuency: 10
-  amplitude: 0.5
+  amplitude: 0.2
   explotionParticle: {fileID: 632983800386883047, guid: 67b12c1955e805eb0bb45a28224d3ff3, type: 3}
 --- !u!61 &-437700953787570512
 BoxCollider2D:
