@@ -132,6 +132,9 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log($"Player daño: {currentLife}/{maxLife}");
 
+        CameraShake shake = Camera.main.GetComponent<CameraShake>();
+        shake.Shake(0.15f, 0.2f);
+
         if (healthUI != null)
             healthUI.UpdateHealth(currentLife, maxLife);
 

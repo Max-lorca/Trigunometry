@@ -24,8 +24,8 @@ public class AnalysisModeController : MonoBehaviour
     [SerializeField] private TimeStopManager timeStopManager;
     [SerializeField] private WeaponShoot weaponShoot;
 
-    private IAnalizable enemigoActual;
-    private Coroutine corrutinaTimer;
+    private IAnalizable _enemigoActual;
+    private Coroutine _corrutinaTimer;
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class AnalysisModeController : MonoBehaviour
         if (!timeStopManager.IsAnalysisActive) return;
 
         // Solo permitir selección si no hay enemigo seleccionado
-        if (enemigoActual == null && Input.GetMouseButtonDown(0))
+        if (_enemigoActual == null && Input.GetMouseButtonDown(0))
         {
             IntentarSeleccionar();
         }
@@ -59,7 +59,7 @@ public class AnalysisModeController : MonoBehaviour
 
     private void SeleccionarEnemigo(IAnalizable enemigo)
     {
-        enemigoActual = enemigo;
+        _enemigoActual = enemigo;
         enemigo.OnSeleccionado();
         timeStopManager.SetEnSeleccion(true);
 
@@ -70,7 +70,7 @@ public class AnalysisModeController : MonoBehaviour
         inputRespuesta.ActivateInputField();
 
         if (barraTiempo != null) barraTiempo.fillAmount = 1f;
-        corrutinaTimer = StartCoroutine(TimerRespuesta());
+        _corrutinaTimer = StartCoroutine(TimerRespuesta());
     }
 
     private IEnumerator TimerRespuesta()
@@ -87,12 +87,12 @@ public class AnalysisModeController : MonoBehaviour
 
     private void ValidarRespuesta()
     {
-        if (enemigoActual == null) return;
+        if (_enemigoActual == null) return;
 
         if (!float.TryParse(inputRespuesta.text, out float valorIngresado))
             return;
 
-        if (Mathf.Abs(valorIngresado - enemigoActual.ValorCorrecto) <= toleranciaError)
+        if (Mathf.Abs(valorIngresado - _enemigoActual.ValorCorrecto) <= toleranciaError)
         {
             Acertar();
         }
@@ -104,13 +104,13 @@ public class AnalysisModeController : MonoBehaviour
 
     private void Acertar()
     {
-        if (corrutinaTimer != null) StopCoroutine(corrutinaTimer);
+        if (_corrutinaTimer != null) StopCoroutine(_corrutinaTimer);
 
-        enemigoActual.OnAnalisisExitoso(multiplicadorDanoBonus);
+        _enemigoActual.OnAnalisisExitoso(multiplicadorDanoBonus);
 
         if (weaponShoot != null && weaponShoot.currentWeapon != null)
         {
-            weaponShoot.currentWeapon.DispararAnalisisExitoso(enemigoActual, multiplicadorDanoBonus);
+            weaponShoot.currentWeapon.DispararAnalisisExitoso(_enemigoActual, multiplicadorDanoBonus);
         }
 
         FinalizarSeleccion();
@@ -118,16 +118,16 @@ public class AnalysisModeController : MonoBehaviour
 
     private void Fallar()
     {
-        if (corrutinaTimer != null) StopCoroutine(corrutinaTimer);
-        enemigoActual?.OnAnalisisFallido();
+        if (_corrutinaTimer != null) StopCoroutine(_corrutinaTimer);
+        _enemigoActual?.OnAnalisisFallido();
         FinalizarSeleccion();
     }
 
     private void FinalizarSeleccion()
     {
         panelAnalisis.SetActive(false);
-        enemigoActual?.OnDeseleccionado();
-        enemigoActual = null;
+        _enemigoActual?.OnDeseleccionado();
+        _enemigoActual = null;
         timeStopManager.SetEnSeleccion(false);
     }
 }
