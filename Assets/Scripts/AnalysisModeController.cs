@@ -24,23 +24,29 @@ public class AnalysisModeController : MonoBehaviour
     [SerializeField] private TimeStopManager timeStopManager;
     [SerializeField] private WeaponShoot weaponShoot;
 
-    private IAnalizable _enemigoActual;
-    private Coroutine _corrutinaTimer;
+    private IAnalizable enemigoActual;
+    private Coroutine corrutinaTimer;
 
     private void Awake()
     {
-        if (camaraPrincipal == null) camaraPrincipal = Camera.main;
-        panelAnalisis.SetActive(false);
-        inputRespuesta.onSubmit.AddListener(_ => ValidarRespuesta());
+        if (camaraPrincipal == null)
+            camaraPrincipal = Camera.main;
+
+        // ✅ NULL CHECKS: solo desactivar si existe
+        if (panelAnalisis != null)
+            panelAnalisis.SetActive(false);
+
+        if (inputRespuesta != null)
+            inputRespuesta.onSubmit.AddListener(_ => ValidarRespuesta());
     }
 
     private void Update()
     {
         if (timeStopManager == null) return;
         if (!timeStopManager.IsAnalysisActive) return;
+        if (enemigoActual != null) return;
 
-        // Solo permitir selección si no hay enemigo seleccionado
-        if (_enemigoActual == null && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             IntentarSeleccionar();
         }
@@ -48,6 +54,8 @@ public class AnalysisModeController : MonoBehaviour
 
     private void IntentarSeleccionar()
     {
+        if (camaraPrincipal == null) return;
+
         Vector2 mundoPos = camaraPrincipal.ScreenToWorldPoint(Input.mousePosition);
         Collider2D hit = Physics2D.OverlapPoint(mundoPos, capaEnemigos);
 
@@ -59,18 +67,29 @@ public class AnalysisModeController : MonoBehaviour
 
     private void SeleccionarEnemigo(IAnalizable enemigo)
     {
-        _enemigoActual = enemigo;
+        enemigoActual = enemigo;
         enemigo.OnSeleccionado();
-        timeStopManager.SetEnSeleccion(true);
 
-        textoPregunta.text = $"{enemigo.FuncionTrigonometrica}({enemigo.AnguloGrados}°) = ?";
-        inputRespuesta.text = "";
-        panelAnalisis.SetActive(true);
-        inputRespuesta.Select();
-        inputRespuesta.ActivateInputField();
+        if (timeStopManager != null)
+            timeStopManager.SetEnSeleccion(true);
 
-        if (barraTiempo != null) barraTiempo.fillAmount = 1f;
-        _corrutinaTimer = StartCoroutine(TimerRespuesta());
+        if (textoPregunta != null)
+            textoPregunta.text = $"{enemigo.FuncionTrigonometrica}({enemigo.AnguloGrados}°) = ?";
+
+        if (inputRespuesta != null)
+        {
+            inputRespuesta.text = "";
+            inputRespuesta.Select();
+            inputRespuesta.ActivateInputField();
+        }
+
+        if (panelAnalisis != null)
+            panelAnalisis.SetActive(true);
+
+        if (barraTiempo != null)
+            barraTiempo.fillAmount = 1f;
+
+        corrutinaTimer = StartCoroutine(TimerRespuesta());
     }
 
     private IEnumerator TimerRespuesta()
@@ -79,7 +98,8 @@ public class AnalysisModeController : MonoBehaviour
         while (t > 0f)
         {
             t -= Time.unscaledDeltaTime;
-            if (barraTiempo != null) barraTiempo.fillAmount = t / tiempoLimiteRespuesta;
+            if (barraTiempo != null)
+                barraTiempo.fillAmount = t / tiempoLimiteRespuesta;
             yield return null;
         }
         Fallar();
@@ -87,12 +107,14 @@ public class AnalysisModeController : MonoBehaviour
 
     private void ValidarRespuesta()
     {
-        if (_enemigoActual == null) return;
+        if (enemigoActual == null) return;
+
+        if (inputRespuesta == null) return;
 
         if (!float.TryParse(inputRespuesta.text, out float valorIngresado))
             return;
 
-        if (Mathf.Abs(valorIngresado - _enemigoActual.ValorCorrecto) <= toleranciaError)
+        if (Mathf.Abs(valorIngresado - enemigoActual.ValorCorrecto) <= toleranciaError)
         {
             Acertar();
         }
@@ -104,13 +126,16 @@ public class AnalysisModeController : MonoBehaviour
 
     private void Acertar()
     {
-        if (_corrutinaTimer != null) StopCoroutine(_corrutinaTimer);
+        if (corrutinaTimer != null) StopCoroutine(corrutinaTimer);
 
-        _enemigoActual.OnAnalisisExitoso(multiplicadorDanoBonus);
+        if (enemigoActual != null)
+        {
+            enemigoActual.OnAnalisisExitoso(multiplicadorDanoBonus);
+        }
 
         if (weaponShoot != null && weaponShoot.currentWeapon != null)
         {
-            weaponShoot.currentWeapon.DispararAnalisisExitoso(_enemigoActual, multiplicadorDanoBonus);
+            weaponShoot.currentWeapon.DispararAnalisisExitoso(enemigoActual, multiplicadorDanoBonus);
         }
 
         FinalizarSeleccion();
@@ -118,16 +143,66 @@ public class AnalysisModeController : MonoBehaviour
 
     private void Fallar()
     {
-        if (_corrutinaTimer != null) StopCoroutine(_corrutinaTimer);
-        _enemigoActual?.OnAnalisisFallido();
+        if (corrutinaTimer != null) StopCoroutine(corrutinaTimer);
+
+        if (enemigoActual != null)
+        {
+            try
+            {
+                enemigoActual.OnAnalisisFallido();
+            }
+            catch { }
+        }
+
         FinalizarSeleccion();
     }
 
     private void FinalizarSeleccion()
     {
-        panelAnalisis.SetActive(false);
-        _enemigoActual?.OnDeseleccionado();
-        _enemigoActual = null;
-        timeStopManager.SetEnSeleccion(false);
+        if (panelAnalisis != null)
+            panelAnalisis.SetActive(false);
+
+        if (enemigoActual != null)
+        {
+            try
+            {
+                enemigoActual.OnDeseleccionado();
+            }
+            catch { }
+            enemigoActual = null;
+        }
+
+        if (timeStopManager != null)
+            timeStopManager.SetEnSeleccion(false);
+    }
+
+    public void LimpiarEnemigo()
+    {
+        if (corrutinaTimer != null)
+        {
+            StopCoroutine(corrutinaTimer);
+            corrutinaTimer = null;
+        }
+
+        if (enemigoActual != null)
+        {
+            try
+            {
+                enemigoActual.OnDeseleccionado();
+            }
+            catch { }
+            enemigoActual = null;
+        }
+
+        if (panelAnalisis != null)
+            panelAnalisis.SetActive(false);
+
+        if (inputRespuesta != null)
+            inputRespuesta.text = "";
+
+        if (timeStopManager != null)
+            timeStopManager.SetEnSeleccion(false);
+
+        Debug.Log("🧹 Análisis limpiado completamente");
     }
 }

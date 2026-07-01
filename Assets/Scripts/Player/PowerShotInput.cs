@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PowerShotInput : MonoBehaviour
@@ -20,11 +20,13 @@ public class PowerShotInput : MonoBehaviour
     {
         if (!ctx.performed) return;
 
+        // Intentar disparo potente primero
         if (powerShotSystem != null && powerShotSystem.TryPowerShot())
         {
             return;
         }
 
+        // Disparo normal
         if (weaponShoot != null)
         {
             weaponShoot.OnShoot(ctx);
