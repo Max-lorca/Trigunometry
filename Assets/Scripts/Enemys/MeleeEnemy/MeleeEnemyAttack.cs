@@ -33,7 +33,7 @@ public class MeleeEnemyAttack : MonoBehaviour
             if(hits[i].gameObject.tag == "Player")
             {
                 PlayerController player = hits[i].GetComponent<PlayerController>();
-                player.TakeDamage(this.damage);
+                player.TakeDamage(this.damage, (Vector2)transform.position);
             }
         }
 

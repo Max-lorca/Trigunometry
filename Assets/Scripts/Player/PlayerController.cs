@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private HealthUIController healthUI;
     private TimeStopManager timeStopController;
     private FadeController fadeController;
+    private KnockbackController knockbackController;
 
     //Vectores
     private Vector2 input;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
         deadCanvasGroup = deadCanvasManager.GetComponent<CanvasGroup>();
         cameraShake = GetComponent<CameraShake>();
         walkParticleTransform = walkParticle.transform;
+        knockbackController = GetComponent<KnockbackController>();
 
         currentLife = maxLife;
 
@@ -127,7 +129,7 @@ public class PlayerController : MonoBehaviour
         rbPlayer.linearVelocity = new Vector2(input.x * velocityMovement, rbPlayer.linearVelocity.y);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 origenAtaque)
     {
         if (isDead)
             return;
@@ -137,6 +139,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"Player daño: {currentLife}/{maxLife}");
         
         cameraShake.Shake(duration, magnitude);
+        knockbackController.RecibirKnockBack(origenAtaque);
 
         if (healthUI != null)
             healthUI.UpdateHealth(currentLife, maxLife);

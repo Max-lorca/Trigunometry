@@ -41,7 +41,7 @@ public class EnemyProjectile : MonoBehaviour
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.TakeDamage((int)damage);
+                player.TakeDamage((int)damage, (Vector2)transform.position);
                 Debug.Log("💥 Proyectil enemigo golpeó al player!");
             }
             Destroy(gameObject);
