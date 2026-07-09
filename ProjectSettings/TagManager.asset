@@ -9,6 +9,8 @@ TagManager:
   - MeleeEnemy
   - Pared
   - HighLight
+  - Proyectil
+  - Ataque
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Water
   - UI
   - Enemies
-  - 
+  - AtaqueEnemigo
   - 
   - 
   - 

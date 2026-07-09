@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     private TimeStopManager timeStopController;
     private FadeController fadeController;
     private KnockbackController knockbackController;
+    private ParryController parryController;
 
     //Vectores
     private Vector2 input;
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
         cameraShake = GetComponent<CameraShake>();
         walkParticleTransform = walkParticle.transform;
         knockbackController = GetComponent<KnockbackController>();
+        parryController = GetComponent<ParryController>();
 
         currentLife = maxLife;
 
@@ -235,6 +237,15 @@ public class PlayerController : MonoBehaviour
         if (ctx.performed)
         {
             menuCanvasManager.ToggleMenu();
+        }
+    }
+
+    public void ParryAction(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            Debug.Log("Parry");
+            parryController.TryParry();
         }
     }
 

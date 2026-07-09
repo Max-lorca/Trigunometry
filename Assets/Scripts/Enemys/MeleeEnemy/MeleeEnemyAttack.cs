@@ -15,10 +15,18 @@ public class MeleeEnemyAttack : MonoBehaviour
     private List<Collider2D> hits = new List<Collider2D>();
 
     [HideInInspector] public bool canAttack = true;
+    [HideInInspector] public bool estaEnFrameDeAtaque = false;
+    private MeleeEnemyController _controller;
 
+    private void Start()
+    {
+        _controller.GetComponent<MeleeEnemyController>();
+    }
     public IEnumerator AttackPerformance()
     {
         canAttack = false;
+        
+        estaEnFrameDeAtaque = true;
 
         ContactFilter2D filtro = new ContactFilter2D();
 
@@ -30,13 +38,34 @@ public class MeleeEnemyAttack : MonoBehaviour
 
         for(int i = 0; i < hitsValue; i++)
         {
-            if(hits[i].gameObject.tag == "Player")
+            if(hits[i].gameObject.CompareTag("Player"))
             {
                 PlayerController player = hits[i].GetComponent<PlayerController>();
                 player.TakeDamage(this.damage, (Vector2)transform.position);
             }
         }
 
+        estaEnFrameDeAtaque = false;
+        yield return new WaitForSeconds(cooldown);
+        canAttack = true;
+    }
+
+    public void InterrumpirPorParry()
+    {
+        StopAllCoroutines();
+        estaEnFrameDeAtaque = false;
+
+        if (_controller != null)
+        {
+            _controller.TomarDaño(0);
+        }
+
+        StartCoroutine(ResetCooldownDespuesDeParry());
+    }
+
+    private IEnumerator ResetCooldownDespuesDeParry()
+    {
+        canAttack = false;
         yield return new WaitForSeconds(cooldown);
         canAttack = true;
     }

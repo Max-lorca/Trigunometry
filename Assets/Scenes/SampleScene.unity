@@ -119,6 +119,47 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &32525219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5367611176163902383, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+  m_PrefabInstance: {fileID: 1276911073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &32525221
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32525219}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 2
 --- !u!1 &109713184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,6 +1601,7 @@ GameObject:
   - component: {fileID: 540147518}
   - component: {fileID: 540147519}
   - component: {fileID: 540147520}
+  - component: {fileID: 540147521}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1967,6 +2009,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a10f46d7-a9d4-450b-bd01-13642ae60830
     m_ActionName: 'Player/Menu[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 540147508}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ParryAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 46349519-e507-4a33-9db8-9767269b8386
+    m_ActionName: 'Player/Parry[/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -2271,6 +2329,24 @@ MonoBehaviour:
   forceX: 5
   forceY: 1.5
   duration: 0.2
+--- !u!114 &540147521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540147503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f580ca88578a4baaae57aa20247a6ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParryController
+  parryRad: 1.5
+  parryCooldown: 0.5
+  offset: {x: 1, y: 0, z: 0}
+  capaAtaquesEnemigos:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &553773211
 GameObject:
   m_ObjectHideFlags: 0
@@ -114193,6 +114269,14 @@ PrefabInstance:
       propertyPath: radAttack
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5367611176163902383, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367611176163902383, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: m_TagString
+      value: Ataque
+      objectReference: {fileID: 0}
     - target: {fileID: 7410831109379109706, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.58
@@ -114243,6 +114327,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3665854133921909830, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       insertIndex: -1
       addedObject: {fileID: 527311205}
+    - targetCorrespondingSourceObject: {fileID: 5367611176163902383, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 32525221}
   m_SourcePrefab: {fileID: 100100000, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
 --- !u!1 &1299296303
 GameObject:
