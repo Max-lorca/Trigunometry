@@ -20,7 +20,7 @@ public class MeleeEnemyAttack : MonoBehaviour
 
     private void Start()
     {
-        _controller.GetComponent<MeleeEnemyController>();
+        _controller = GetComponent<MeleeEnemyController>();
     }
     public IEnumerator AttackPerformance()
     {

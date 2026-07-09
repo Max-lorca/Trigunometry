@@ -152,4 +152,37 @@ public class ProyectileController : MonoBehaviour
         proyectileSpeed = newSpeed;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("MeleeEnemy"))
+        {
+            MeleeEnemyController melee = collision.gameObject.GetComponent<MeleeEnemyController>();
+            if (melee != null)
+            {
+                melee.TomarDaño(damage);
+
+                // 👈 NUEVO: Notificar impacto
+                WeaponShoot ws = FindFirstObjectByType<WeaponShoot>();
+                if (ws != null) ws.OnHitEnemy();
+            }
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("DistanceEnemy"))
+        {
+            DistanceEnemyController dist = collision.gameObject.GetComponent<DistanceEnemyController>();
+            if (dist != null)
+            {
+                dist.TomarDaño(damage);
+
+                // 👈 NUEVO: Notificar impacto
+                WeaponShoot ws = FindFirstObjectByType<WeaponShoot>();
+                if (ws != null) ws.OnHitEnemy();
+            }
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

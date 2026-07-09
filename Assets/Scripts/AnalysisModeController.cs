@@ -29,10 +29,8 @@ public class AnalysisModeController : MonoBehaviour
 
     private void Awake()
     {
-        if (camaraPrincipal == null)
-            camaraPrincipal = Camera.main;
+        if (camaraPrincipal == null) camaraPrincipal = Camera.main;
 
-        // ✅ NULL CHECKS: solo desactivar si existe
         if (panelAnalisis != null)
             panelAnalisis.SetActive(false);
 
@@ -69,9 +67,6 @@ public class AnalysisModeController : MonoBehaviour
     {
         enemigoActual = enemigo;
         enemigo.OnSeleccionado();
-
-        if (timeStopManager != null)
-            timeStopManager.SetEnSeleccion(true);
 
         if (textoPregunta != null)
             textoPregunta.text = $"{enemigo.FuncionTrigonometrica}({enemigo.AnguloGrados}°) = ?";
@@ -171,9 +166,6 @@ public class AnalysisModeController : MonoBehaviour
             catch { }
             enemigoActual = null;
         }
-
-        if (timeStopManager != null)
-            timeStopManager.SetEnSeleccion(false);
     }
 
     public void LimpiarEnemigo()
@@ -200,9 +192,6 @@ public class AnalysisModeController : MonoBehaviour
         if (inputRespuesta != null)
             inputRespuesta.text = "";
 
-        if (timeStopManager != null)
-            timeStopManager.SetEnSeleccion(false);
-
-        Debug.Log("🧹 Análisis limpiado completamente");
+        Debug.Log("🧹 Análisis limpiado");
     }
 }

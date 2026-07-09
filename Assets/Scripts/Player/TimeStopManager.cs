@@ -3,31 +3,44 @@ using System.Collections;
 
 public class TimeStopManager : MonoBehaviour
 {
-    [Header("Configuración modo Analisis")]
-    [SerializeField] private float transitionTime;
-    [SerializeField] private float effectTime; // Ya no se usa, lo dejamos por si acaso
+    [Header("Configuración")]
+    [SerializeField] private float transitionTime = 0.3f;
+    [SerializeField] private float satoruDuration = 4f;
 
     [Header("UI y Efectos")]
     [SerializeField] private CanvasGroup canvasGroupEfect;
     [SerializeField] private ParticleSystem mathSymbolsParticle;
 
+    [Header("Referencias")]
+    [SerializeField] private SatoruChargeSystem chargeSystem; // 👈 NUEVO
+
     private Transform player;
     private bool isAnalysisActive = false;
-    private bool estaEnSeleccion = false;
+    private float tiempoRestante = 0f;
 
     public bool IsAnalysisActive => isAnalysisActive;
+    public float TiempoRestante => tiempoRestante;
 
-    private void Start()
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        var main = mathSymbolsParticle.main;
-        main.useUnscaledTime = true;
-        canvasGroupEfect.alpha = 0f;
+
+        if (mathSymbolsParticle != null)
+        {
+            var main = mathSymbolsParticle.main;
+            main.useUnscaledTime = true;
+        }
+
+        if (canvasGroupEfect != null)
+            canvasGroupEfect.alpha = 0f;
+
+        if (chargeSystem == null)
+            chargeSystem = FindFirstObjectByType<SatoruChargeSystem>();
     }
 
-    private void Update()
+    void Update()
     {
-        if (mathSymbolsParticle.isPlaying)
+        if (mathSymbolsParticle != null && mathSymbolsParticle.isPlaying)
         {
             mathSymbolsParticle.transform.position = player.position;
         }
@@ -35,59 +48,76 @@ public class TimeStopManager : MonoBehaviour
 
     public void TryTimeStop()
     {
-        if (!isAnalysisActive)
-        {
-            StartCoroutine(ActivarModoAnalisis());
-        }
-        else
+        // Si ya está activo, desactivar
+        if (isAnalysisActive)
         {
             StartCoroutine(DesactivarModoAnalisis());
+            return;
         }
-    }
 
-    public void SetEnSeleccion(bool valor)
-    {
-        estaEnSeleccion = valor;
+        // 👈 Verificar carga
+        if (chargeSystem == null || !chargeSystem.IsReady)
+        {
+            Debug.Log("⚠️ Modo Satoru no disponible. Carga insuficiente.");
+            return;
+        }
+
+        StartCoroutine(ActivarModoAnalisis());
     }
 
     private IEnumerator ActivarModoAnalisis()
     {
         isAnalysisActive = true;
-        GameManager.Instance.isTimeStopped = true;
         Time.timeScale = 0f;
 
-        mathSymbolsParticle.transform.position = player.position;
-        mathSymbolsParticle.Play();
+        // 👈 Consumir carga
+        if (chargeSystem != null)
+            chargeSystem.ConsumeCharge();
 
-        while (canvasGroupEfect.alpha < 1f)
+        if (mathSymbolsParticle != null)
         {
-            canvasGroupEfect.alpha += Time.unscaledDeltaTime * transitionTime;
-            yield return null;
-        }
-        canvasGroupEfect.alpha = 1f;
-
-        // ✅ ELIMINADO: El timer ya no existe
-        // El modo dura hasta que el jugador dispare o cancele manualmente
-
-        // Esperar hasta que se desactive manualmente (desde TryPowerShot o TryTimeStop)
-        while (isAnalysisActive)
-        {
-            yield return null;
+            mathSymbolsParticle.transform.position = player.position;
+            mathSymbolsParticle.Play();
         }
 
-        yield return StartCoroutine(DesactivarModoAnalisis());
+        if (canvasGroupEfect != null)
+        {
+            while (canvasGroupEfect.alpha < 1f)
+            {
+                canvasGroupEfect.alpha += Time.unscaledDeltaTime * transitionTime;
+                yield return null;
+            }
+            canvasGroupEfect.alpha = 1f;
+        }
+
+        tiempoRestante = satoruDuration;
+        while (tiempoRestante > 0f && isAnalysisActive)
+        {
+            tiempoRestante -= Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        if (isAnalysisActive)
+        {
+            yield return StartCoroutine(DesactivarModoAnalisis());
+        }
     }
 
     private IEnumerator DesactivarModoAnalisis()
     {
-        while (canvasGroupEfect.alpha > 0f)
+        if (canvasGroupEfect != null)
         {
-            canvasGroupEfect.alpha -= Time.unscaledDeltaTime * transitionTime;
-            yield return null;
+            while (canvasGroupEfect.alpha > 0f)
+            {
+                canvasGroupEfect.alpha -= Time.unscaledDeltaTime * transitionTime;
+                yield return null;
+            }
+            canvasGroupEfect.alpha = 0f;
         }
-        canvasGroupEfect.alpha = 0f;
-        mathSymbolsParticle.Stop();
-        GameManager.Instance.isTimeStopped = false;
+
+        if (mathSymbolsParticle != null)
+            mathSymbolsParticle.Stop();
+
         Time.timeScale = 1f;
         isAnalysisActive = false;
     }
