@@ -21,10 +21,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dieLagTime;
     [SerializeField] private float spawnLagTime;
     [Header("Audios")]
-    [SerializeField] private AudioClip walkAudio;
     [SerializeField] private AudioClip jumpAudio;
     [SerializeField] private AudioClip deadAudio;
     [SerializeField] private AudioClip spawnAudio;
+    [SerializeField] private AudioClip damageAudio;
+    [SerializeField] private AudioClip healAudio;
 
     private int currentLife;
     private bool canJump = true;
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
     private FadeController fadeController;
     private KnockbackController knockbackController;
     private ParryController parryController;
+    private AudioSource audioSource;
 
     //Vectores
     private Vector2 input;
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
         walkParticleTransform = walkParticle.transform;
         knockbackController = GetComponent<KnockbackController>();
         parryController = GetComponent<ParryController>();
+        audioSource = GetComponent<AudioSource>();
 
         currentLife = maxLife;
 
@@ -131,13 +134,13 @@ public class PlayerController : MonoBehaviour
         rbPlayer.linearVelocity = new Vector2(input.x * velocityMovement, rbPlayer.linearVelocity.y);
     }
 
-    public void TakeDamage(int damage, Vector2 origenAtaque)
+    public void TakeDamage(int damage, Vector3 origenAtaque)
     {
         if (isDead)
             return;
 
         currentLife -= damage;
-
+        audioSource.PlayOneShot(damageAudio);
         Debug.Log($"Player daño: {currentLife}/{maxLife}");
         
         cameraShake.Shake(duration, magnitude);
@@ -156,9 +159,11 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead)
             return;
+        
 
         currentLife = Mathf.Min(currentLife + amount, maxLife);
-
+        
+        audioSource.PlayOneShot(healAudio);
         lifeParticle.Play();
 
         Debug.Log($"Player curado: {currentLife}/{maxLife}");

@@ -29,6 +29,7 @@ public class DistanceEnemyController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private FadeController fadeController;
+    private Collider2D col;
 
     // Estados
     private enum Estados { regresar, perseguir, huir, atacar, muerto }
@@ -44,6 +45,7 @@ public class DistanceEnemyController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         fadeController = GetComponent<FadeController>();
+        col = GetComponent<Collider2D>();
 
         // Guardamos la posición donde spawnea el enemigo
         posicionInicial = transform.position;
@@ -66,7 +68,15 @@ public class DistanceEnemyController : MonoBehaviour
             return; 
         }
 
-        if (isDead) return;
+        // Antes esto cortaba la ejecución y el cuerpo muerto seguía
+        // deslizándose con la última velocidad que tenía. Ahora dejamos
+        // que EjecutarEstado() corra igual para forzar velocidad 0 en
+        // el caso "muerto".
+        if (isDead)
+        {
+            EjecutarEstado();
+            return;
+        }
 
         if (player != null)
         {
@@ -116,19 +126,19 @@ public class DistanceEnemyController : MonoBehaviour
                 break;
             case Estados.atacar:
                 rb.linearVelocity = Vector2.zero;
-                animator.SetFloat("movement", 0f); // <-- esto faltaba
+                animator.SetFloat("movement", 0f);
                 ControlarGiro(player.position.x - transform.position.x);
                 if (weaponController != null && weaponController.canShoot)
                 {
                     animator.SetTrigger("ataque");
                     StartCoroutine(weaponController.Shoot());
                 }
-            break;
-        case Estados.muerto:
+                break;
+            case Estados.muerto:
                 rb.linearVelocity = Vector2.zero;
-                animator.SetFloat("movement", 0f); // <-- por si acaso
-            break;
-                }
+                animator.SetFloat("movement", 0f);
+                break;
+        }
     }
 
     private void MoverseEnDireccion(Vector2 direccion)
@@ -165,18 +175,39 @@ public class DistanceEnemyController : MonoBehaviour
     {
         isDead = true;
         estadoActual = Estados.muerto;
-        
+
+        // Frenamos el cuerpo de inmediato para que no siga deslizándose
+        // con la velocidad que traía justo antes de morir.
+        rb.linearVelocity = Vector2.zero;
+        animator.SetFloat("movement", 0f);
+
+        // Desactivamos el collider para que el "cadáver" no siga
+        // bloqueando al jugador ni recibiendo daño/disparos.
+        if (col != null) col.enabled = false;
+
+        // Kinematic para que la física deje de aplicarle fuerzas
+        // (empujones, gravedad, etc.) mientras se desvanece.
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(dieLagTime);
 
         fadeController.Desvanecimiento(spriteRenderer, deadFadeAlpha, deadFadeTime);
         TryDropHealingItem();
+
+        // Esperamos a que termine el fade antes de destruir el objeto.
+        // Si tu FadeController ya destruye el GameObject al terminar,
+        // borrá esta espera y el Destroy de abajo para no duplicarlo.
+        yield return new WaitForSeconds(deadFadeTime);
+
+        Destroy(gameObject);
     }
 
     public void TomarDaño(float damage)
     {
         this.vida -= damage;
     }
+
     private void TryDropHealingItem()
     {
         if(healingItemPrefab != null && Random.value <= dropChance)

@@ -15,17 +15,17 @@ public class KnockbackController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    public void RecibirKnockBack(Vector2 origenDelGolpe)
+    public void RecibirKnockBack(Vector3 origenDelGolpe)
     {
         if (_enKnockback) return;
         StartCoroutine(EjecutarKnockBack(origenDelGolpe));
     }
 
-    private IEnumerator EjecutarKnockBack(Vector2 origen)
+    private IEnumerator EjecutarKnockBack(Vector3 origen)
     {
         _enKnockback = true;
 
-        Vector2 dir = ((Vector2)transform.position - origen).normalized;
+        Vector2 dir = (transform.position - origen).normalized;
         _rb.linearVelocity = Vector2.zero;
         _rb.AddForce(new Vector2(dir.x*forceX, forceY), ForceMode2D.Impulse);
         yield return new WaitForSeconds(duration);

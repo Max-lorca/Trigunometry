@@ -26,7 +26,7 @@ public class SatoruChargeSystem : MonoBehaviour
     void Start()
     {
         if (timeStopManager == null)
-            timeStopManager = FindFirstObjectByType<TimeStopManager>();
+            timeStopManager = GetComponent<TimeStopManager>();
 
         if (chargeBar != null)
             chargeBar.fillAmount = 0f;

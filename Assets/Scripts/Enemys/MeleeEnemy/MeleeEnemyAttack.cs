@@ -41,7 +41,8 @@ public class MeleeEnemyAttack : MonoBehaviour
             if(hits[i].gameObject.CompareTag("Player"))
             {
                 PlayerController player = hits[i].GetComponent<PlayerController>();
-                player.TakeDamage(this.damage, (Vector2)transform.position);
+                player.TakeDamage(this.damage, transform.position);
+                
             }
         }
 

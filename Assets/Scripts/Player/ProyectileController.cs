@@ -122,15 +122,26 @@ public class ProyectileController : MonoBehaviour
        switch(tag)
        {
         case "MeleeEnemy":
-            // En el disparo especial el daño ya se aplicó directamente vía
-            // RecibirDanoAnalisis, así que aquí solo generamos la explosión.
-            if (!esDisparoEspecial)
-                collision.GetComponent<MeleeEnemyController>()?.TomarDaño(damage);
+            MeleeEnemyController melee = collision.gameObject.GetComponent<MeleeEnemyController>();
+           
+            if (melee != null && !esDisparoEspecial)
+            {
+                melee.TomarDaño(damage);
+
+                WeaponShoot ws = FindAnyObjectByType<WeaponShoot>();
+                if (ws != null) ws.OnHitEnemy();
+            }
             Impacto();
         break;
         case "DistanceEnemy":
-            if (!esDisparoEspecial)
-                collision.GetComponent<DistanceEnemyController>()?.TomarDaño(damage);
+            DistanceEnemyController distEnemy = collision.gameObject.GetComponent<DistanceEnemyController>();
+            if (distEnemy != null && !esDisparoEspecial)
+            {
+                distEnemy.TomarDaño(damage);
+
+                WeaponShoot ws = FindAnyObjectByType<WeaponShoot>();
+                if (ws != null) ws.OnHitEnemy();
+            }
             Impacto();
         break;
         case "Ground":
@@ -150,39 +161,5 @@ public class ProyectileController : MonoBehaviour
     public void SetSpeed(float newSpeed)
     {
         proyectileSpeed = newSpeed;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("MeleeEnemy"))
-        {
-            MeleeEnemyController melee = collision.gameObject.GetComponent<MeleeEnemyController>();
-            if (melee != null)
-            {
-                melee.TomarDaño(damage);
-
-                // 👈 NUEVO: Notificar impacto
-                WeaponShoot ws = FindFirstObjectByType<WeaponShoot>();
-                if (ws != null) ws.OnHitEnemy();
-            }
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag("DistanceEnemy"))
-        {
-            DistanceEnemyController dist = collision.gameObject.GetComponent<DistanceEnemyController>();
-            if (dist != null)
-            {
-                dist.TomarDaño(damage);
-
-                // 👈 NUEVO: Notificar impacto
-                WeaponShoot ws = FindFirstObjectByType<WeaponShoot>();
-                if (ws != null) ws.OnHitEnemy();
-            }
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Ground"))
-        {
-            Destroy(gameObject);
-        }
     }
 }
