@@ -33,7 +33,7 @@ public class SatoruAngleSlider : MonoBehaviour
     private void OnSliderValueChanged(float value)
     {
         currentAngle = value;
-        Debug.Log($"🎚️ Slider movido a: {currentAngle}°");
+        Debug.Log($" Slider movido a: {currentAngle}°");
 
         if (angleText != null)
             angleText.text = $"Ángulo: {currentAngle:F1}°";

@@ -44,7 +44,7 @@ public class TimeStopManager : MonoBehaviour
 
         if (chargeSystem == null || !chargeSystem.IsReady)
         {
-            Debug.Log("⚠️ Modo Satoru no disponible. Carga insuficiente.");
+            Debug.Log("Modo Satoru no disponible. Carga insuficiente.");
             return;
         }
 

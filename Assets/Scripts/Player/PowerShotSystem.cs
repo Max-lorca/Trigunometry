@@ -44,7 +44,7 @@ public class PowerShotSystem : MonoBehaviour
             if (triangleVisualizer != null)
             {
                 triangleVisualizer.ResetLados();
-                Debug.Log("🔄 Modo Satoru activado - ResetLados() llamado");
+                Debug.Log(" Modo Satoru activado - ResetLados() llamado");
             }
         }
 
@@ -58,7 +58,7 @@ public class PowerShotSystem : MonoBehaviour
         }
 
         if (timerText != null)
-            timerText.text = $"⏱️ {timeStopManager.TiempoRestante:F1}s";
+            timerText.text = $" {timeStopManager.TiempoRestante:F1}s";
 
         if (analysisUI != null && !analysisUI.activeSelf)
             analysisUI.SetActive(true);
@@ -111,7 +111,7 @@ public class PowerShotSystem : MonoBehaviour
     {
         if (!canShoot)
         {
-            if (feedbackText != null) feedbackText.text = "⏳ Espera...";
+            if (feedbackText != null) feedbackText.text = "Espera...";
             return false;
         }
 
@@ -120,13 +120,13 @@ public class PowerShotSystem : MonoBehaviour
 
         if (currentTarget == null)
         {
-            if (feedbackText != null) feedbackText.text = "⚠️ Sin objetivo";
+            if (feedbackText != null) feedbackText.text = " Sin objetivo";
             return false;
         }
 
         if (string.IsNullOrEmpty(armaSeleccionada))
         {
-            if (feedbackText != null) feedbackText.text = "⚠️ Selecciona arma (1,2,3)";
+            if (feedbackText != null) feedbackText.text = " Selecciona arma (1,2,3)";
             return false;
         }
 
@@ -134,7 +134,7 @@ public class PowerShotSystem : MonoBehaviour
 
         if (armaSeleccionada == armaCorrecta)
         {
-            if (feedbackText != null) feedbackText.text = $"✅ ¡ACERTÓ! ({armaSeleccionada})";
+            if (feedbackText != null) feedbackText.text = $" ¡ACERTÓ! ({armaSeleccionada})";
 
             if (currentTarget != null)
             {
@@ -155,7 +155,7 @@ public class PowerShotSystem : MonoBehaviour
         }
         else
         {
-            if (feedbackText != null) feedbackText.text = $"❌ Falló. Debe ser: {armaCorrecta}";
+            if (feedbackText != null) feedbackText.text = $" Falló. Debe ser: {armaCorrecta}";
 
             StartCoroutine(ResetShootCooldown());
             return false;

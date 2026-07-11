@@ -37,7 +37,7 @@ public class SatoruChargeSystem : MonoBehaviour
         if (chargeText != null)
         {
             if (isReady)
-                chargeText.text = "⚡ ¡LISTO! Presiona F";
+                chargeText.text = "Presiona F";
             else
                 chargeText.text = $"Cargando: {currentCharge}/{maxCharge}";
         }
@@ -56,7 +56,7 @@ public class SatoruChargeSystem : MonoBehaviour
         {
             currentCharge = maxCharge;
             isReady = true;
-            Debug.Log("⚡ ¡Modo Satoru listo!");
+            Debug.Log("¡Modo Satoru listo!");
         }
     }
 
@@ -65,6 +65,6 @@ public class SatoruChargeSystem : MonoBehaviour
         if (!isReady) return;
         currentCharge = 0f;
         isReady = false;
-        Debug.Log("🔄 Carga consumida");
+        Debug.Log("Carga consumida");
     }
 }

@@ -192,6 +192,6 @@ public class AnalysisModeController : MonoBehaviour
         if (inputRespuesta != null)
             inputRespuesta.text = "";
 
-        Debug.Log("🧹 Análisis limpiado");
+        
     }
 }
