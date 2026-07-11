@@ -130,7 +130,7 @@ public class AnalysisModeController : MonoBehaviour
 
         if (weaponShoot != null && weaponShoot.currentWeapon != null)
         {
-            weaponShoot.currentWeapon.DispararAnalisisExitoso(enemigoActual, multiplicadorDanoBonus);
+           // weaponShoot.currentWeapon.DispararAnalisisExitoso(enemigoActual, multiplicadorDanoBonus);
         }
 
         FinalizarSeleccion();

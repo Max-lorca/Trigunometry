@@ -7,7 +7,6 @@ public class SatoruChargeSystem : MonoBehaviour
     [Header("Configuración")]
     [SerializeField] private float maxCharge = 100f;
     [SerializeField] private float chargePerHit = 10f;
-    [SerializeField] private float satoruDuration = 4f;
 
     [Header("UI")]
     [SerializeField] private TMP_Text chargeText;
@@ -19,14 +18,12 @@ public class SatoruChargeSystem : MonoBehaviour
     private float currentCharge = 0f;
     private bool isReady = false;
 
-    public float CurrentCharge => currentCharge;
-    public float MaxCharge => maxCharge;
     public bool IsReady => isReady;
 
     void Start()
     {
         if (timeStopManager == null)
-            timeStopManager = GetComponent<TimeStopManager>();
+            timeStopManager = FindFirstObjectByType<TimeStopManager>();
 
         if (chargeBar != null)
             chargeBar.fillAmount = 0f;
@@ -66,15 +63,8 @@ public class SatoruChargeSystem : MonoBehaviour
     public void ConsumeCharge()
     {
         if (!isReady) return;
-
         currentCharge = 0f;
         isReady = false;
         Debug.Log("🔄 Carga consumida");
-    }
-
-    public void ResetCharge()
-    {
-        currentCharge = 0f;
-        isReady = false;
     }
 }

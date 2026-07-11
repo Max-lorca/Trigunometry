@@ -6,125 +6,76 @@ public class PowerShotSystem : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private TimeStopManager timeStopManager;
-    [SerializeField] private AnalysisModeController analysisModeController;
-    [SerializeField] private Camera cam;
-    [SerializeField] private WeaponShoot weaponShoot;
     [SerializeField] private SatoruTriangleVisualizer triangleVisualizer;
-    [SerializeField] private SatoruAngleSlider angleSlider;
+    [SerializeField] private WeaponShoot weaponShoot;
 
-    [Header("UI de Datos")]
+    [Header("UI")]
     [SerializeField] private GameObject analysisUI;
-    [SerializeField] private TMP_Text distanceText;
-    [SerializeField] private TMP_Text heightText;
-    [SerializeField] private TMP_Text functionHintText;
-    [SerializeField] private TMP_Text enemyNameText;
+    [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text feedbackText;
+    [SerializeField] private TMP_Text weaponSelectedText;
 
     [Header("Configuración")]
-    [SerializeField] private float maxAimDistance = 20f;
     [SerializeField] private float rayoDuration = 0.5f;
+    [SerializeField] private float shootCooldown = 1.5f;
 
     private Transform currentTarget;
-    private IAnalizable currentAnalizableTarget;
-    private float currentAngle = 0f;
-    private bool isInitialized = false;
-
-    private WeaponData GetCurrentWeapon()
-    {
-        if (weaponShoot != null && weaponShoot.currentWeapon != null)
-        {
-            return weaponShoot.currentWeapon;
-        }
-
-        WeaponData weapon = GetComponentInChildren<WeaponData>();
-        if (weapon != null)
-        {
-            return weapon;
-        }
-
-        weapon = FindFirstObjectByType<WeaponData>();
-        return weapon;
-    }
+    private string armaSeleccionada = "";
+    private int ladosMostrados = 0;
+    private bool canShoot = true;
+    private bool satoruJustActivated = false; // ✅ NUEVO
 
     void Start()
     {
-        InicializarReferencias();
+        if (analysisUI != null) analysisUI.SetActive(false);
+        if (weaponSelectedText != null) weaponSelectedText.text = "";
     }
 
-    private void InicializarReferencias()
+    public bool IsSatoruActive()
     {
-        if (timeStopManager == null)
-            timeStopManager = FindFirstObjectByType<TimeStopManager>();
-
-        if (analysisModeController == null)
-            analysisModeController = FindFirstObjectByType<AnalysisModeController>();
-
-        if (weaponShoot == null)
-            weaponShoot = GetComponent<WeaponShoot>();
-
-        if (cam == null)
-            cam = Camera.main;
-
-        if (triangleVisualizer == null)
-            triangleVisualizer = GetComponent<SatoruTriangleVisualizer>();
-
-        if (angleSlider == null)
-            angleSlider = FindFirstObjectByType<SatoruAngleSlider>();
-
-        if (analysisUI != null)
-            analysisUI.SetActive(false);
-
-        isInitialized = true;
-        Debug.Log("✅ PowerShotSystem inicializado correctamente");
+        return timeStopManager != null && timeStopManager.IsAnalysisActive;
     }
 
     void Update()
     {
-        if (!isInitialized)
+        if (timeStopManager.IsAnalysisActive && !satoruJustActivated)
         {
-            InicializarReferencias();
-            return;
-        }
-
-        if (timeStopManager == null)
-        {
-            timeStopManager = FindFirstObjectByType<TimeStopManager>();
-            if (timeStopManager == null) return;
-        }
-
-        try
-        {
-            if (!timeStopManager.IsAnalysisActive)
+            satoruJustActivated = true;
+            if (triangleVisualizer != null)
             {
-                OcultarTodo();
-                return;
+                triangleVisualizer.ResetLados();
+                Debug.Log("🔄 Modo Satoru activado - ResetLados() llamado");
             }
         }
-        catch
+
+        if (!timeStopManager.IsAnalysisActive)
         {
-            OcultarTodo();
+            satoruJustActivated = false;
+            if (analysisUI != null && analysisUI.activeSelf) analysisUI.SetActive(false);
+            if (triangleVisualizer != null) triangleVisualizer.OcultarTriangulo();
+            if (weaponSelectedText != null) weaponSelectedText.text = "";
             return;
         }
 
-        DetectarEnemigoCercano();
-    }
+        if (timerText != null)
+            timerText.text = $"⏱️ {timeStopManager.TiempoRestante:F1}s";
 
-    private void DetectarEnemigoCercano()
-    {
-        Collider2D[] enemigos = Physics2D.OverlapCircleAll(transform.position, maxAimDistance);
+        if (analysisUI != null && !analysisUI.activeSelf)
+            analysisUI.SetActive(true);
+
+        Collider2D[] enemigos = Physics2D.OverlapCircleAll(transform.position, 20f);
         Transform enemigoMasCercano = null;
-        float distanciaMinima = float.MaxValue;
+        float minDist = float.MaxValue;
 
         foreach (Collider2D col in enemigos)
         {
             if (col.CompareTag("MeleeEnemy") || col.CompareTag("DistanceEnemy"))
             {
-                float dist = Vector2.Distance(transform.position, col.transform.position);
-                if (dist < distanciaMinima)
+                float d = Vector2.Distance(transform.position, col.transform.position);
+                if (d < minDist)
                 {
-                    distanciaMinima = dist;
+                    minDist = d;
                     enemigoMasCercano = col.transform;
-                    currentAnalizableTarget = col.GetComponent<IAnalizable>();
                 }
             }
         }
@@ -132,229 +83,106 @@ public class PowerShotSystem : MonoBehaviour
         if (enemigoMasCercano != null)
         {
             currentTarget = enemigoMasCercano;
-            float dx = Mathf.Abs(currentTarget.position.x - transform.position.x);
-            float dy = Mathf.Abs(currentTarget.position.y - transform.position.y);
-
-            if (distanceText != null)
-                distanceText.text = $"Distancia X: {dx:F2}";
-            if (heightText != null)
-                heightText.text = $"Altura Y: {dy:F2}";
-            if (enemyNameText != null)
-                enemyNameText.text = $"Objetivo: {currentTarget.gameObject.name}";
-
-            string funcion = ObtenerFuncion();
-            if (functionHintText != null)
-                functionHintText.text = $"Usa: {funcion}";
-
             if (triangleVisualizer != null)
             {
                 Vector2 jugadorPos = transform.position;
                 Vector2 enemigoPos = currentTarget.position;
-                WeaponData weapon = GetCurrentWeapon();
-                string armaNombre = weapon != null ? weapon.gameObject.name : "";
-                triangleVisualizer.DibujarTriangulo(jugadorPos, enemigoPos, funcion, armaNombre);
+                ladosMostrados = triangleVisualizer.DibujarTriangulo(jugadorPos, enemigoPos);
             }
-
-            if (angleSlider != null && !angleSlider.gameObject.activeSelf)
-                angleSlider.MostrarSlider();
-
-            if (analysisUI != null && !analysisUI.activeSelf)
-                analysisUI.SetActive(true);
         }
         else
         {
             currentTarget = null;
-            currentAnalizableTarget = null;
-            OcultarTodo();
+            if (triangleVisualizer != null) triangleVisualizer.OcultarTriangulo();
         }
     }
 
-    private string ObtenerFuncion()
+    public void SeleccionarArma(string arma)
     {
-        WeaponData weapon = GetCurrentWeapon();
-        if (weapon == null) return "sin(θ) = Y/H";
+        armaSeleccionada = arma;
+        if (feedbackText != null)
+            feedbackText.text = $"Arma: {arma}";
 
-        string nombreArma = weapon.gameObject.name.ToLower();
-        if (nombreArma.Contains("seno") || nombreArma.Contains("sin"))
-            return "sin(θ) = Y / H";
-        else if (nombreArma.Contains("coseno") || nombreArma.Contains("cos"))
-            return "cos(θ) = X / H";
-        else if (nombreArma.Contains("tangente") || nombreArma.Contains("tan"))
-            return "tan(θ) = Y / X";
-
-        return "sin(θ) = Y / H";
-    }
-
-    public void SetCurrentAngle(float angle)
-    {
-        currentAngle = angle;
-        Debug.Log($"📐 Ángulo actualizado: {currentAngle}°");
+        if (weaponSelectedText != null)
+            weaponSelectedText.text = arma;
     }
 
     public bool TryPowerShot()
     {
-        Debug.Log($"🔫 TryPowerShot() - Ángulo actual: {currentAngle}°");
-
-        if (timeStopManager == null || !timeStopManager.IsAnalysisActive)
+        if (!canShoot)
         {
-            Debug.LogWarning("❌ Modo Satoru no está activo");
+            if (feedbackText != null) feedbackText.text = "⏳ Espera...";
             return false;
         }
+
+        if (timeStopManager == null || !timeStopManager.IsAnalysisActive)
+            return false;
 
         if (currentTarget == null)
         {
-            Debug.LogWarning("❌ No hay objetivo");
+            if (feedbackText != null) feedbackText.text = "⚠️ Sin objetivo";
             return false;
         }
 
-        WeaponData weapon = GetCurrentWeapon();
-        if (weapon == null)
+        if (string.IsNullOrEmpty(armaSeleccionada))
         {
-            Debug.LogWarning("❌ No hay arma equipada");
+            if (feedbackText != null) feedbackText.text = "⚠️ Selecciona arma (1,2,3)";
             return false;
         }
 
-        float anguloCorrecto = CalcularAnguloCorrecto(weapon);
-        Debug.Log($"🎯 Ángulo seleccionado: {currentAngle}° | Ángulo correcto: {anguloCorrecto}° | Margen: ±5°");
+        string armaCorrecta = ObtenerArmaCorrecta();
 
-        if (Mathf.Abs(currentAngle - anguloCorrecto) <= 5f)
+        if (armaSeleccionada == armaCorrecta)
         {
-            Debug.Log($"💥 Ángulo DENTRO DEL MARGEN! PowerShot activado.");
+            if (feedbackText != null) feedbackText.text = $"✅ ¡ACERTÓ! ({armaSeleccionada})";
 
-            if (feedbackText != null)
-                feedbackText.text = $"¡ACERTÓ! 🎯 ({currentAngle:F1}°)";
-
-            // RAYO VISUAL
             if (currentTarget != null)
             {
                 StartCoroutine(DibujarRayo(currentTarget.position));
             }
 
-            // ✅ MUERTE DIRECTA (sin depender de IAnalizable)
-            if (currentTarget != null)
-            {
-                MeleeEnemyController meleeEnemy = currentTarget.GetComponent<MeleeEnemyController>();
-                DistanceEnemyController distEnemy = currentTarget.GetComponent<DistanceEnemyController>();
+            MeleeEnemyController melee = currentTarget.GetComponent<MeleeEnemyController>();
+            if (melee != null) melee.TomarDaño(99999f);
 
-                if (meleeEnemy != null)
-                {
-                    meleeEnemy.TomarDaño(99999f);
-                    Debug.Log($"💀 MeleeEnemy {currentTarget.name} destruido!");
-                }
-                else if (distEnemy != null)
-                {
-                    distEnemy.TomarDaño(99999f);
-                    Debug.Log($"💀 DistanceEnemy {currentTarget.name} destruido!");
-                }
-                else
-                {
-                    // Fallback: intentar con IAnalizable
-                    if (currentAnalizableTarget != null && analysisModeController != null)
-                    {
-                        float dañoFinal = 99999f;
-                        weapon.DispararAnalisisExitoso(currentAnalizableTarget, dañoFinal);
-                    }
-                }
-            }
+            DistanceEnemyController dist = currentTarget.GetComponent<DistanceEnemyController>();
+            if (dist != null) dist.TomarDaño(99999f);
 
-            // Limpiar referencias
-            if (analysisModeController != null)
-            {
-                analysisModeController.LimpiarEnemigo();
-            }
+            if (weaponSelectedText != null) weaponSelectedText.text = "";
 
-            currentTarget = null;
-            currentAnalizableTarget = null;
-
+            StartCoroutine(ResetShootCooldown());
             StartCoroutine(SalirDelModo());
             return true;
         }
         else
         {
-            Debug.Log($"❌ Ángulo FUERA DEL MARGEN. Debería ser {anguloCorrecto}° (±5°)");
+            if (feedbackText != null) feedbackText.text = $"❌ Falló. Debe ser: {armaCorrecta}";
 
-            if (feedbackText != null)
-                feedbackText.text = $"FALLÓ ❌ (Debe ser {anguloCorrecto:F1}° ±5°)";
-
+            StartCoroutine(ResetShootCooldown());
             return false;
         }
     }
 
-    private float CalcularAnguloCorrecto(WeaponData weapon)
+    private IEnumerator ResetShootCooldown()
     {
-        if (currentTarget == null) return 0f;
-
-        Vector2 jugadorPos = transform.position;
-        Vector2 enemigoPos = currentTarget.position;
-
-        float dx = enemigoPos.x - jugadorPos.x;
-        float dy = enemigoPos.y - jugadorPos.y;
-        float hipotenusa = Mathf.Sqrt(dx * dx + dy * dy);
-
-        string nombreArma = weapon.gameObject.name.ToLower();
-        float angulo = 0f;
-
-        if (nombreArma.Contains("seno") || nombreArma.Contains("sin"))
-        {
-            angulo = Mathf.Asin(Mathf.Clamp(dy / hipotenusa, -1f, 1f)) * Mathf.Rad2Deg;
-        }
-        else if (nombreArma.Contains("coseno") || nombreArma.Contains("cos"))
-        {
-            angulo = Mathf.Acos(Mathf.Clamp(dx / hipotenusa, -1f, 1f)) * Mathf.Rad2Deg;
-        }
-        else if (nombreArma.Contains("tangente") || nombreArma.Contains("tan"))
-        {
-            angulo = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
-        }
-        else
-        {
-            angulo = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
-        }
-
-        if (angulo < 0) angulo += 360f;
-
-        return angulo;
+        canShoot = false;
+        yield return new WaitForSecondsRealtime(shootCooldown);
+        canShoot = true;
+        if (feedbackText != null) feedbackText.text = "Listo para disparar";
     }
 
-    private float ObtenerMultiplicadorArma(IAnalizable enemigo)
+    private string ObtenerArmaCorrecta()
     {
-        EnemyAnalizable enemyAnalizable = enemigo as EnemyAnalizable;
-        if (enemyAnalizable == null) return 1f;
-
-        WeaponData weapon = GetCurrentWeapon();
-        if (weapon == null) return 1f;
-
-        string nombreArma = weapon.gameObject.name.ToLower();
-
-        if (nombreArma.Contains("seno") || nombreArma.Contains("sin"))
-            return enemyAnalizable.multiplicadorSeno;
-        else if (nombreArma.Contains("coseno") || nombreArma.Contains("cos"))
-            return enemyAnalizable.multiplicadorCoseno;
-        else if (nombreArma.Contains("tangente") || nombreArma.Contains("tan"))
-            return enemyAnalizable.multiplicadorTangente;
-
-        return 1f;
-    }
-
-    private void OcultarTodo()
-    {
-        if (analysisUI != null && analysisUI.activeSelf)
-            analysisUI.SetActive(false);
-
-        if (triangleVisualizer != null)
-            triangleVisualizer.OcultarTriangulo();
-
-        if (angleSlider != null)
-            angleSlider.OcultarSlider();
-
-        if (feedbackText != null)
-            feedbackText.text = "";
+        switch (ladosMostrados)
+        {
+            case 0: return "Tangente";
+            case 1: return "Seno";
+            case 2: return "Coseno";
+            default: return "Seno";
+        }
     }
 
     private IEnumerator DibujarRayo(Vector3 objetivo)
     {
-        Debug.Log("⚡ Dibujando rayo...");
-
         GameObject rayoObj = new GameObject("Rayo");
         rayoObj.transform.position = transform.position;
 
@@ -382,7 +210,6 @@ public class PowerShotSystem : MonoBehaviour
     private IEnumerator SalirDelModo()
     {
         yield return new WaitForSecondsRealtime(0.8f);
-        if (timeStopManager != null)
-            timeStopManager.TryTimeStop();
+        if (timeStopManager != null) timeStopManager.TryTimeStop();
     }
 }

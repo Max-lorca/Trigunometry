@@ -12,7 +12,7 @@ public class TimeStopManager : MonoBehaviour
     [SerializeField] private ParticleSystem mathSymbolsParticle;
 
     [Header("Referencias")]
-    [SerializeField] private SatoruChargeSystem chargeSystem; // 👈 NUEVO
+    [SerializeField] private SatoruChargeSystem chargeSystem;
 
     private Transform player;
     private bool isAnalysisActive = false;
@@ -24,16 +24,6 @@ public class TimeStopManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        if (mathSymbolsParticle != null)
-        {
-            var main = mathSymbolsParticle.main;
-            main.useUnscaledTime = true;
-        }
-
-        if (canvasGroupEfect != null)
-            canvasGroupEfect.alpha = 0f;
-
         if (chargeSystem == null)
             chargeSystem = FindFirstObjectByType<SatoruChargeSystem>();
     }
@@ -41,21 +31,17 @@ public class TimeStopManager : MonoBehaviour
     void Update()
     {
         if (mathSymbolsParticle != null && mathSymbolsParticle.isPlaying)
-        {
             mathSymbolsParticle.transform.position = player.position;
-        }
     }
 
     public void TryTimeStop()
     {
-        // Si ya está activo, desactivar
         if (isAnalysisActive)
         {
             StartCoroutine(DesactivarModoAnalisis());
             return;
         }
 
-        // 👈 Verificar carga
         if (chargeSystem == null || !chargeSystem.IsReady)
         {
             Debug.Log("⚠️ Modo Satoru no disponible. Carga insuficiente.");
@@ -70,7 +56,6 @@ public class TimeStopManager : MonoBehaviour
         isAnalysisActive = true;
         Time.timeScale = 0f;
 
-        // 👈 Consumir carga
         if (chargeSystem != null)
             chargeSystem.ConsumeCharge();
 
@@ -98,9 +83,7 @@ public class TimeStopManager : MonoBehaviour
         }
 
         if (isAnalysisActive)
-        {
             yield return StartCoroutine(DesactivarModoAnalisis());
-        }
     }
 
     private IEnumerator DesactivarModoAnalisis()

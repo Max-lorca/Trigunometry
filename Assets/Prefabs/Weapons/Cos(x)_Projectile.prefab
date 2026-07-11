@@ -106,12 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b757f27b8d1fc8242aff6b31b083fffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProyectileController
-  direction: {x: 0, y: 0}
-  damage: 1
-  proyectileSpeed: 10
-  frecuency: 10
-  amplitude: 0.75
-  explotionParticle: {fileID: 632983800386883047, guid: 67b12c1955e805eb0bb45a28224d3ff3, type: 3}
+  damage: 0.5
+  speed: 8
 --- !u!61 &814570580478074738
 BoxCollider2D:
   m_ObjectHideFlags: 0

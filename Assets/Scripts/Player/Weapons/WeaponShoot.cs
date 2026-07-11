@@ -4,7 +4,12 @@ using UnityEngine.InputSystem;
 public class WeaponShoot : MonoBehaviour
 {
     [SerializeField] public WeaponData currentWeapon;
-    [SerializeField] private SatoruChargeSystem chargeSystem; // 👈 NUEVO
+    private SatoruChargeSystem chargeSystem;
+
+    void Start()
+    {
+        chargeSystem = FindFirstObjectByType<SatoruChargeSystem>();
+    }
 
     public void OnShoot(InputAction.CallbackContext ctx)
     {
@@ -14,12 +19,9 @@ public class WeaponShoot : MonoBehaviour
         }
     }
 
-    // 👈 NUEVO: Notificar impacto
     public void OnHitEnemy()
     {
         if (chargeSystem != null)
-        {
             chargeSystem.AddCharge();
-        }
     }
 }

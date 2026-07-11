@@ -3141,7 +3141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponShoot
   currentWeapon: {fileID: 0}
-  chargeSystem: {fileID: 540147522}
 --- !u!95 &540147512
 Animator:
   serializedVersion: 7
@@ -3303,19 +3302,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerShotSystem
   timeStopManager: {fileID: 540147513}
-  analysisModeController: {fileID: 304177536}
-  cam: {fileID: 519420031}
-  weaponShoot: {fileID: 540147511}
   triangleVisualizer: {fileID: 1563002380}
-  angleSlider: {fileID: 886125671}
+  weaponShoot: {fileID: 540147511}
   analysisUI: {fileID: 134187557}
-  distanceText: {fileID: 1964509794}
-  heightText: {fileID: 1196880907}
-  functionHintText: {fileID: 988598085}
-  enemyNameText: {fileID: 1592056099}
+  timerText: {fileID: 0}
   feedbackText: {fileID: 1953026715}
-  maxAimDistance: 20
+  weaponSelectedText: {fileID: 0}
   rayoDuration: 0.5
+  shootCooldown: 1.5
 --- !u!114 &540147517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3442,8 +3436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SatoruChargeSystem
   maxCharge: 100
-  chargePerHit: 100
-  satoruDuration: 100
+  chargePerHit: 10
   chargeText: {fileID: 1525450975}
   chargeBar: {fileID: 912680586}
   timeStopManager: {fileID: 540147513}
@@ -104608,7 +104601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &988598084
 RectTransform:
   m_ObjectHideFlags: 0
@@ -115563,12 +115556,12 @@ GameObject:
   - component: {fileID: 1196880908}
   - component: {fileID: 1196880907}
   m_Layer: 5
-  m_Name: HeightText
+  m_Name: CO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1196880906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -115608,7 +115601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Y: 3.00'
+  m_text: 'CO: 3.00'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6ba2b73ad0230dc09ca7a18eb0bc51e, type: 2}
   m_sharedMaterial: {fileID: -2207912889916961808, guid: b6ba2b73ad0230dc09ca7a18eb0bc51e, type: 2}
@@ -116496,7 +116489,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383292992}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.22218, y: 0.22218, z: 0.22218}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117096,11 +117089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SatoruTriangleVisualizer
   triangleLine: {fileID: 1563002381}
-  labelsContainer: {fileID: 0}
-  labelPrefab: {fileID: 4632898543437007155, guid: 907e0fe5473a51f4ab31d273c1368027, type: 3}
-  lineColor: {r: 0, g: 1, b: 1, a: 1}
-  lineWidth: 0.1
-  labelOffset: 0.5
+  labelPrefab: {fileID: 7521658231877409923, guid: fd32a8b648e72fd419147aef5213ed7b, type: 3}
 --- !u!120 &1563002381
 LineRenderer:
   serializedVersion: 2
@@ -125289,7 +125278,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1457, y: 280}
+  m_AnchoredPosition: {x: 1672, y: 997}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1953026715
@@ -125434,12 +125423,12 @@ GameObject:
   - component: {fileID: 1964509795}
   - component: {fileID: 1964509794}
   m_Layer: 5
-  m_Name: DistanceText
+  m_Name: CA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1964509793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -125479,7 +125468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'X: 5.00'
+  m_text: 'CA: 5.00'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b6ba2b73ad0230dc09ca7a18eb0bc51e, type: 2}
   m_sharedMaterial: {fileID: -2207912889916961808, guid: b6ba2b73ad0230dc09ca7a18eb0bc51e, type: 2}

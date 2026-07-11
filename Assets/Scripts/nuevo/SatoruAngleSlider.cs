@@ -39,7 +39,10 @@ public class SatoruAngleSlider : MonoBehaviour
             angleText.text = $"Ángulo: {currentAngle:F1}°";
 
         if (powerShotSystem != null)
-            powerShotSystem.SetCurrentAngle(currentAngle);
+        {
+            //powerShotSystem.SetCurrentAngle(currentAngle);
+        }
+            
     }
 
     public void MostrarSlider()

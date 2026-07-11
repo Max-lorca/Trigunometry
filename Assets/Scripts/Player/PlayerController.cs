@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         currentLife -= damage;
-        audioSource.PlayOneShot(damageAudio);
+        audioSource.PlayOneShot(damageAudio, 6f);
         Debug.Log($"Player daño: {currentLife}/{maxLife}");
         
         cameraShake.Shake(duration, magnitude);
@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
 
         currentLife = Mathf.Min(currentLife + amount, maxLife);
         
-        audioSource.PlayOneShot(healAudio);
+        audioSource.PlayOneShot(healAudio, 6f);
         lifeParticle.Play();
 
         Debug.Log($"Player curado: {currentLife}/{maxLife}");
