@@ -2863,8 +2863,8 @@ MonoBehaviour:
   jumpAudio: {fileID: 0}
   deadAudio: {fileID: 0}
   spawnAudio: {fileID: 0}
-  damageAudio: {fileID: 0}
-  healAudio: {fileID: 0}
+  damageAudio: {fileID: 8300000, guid: a385c70d216064017a30e2de9ceb4eb9, type: 3}
+  healAudio: {fileID: 8300000, guid: ddc0c94554d5e48f693d6df1156b2920, type: 3}
   walkParticle: {fileID: 1928699641}
   deadParticle: {fileID: 3170430624859892132, guid: 7999b1132315a2faf85f39141fccc95f, type: 3}
   spawnParticle: {fileID: 759880681290956576, guid: 271190ab3f73ed7158153d914de54d91, type: 3}
