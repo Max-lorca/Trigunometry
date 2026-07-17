@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour
 
     private int currentLife;
     private bool canJump = true;
-    private bool isMoving = false;
     private bool isDead = false;
     private bool isSpawn = false;
+    private bool inAir = false;
 
     //Referencias
     [SerializeField] private ParticleSystem walkParticle;
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private KnockbackController knockbackController;
     private ParryController parryController;
     private AudioSource audioSource;
+    private GameManager gameManager;
 
     //Vectores
     private Vector2 input;
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
         knockbackController = GetComponent<KnockbackController>();
         parryController = GetComponent<ParryController>();
         audioSource = GetComponent<AudioSource>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         currentLife = maxLife;
 
@@ -93,8 +95,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-    void Update()
+    private void Update()
     {
         if (isDead)
             return;
@@ -103,27 +104,38 @@ public class PlayerController : MonoBehaviour
 
         animador.SetFloat("movement", Mathf.Abs(input.x));
 
+        // 1. Control de rotación y escala según la dirección del movimiento
         if (input.x < 0)
         {
-            isMoving = true;
             walkParticleTransform.localScale = new Vector3(-1, 1, 1);
             spritePlayer.flipX = true;
+
+            gameManager.backgroundHorizontalVelocity = -1f;
         }
         else if (input.x > 0)
         {
-            isMoving = true;
             walkParticleTransform.localScale = new Vector3(1, 1, 1);
             spritePlayer.flipX = false;
-        }
-        else
-        {
-            isMoving = false;
-        }
 
-        if (isMoving)
-            walkParticle.Play();
-        else
-            walkParticle.Stop();
+            gameManager.backgroundHorizontalVelocity = 1f;
+        }
+        // 2. Control de emisión de partículas (¡La clave está aquí!)
+        if (input.x != 0) // Si el jugador se está moviendo a cualquier lado
+        {
+            // Solo le damos Play si NO se estaban reproduciendo ya
+            if (!walkParticle.isPlaying && !inAir)
+            {
+                walkParticle.Play();
+            }
+        }
+        else // Si el jugador está quieto (input.x == 0)
+        {
+            // Detiene la emisión suavemente sin desaparecer las partículas activas
+            if (walkParticle.isPlaying || inAir)
+            {
+                walkParticle.Stop();
+            }
+        }
     }
 
     void FixedUpdate()
@@ -219,6 +231,7 @@ public class PlayerController : MonoBehaviour
         if (ctx.performed && canJump)
         {
             canJump = false;
+            inAir = true;
 
             rbPlayer.linearVelocity = new Vector2(rbPlayer.linearVelocity.x, jumpForce);
 
@@ -260,6 +273,7 @@ public class PlayerController : MonoBehaviour
         {
             case "Ground":
                 canJump = true;
+                inAir = false;
                 animador.SetBool("jump", false);
                 break;
         }
