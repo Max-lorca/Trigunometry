@@ -5,6 +5,11 @@ public class ProyectileController : MonoBehaviour
     [Header("Configuración")]
     [SerializeField] public float damage = 10f;
     [SerializeField] private float speed = 8f;
+    [SerializeField] private float waveAmplitude = 0.5f; // default 0.5
+    [SerializeField] private float waveFrequency = 5f; // default 5
+
+    [Header("Particulas")] [SerializeField]
+    private GameObject explotionParticlePrefab;
 
     private Vector2 direction;
     private WeaponData weaponData;
@@ -20,7 +25,7 @@ public class ProyectileController : MonoBehaviour
     {
         time += Time.deltaTime;
         Vector3 basePosition = startPosition + (Vector3)(direction * speed * time);
-        float wave = Mathf.Sin(time * 5f) * 0.5f;
+        float wave = Mathf.Sin(time * waveFrequency) * waveAmplitude;
         Vector2 perpendicular = new Vector2(-direction.y, direction.x).normalized;
         transform.position = basePosition + (Vector3)(perpendicular * wave);
     }
@@ -33,6 +38,14 @@ public class ProyectileController : MonoBehaviour
     public void SetWeaponData(WeaponData wd)
     {
         weaponData = wd;
+    }
+    public void SetAmplitude(float amplitude)
+    {
+        waveAmplitude = amplitude;
+    }
+    public void SetFrequency(float frequency)
+    {
+        waveFrequency = frequency;
     }
 
     public void ResetProyectile(Vector3 spawnPosition)
@@ -51,6 +64,7 @@ public class ProyectileController : MonoBehaviour
             if (melee != null)
             {
                 melee.TomarDaño(damage);
+                Instantiate(explotionParticlePrefab, transform.position, Quaternion.identity);
                 NotificarImpacto();
             }
             ReleaseProjectile();
@@ -61,12 +75,14 @@ public class ProyectileController : MonoBehaviour
             if (dist != null)
             {
                 dist.TomarDaño(damage);
+                Instantiate(explotionParticlePrefab, transform.position, Quaternion.identity);
                 NotificarImpacto();
             }
             ReleaseProjectile();
         }
         else if (other.CompareTag("Ground"))
         {
+            Instantiate(explotionParticlePrefab, transform.position, Quaternion.identity);
             ReleaseProjectile();
         }
     }

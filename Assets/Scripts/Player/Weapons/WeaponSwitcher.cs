@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,7 +12,8 @@ public class WeaponSwitcher : MonoBehaviour
     [SerializeField] private TextMeshPro weaponText;
     [Header("Audio")]
     [SerializeField] private AudioClip switchWeaponAudio;
-
+    public static event Action<float> OnRuedaMovida;
+    private int actualIndex = 0;
     private AudioSource audioSource;
     private GameObject actualWeaponInstance;
     private WeaponShoot weaponShootInput;
@@ -35,6 +37,8 @@ public class WeaponSwitcher : MonoBehaviour
     {
         if (actualWeaponInstance != null)
             Destroy(actualWeaponInstance);
+
+        actualIndex = index;
 
         actualWeaponInstance = Instantiate(weaponsPrefabs[index], weaponSpawn.position, weaponSpawn.rotation, weaponSpawn);
         weaponShootInput.currentWeapon = actualWeaponInstance.GetComponent<WeaponData>();
@@ -111,5 +115,27 @@ public class WeaponSwitcher : MonoBehaviour
 
         EquipWeapon(2);
         CambiarTexto("Tan(x)");
+    }
+    public void SwitchAmplification(InputAction.CallbackContext ctx)
+    {
+        Vector2 scrollValue = ctx.ReadValue<Vector2>();
+        float scrollY = scrollValue.y;
+
+        if (scrollY != 0f && OnRuedaMovida != null)
+        {
+            OnRuedaMovida.Invoke(scrollY);
+        }
+
+        // No hace falta reinstanciar el arma, solo leer su frecuencia actualizada
+        string etiqueta = actualIndex switch
+        {
+            0 => $"Sin(x: {weaponShootInput.currentWeapon._frequency})",
+            1 => $"Cos(x: {weaponShootInput.currentWeapon._frequency})",
+            2 => $"Tan(x: {weaponShootInput.currentWeapon._frequency})",
+            _ => null
+        };
+
+        if (etiqueta != null)
+            CambiarTexto(etiqueta);
     }
 }

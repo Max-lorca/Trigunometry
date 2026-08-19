@@ -7,7 +7,6 @@ public class PowerShotSystem : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private TimeStopManager timeStopManager;
     [SerializeField] private SatoruTriangleVisualizer triangleVisualizer;
-    [SerializeField] private WeaponShoot weaponShoot;
 
     [Header("UI")]
     [SerializeField] private GameObject analysisUI;
@@ -19,11 +18,17 @@ public class PowerShotSystem : MonoBehaviour
     [SerializeField] private float rayoDuration = 0.5f;
     [SerializeField] private float shootCooldown = 1.5f;
 
+    [Header("Daño al acertar")]
+    // Antes era un daño fijo de 99999 (mataba de un golpe).
+    // Ahora es configurable desde el Inspector para poder ajustarlo por balance.
+    [SerializeField] private float danoAlAcertar = 40f;
+    [SerializeField] private float multiplicadorDropGarantizado = 1f; // reservado por si luego quieres escalar el bonus
+
     private Transform currentTarget;
     private string armaSeleccionada = "";
     private int ladosMostrados = 0;
     private bool canShoot = true;
-    private bool satoruJustActivated = false; // ✅ NUEVO
+    private bool satoruJustActivated = false;
 
     void Start()
     {
@@ -38,13 +43,17 @@ public class PowerShotSystem : MonoBehaviour
 
     void Update()
     {
+        // ✅ FIX: antes se accedía a timeStopManager.IsAnalysisActive sin
+        // comprobar null primero, y podía tirar NullReferenceException.
+        if (timeStopManager == null) return;
+
         if (timeStopManager.IsAnalysisActive && !satoruJustActivated)
         {
             satoruJustActivated = true;
             if (triangleVisualizer != null)
             {
                 triangleVisualizer.ResetLados();
-                Debug.Log(" Modo Satoru activado - ResetLados() llamado");
+                Debug.Log("Modo Satoru activado - ResetLados() llamado");
             }
         }
 
@@ -58,7 +67,7 @@ public class PowerShotSystem : MonoBehaviour
         }
 
         if (timerText != null)
-            timerText.text = $" {timeStopManager.TiempoRestante:F1}s";
+            timerText.text = $"{timeStopManager.TiempoRestante:F1}s";
 
         if (analysisUI != null && !analysisUI.activeSelf)
             analysisUI.SetActive(true);
@@ -83,6 +92,12 @@ public class PowerShotSystem : MonoBehaviour
         if (enemigoMasCercano != null)
         {
             currentTarget = enemigoMasCercano;
+
+            // 🔽 Zoom automático al enemigo más cercano
+            var camController = FindObjectOfType<CameraController>();
+            if (camController != null)
+                camController.ZoomCamTo(currentTarget);
+
             if (triangleVisualizer != null)
             {
                 Vector2 jugadorPos = transform.position;
@@ -94,7 +109,13 @@ public class PowerShotSystem : MonoBehaviour
         {
             currentTarget = null;
             if (triangleVisualizer != null) triangleVisualizer.OcultarTriangulo();
+
+            // 🔽 Reset de la cámara si no hay enemigos
+            var camController = FindObjectOfType<CameraController>();
+            if (camController != null)
+                camController.ResetZoom();
         }
+
     }
 
     public void SeleccionarArma(string arma)
@@ -120,13 +141,13 @@ public class PowerShotSystem : MonoBehaviour
 
         if (currentTarget == null)
         {
-            if (feedbackText != null) feedbackText.text = " Sin objetivo";
+            if (feedbackText != null) feedbackText.text = "Sin objetivo";
             return false;
         }
 
         if (string.IsNullOrEmpty(armaSeleccionada))
         {
-            if (feedbackText != null) feedbackText.text = " Selecciona arma (1,2,3)";
+            if (feedbackText != null) feedbackText.text = "Selecciona arma (1,2,3)";
             return false;
         }
 
@@ -134,18 +155,21 @@ public class PowerShotSystem : MonoBehaviour
 
         if (armaSeleccionada == armaCorrecta)
         {
-            if (feedbackText != null) feedbackText.text = $" ¡ACERTÓ! ({armaSeleccionada})";
+            if (feedbackText != null) feedbackText.text = $"¡ACERTÓ! ({armaSeleccionada})";
 
-            if (currentTarget != null)
+            StartCoroutine(DibujarRayo(currentTarget.position));
+
+            // ✅ FIX: en vez de acoplarse a MeleeEnemyController / DistanceEnemyController
+            // por separado, usamos la interfaz IAnalizable que ya implementan ambos.
+            // Esto además hace que el sistema funcione automáticamente con cualquier
+            // enemigo nuevo que implemente IAnalizable, sin tener que tocar este script.
+            if (currentTarget.TryGetComponent<IAnalizable>(out var analizable))
             {
-                StartCoroutine(DibujarRayo(currentTarget.position));
+                // Garantiza el drop de vida al 100% (esto es lo que antes se perdía,
+                // porque TomarDaño() se llamaba directo sin pasar por OnAnalisisExitoso).
+                analizable.OnAnalisisExitoso(multiplicadorDropGarantizado);
+                analizable.RecibirDanoAnalisis(danoAlAcertar);
             }
-
-            MeleeEnemyController melee = currentTarget.GetComponent<MeleeEnemyController>();
-            if (melee != null) melee.TomarDaño(99999f);
-
-            DistanceEnemyController dist = currentTarget.GetComponent<DistanceEnemyController>();
-            if (dist != null) dist.TomarDaño(99999f);
 
             if (weaponSelectedText != null) weaponSelectedText.text = "";
 
@@ -155,7 +179,7 @@ public class PowerShotSystem : MonoBehaviour
         }
         else
         {
-            if (feedbackText != null) feedbackText.text = $" Falló. Debe ser: {armaCorrecta}";
+            if (feedbackText != null) feedbackText.text = $"Falló. Debe ser: {armaCorrecta}";
 
             StartCoroutine(ResetShootCooldown());
             return false;
@@ -189,7 +213,7 @@ public class PowerShotSystem : MonoBehaviour
         LineRenderer rayo = rayoObj.AddComponent<LineRenderer>();
         rayo.startColor = Color.cyan;
         rayo.endColor = Color.white;
-        rayo.startWidth = 0.3f;
+        rayo.startWidth = 0.3f; 
         rayo.endWidth = 0.1f;
         rayo.positionCount = 2;
         rayo.SetPosition(0, transform.position + new Vector3(0, 0.5f, 0));

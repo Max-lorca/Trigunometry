@@ -10,7 +10,7 @@ public class KnockbackController : MonoBehaviour
     private bool _enKnockback = false;
     [HideInInspector] public bool EstaEnKnockback => _enKnockback;
 
-    void Awake()
+    private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
     }

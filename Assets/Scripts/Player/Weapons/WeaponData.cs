@@ -9,10 +9,21 @@ public class WeaponData : MonoBehaviour
     [SerializeField] private GameObject particleShoot;
     [SerializeField] private AudioClip shootAudioClip;
     [SerializeField] private float shootCooldown = 0.5f;
+    private float _amplitude;
+    [HideInInspector] public float _frequency;
+    private float razonCambio = 1f;
 
     private AudioSource audioSource;
     private ObjectPool<ProyectileController> _pool;
     private bool canShoot = true;
+    private void OnEnable()
+    {
+        WeaponSwitcher.OnRuedaMovida += ModificarValor;
+    }
+    private void OnDisable()
+    {
+        WeaponSwitcher.OnRuedaMovida -= ModificarValor;
+    }
 
     void Start()
     {
@@ -49,9 +60,21 @@ public class WeaponData : MonoBehaviour
         proj.transform.position = projectileSpawn.position;
         proj.ResetProyectile(projectileSpawn.position);
         proj.SetDirection(projectileSpawn.right);
+        proj.SetFrequency(_frequency);
 
         yield return new WaitForSeconds(shootCooldown);
         canShoot = true;
+    }
+    private void ModificarValor(float direccionRueda)
+    {
+        if (direccionRueda > 0f)
+        {
+            _frequency += razonCambio;
+        }
+        else if (direccionRueda < 0f)
+        {
+            _frequency -= razonCambio;
+        }
     }
 
     public void ReleaseProjectile(GameObject proj)

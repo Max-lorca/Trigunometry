@@ -30,7 +30,7 @@ public class EnemyProjectile : MonoBehaviour
 
     void Update()
     {
-        transform.position += (Vector3)(direction * speed * Time.deltaTime);
+        transform.position += (Vector3)(direction * speed) * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -41,7 +41,7 @@ public class EnemyProjectile : MonoBehaviour
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.TakeDamage((int)damage, (Vector2)transform.position);
+                player.TakeDamage((int)damage, this.transform.position);
                 Debug.Log("💥 Proyectil enemigo golpeó al player!");
             }
             Destroy(gameObject);

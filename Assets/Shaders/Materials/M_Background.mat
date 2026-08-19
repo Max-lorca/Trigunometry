@@ -57,8 +57,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DistortionIntencity: 0.03
     - _EnableExternalAlpha: 0
-    - _MovimientoHorizontal: 0
+    - _Intensidad: 1
+    - _MovimientoHorizontal: -4
+    - _WaveFrecuency: 10
     - _ZWrite: 0
     m_Colors:
     - _BackgroundColor: {r: 0.09838911, g: 0.14765567, b: 0.31132078, a: 1}

@@ -24,6 +24,32 @@ public class FadeController : MonoBehaviour
         c.a = alphaFinal;
         renderer.color = c;
     }
+    public IEnumerator Desvanecimiento(List<SpriteRenderer> renderers, float alphaFinal, float duracion)
+    {
+        List<Color> coloresIniciales = new List<Color>();
+        foreach (var renderer in renderers)
+        {
+            coloresIniciales.Add(renderer.color);
+        }
+        float tiempo = 0f;
+        while (tiempo < duracion)
+        {
+            tiempo += Time.deltaTime;
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                Color c = coloresIniciales[i];
+                c.a = Mathf.Lerp(c.a, alphaFinal, tiempo / duracion);
+                renderers[i].color = c;
+            }
+            yield return null;
+        }
+        for (int i = 0; i < renderers.Count; i++)
+        {
+            Color c = coloresIniciales[i];
+            c.a = alphaFinal;
+            renderers[i].color = c;
+        }
+    }
     public IEnumerator DesvanecimientoTexto(TextMeshPro texto, float alphaFinal, float duracion)
     {
         Color c = texto.color;

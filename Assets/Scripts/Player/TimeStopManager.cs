@@ -13,6 +13,7 @@ public class TimeStopManager : MonoBehaviour
 
     [Header("Referencias")]
     [SerializeField] private SatoruChargeSystem chargeSystem;
+    [SerializeField] private ShockWaveManager shockWaveManager;
 
     private Transform player;
     private bool isAnalysisActive = false;
@@ -56,6 +57,8 @@ public class TimeStopManager : MonoBehaviour
         isAnalysisActive = true;
         Time.timeScale = 0f;
 
+        shockWaveManager.CallShockWave();
+
         if (chargeSystem != null)
             chargeSystem.ConsumeCharge();
 
@@ -88,6 +91,7 @@ public class TimeStopManager : MonoBehaviour
 
     private IEnumerator DesactivarModoAnalisis()
     {
+        shockWaveManager.StopShockWave();
         if (canvasGroupEfect != null)
         {
             while (canvasGroupEfect.alpha > 0f)

@@ -6,7 +6,8 @@ public class MeleeEnemyAttack : MonoBehaviour
 {
 
     [SerializeField] private int damage;
-    [SerializeField] private float cooldown;
+    [SerializeField] private float firstCooldown = 1f;
+    [SerializeField] private float secondCooldown;
     [SerializeField] private float radAttack = 1.5f;
 
     [SerializeField] public Transform puntoAtaque;
@@ -25,8 +26,9 @@ public class MeleeEnemyAttack : MonoBehaviour
     public IEnumerator AttackPerformance()
     {
         canAttack = false;
-        
         estaEnFrameDeAtaque = true;
+        
+        yield return new WaitForSeconds(firstCooldown);
 
         ContactFilter2D filtro = new ContactFilter2D();
 
@@ -41,33 +43,12 @@ public class MeleeEnemyAttack : MonoBehaviour
             if(hits[i].gameObject.CompareTag("Player"))
             {
                 PlayerController player = hits[i].GetComponent<PlayerController>();
-                player.TakeDamage(this.damage, transform.position);
-                
+                player.TakeDamage(this.damage, this.transform.position);
             }
         }
 
         estaEnFrameDeAtaque = false;
-        yield return new WaitForSeconds(cooldown);
-        canAttack = true;
-    }
-
-    public void InterrumpirPorParry()
-    {
-        StopAllCoroutines();
-        estaEnFrameDeAtaque = false;
-
-        if (_controller != null)
-        {
-            _controller.TomarDaño(0);
-        }
-
-        StartCoroutine(ResetCooldownDespuesDeParry());
-    }
-
-    private IEnumerator ResetCooldownDespuesDeParry()
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(secondCooldown);
         canAttack = true;
     }
 }

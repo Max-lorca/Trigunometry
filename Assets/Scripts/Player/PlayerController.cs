@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Cinemachine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,10 +16,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float deadFade;
     [SerializeField][Range(0f, 1f)] private float spawnFade;
     [SerializeField][Range(0f, 10f)] private float fadeTime;
-
-    [Header("Shake Camera Config")] 
-    [SerializeField] [Range(0f, 5f)] private float duration;
-    [SerializeField] [Range(0f, 2f)] private float magnitude;
     [Header("Animation Config")]
     [SerializeField] private float dieLagTime;
     [SerializeField] private float spawnLagTime;
@@ -28,112 +27,112 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip healAudio;
 
     private int currentLife;
+    private int _facingDirection = 1; // 1 derecha, -1 izquierda
     private bool canJump = true;
     private bool isDead = false;
     private bool isSpawn = false;
     private bool inAir = false;
+    private bool canAnimateLand = false;
 
     //Referencias
-    [SerializeField] private ParticleSystem walkParticle;
+    [SerializeField] private GameObject walkParticlePrefab;
     [SerializeField] private GameObject deadParticle;
     [SerializeField] private GameObject spawnParticle;
     [SerializeField] private ParticleSystem lifeParticle;
     [SerializeField] private CanvasManager menuCanvasManager;
     [SerializeField] private CanvasManager deadCanvasManager;
-    private CameraShake cameraShake;
-    private CanvasGroup deadCanvasGroup;
-    private CanvasGroup menuCanvasGroup;
-    private Transform walkParticleTransform;
-    private Animator animador;
-    private Rigidbody2D rbPlayer;
-    private PlayerInput playerInput;
-    private SpriteRenderer spritePlayer;
-    private HealthUIController healthUI;
-    private TimeStopManager timeStopController;
-    private FadeController fadeController;
-    private KnockbackController knockbackController;
-    private ParryController parryController;
-    private AudioSource audioSource;
-    private GameManager gameManager;
-
+    [SerializeField] private CinemachineCamera MainCamera;
+    private CanvasGroup _deadCanvasGroup;
+    private CanvasGroup _menuCanvasGroup;
+    private ParticleSystem _walkParticle;
+    private Transform _walkParticleTransform;
+    private P_AnimationController _animador;
+    private Rigidbody2D _rbPlayer;
+    [HideInInspector] public PlayerInput _playerInput;
+    private List<SpriteRenderer> _spritesPlayer;
+    private List<Material> _spriteMaterials = new List<Material>();
+    private HealthUIController _healthUI;
+    private TimeStopManager _timeStopController;
+    private FadeController _fadeController;
+    private KnockbackController _knockbackController;
+    private AudioSource _audioSource;
     //Vectores
-    private Vector2 input;
+    private Vector2 _input;
 
     void Start()
     {
-        rbPlayer = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInput>();
-        animador = GetComponent<Animator>();
-        spritePlayer = GetComponent<SpriteRenderer>();
-        timeStopController = GetComponent<TimeStopManager>();
-        fadeController = GetComponent<FadeController>();
-        menuCanvasGroup = menuCanvasManager.GetComponent<CanvasGroup>();
-        deadCanvasGroup = deadCanvasManager.GetComponent<CanvasGroup>();
-        cameraShake = GetComponent<CameraShake>();
-        walkParticleTransform = walkParticle.transform;
-        knockbackController = GetComponent<KnockbackController>();
-        parryController = GetComponent<ParryController>();
-        audioSource = GetComponent<AudioSource>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _rbPlayer = GetComponent<Rigidbody2D>();
+        _playerInput = GetComponent<PlayerInput>();
+        _animador = GetComponent<P_AnimationController>();
+        _spritesPlayer = new List<SpriteRenderer>(GetComponentsInChildren<SpriteRenderer>());
+        foreach(var materials in _spritesPlayer)
+        {
+            _spriteMaterials.Add(materials.material);
+        }
+        _timeStopController = GetComponent<TimeStopManager>();
+        _fadeController = GetComponent<FadeController>();
+        _menuCanvasGroup = menuCanvasManager.GetComponent<CanvasGroup>();
+        _deadCanvasGroup = deadCanvasManager.GetComponent<CanvasGroup>();
+        _walkParticle = Instantiate(walkParticlePrefab, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+        _walkParticleTransform = _walkParticle.transform;
+        _knockbackController = GetComponent<KnockbackController>();
+        _audioSource = GetComponent<AudioSource>();
 
         currentLife = maxLife;
 
-        healthUI = FindFirstObjectByType<HealthUIController>();
-
-        Color c = spritePlayer.color;
-        c.a = 0f;
-        spritePlayer.color = c;
-
-        if (healthUI != null)
+        _healthUI = FindFirstObjectByType<HealthUIController>();
+        
+        foreach(var sprite in _spritesPlayer)
         {
-            healthUI.UpdateHealth(currentLife, maxLife);
+            _fadeController.Desvanecimiento(sprite, 0f, 0f);
+        }
+
+        if (_healthUI != null)
+        {
+            _healthUI.UpdateHealth(currentLife, maxLife);
         }
 
         if (!isSpawn && !isDead)
         {
             StartCoroutine(Spawn());
         }
-
     }
     private void Update()
     {
         if (isDead)
             return;
 
-        input = playerInput.actions["Move"].ReadValue<Vector2>();
+        _input = _playerInput.actions["Move"].ReadValue<Vector2>();
 
-        animador.SetFloat("movement", Mathf.Abs(input.x));
-
+        _animador.WalkAnimation(Mathf.Abs(_input.x));
         // 1. Control de rotación y escala según la dirección del movimiento
-        if (input.x < 0)
+        if (_input.x < 0 && _facingDirection != -1)
         {
-            walkParticleTransform.localScale = new Vector3(-1, 1, 1);
-            spritePlayer.flipX = true;
-
-            gameManager.backgroundHorizontalVelocity = -1f;
+            _facingDirection = -1;
+            _walkParticleTransform.localScale = new Vector3(-1, 1, 1);
+            _animador.RotatePlayer(false);
         }
-        else if (input.x > 0)
+        else if (_input.x > 0 && _facingDirection != 1)
         {
-            walkParticleTransform.localScale = new Vector3(1, 1, 1);
-            spritePlayer.flipX = false;
-
-            gameManager.backgroundHorizontalVelocity = 1f;
+            _facingDirection = 1;
+            _walkParticleTransform.localScale = new Vector3(1, 1, 1);
+            _animador.RotatePlayer(true);
         }
         // 2. Control de emisión de partículas (¡La clave está aquí!)
-        if (input.x != 0) // Si el jugador se está moviendo a cualquier lado
+        if (_input.x != 0) // Si el jugador se está moviendo a cualquier lado
         {
             // Solo le damos Play si NO se estaban reproduciendo ya
-            if (!walkParticle.isPlaying && !inAir)
+            if (!_walkParticle.isPlaying && !inAir)
             {
-                walkParticle.Play();
+                _walkParticle.Play();
             }
         }
         else // Si el jugador está quieto (input.x == 0)
         {
             // Detiene la emisión suavemente sin desaparecer las partículas activas
-            if (walkParticle.isPlaying || inAir)
+            if (_walkParticle.isPlaying || inAir)
             {
-                walkParticle.Stop();
+                _walkParticle.Stop();
             }
         }
     }
@@ -143,23 +142,23 @@ public class PlayerController : MonoBehaviour
         if (isDead)
             return;
 
-        rbPlayer.linearVelocity = new Vector2(input.x * velocityMovement, rbPlayer.linearVelocity.y);
+        _rbPlayer.linearVelocity = new Vector2(_input.x * velocityMovement, _rbPlayer.linearVelocity.y);
     }
 
-    public void TakeDamage(int damage, Vector3 origenAtaque)
+    public void TakeDamage(int damage, Vector2 origen)
     {
         if (isDead)
             return;
 
         currentLife -= damage;
-        audioSource.PlayOneShot(damageAudio, 6f);
+        _audioSource.PlayOneShot(damageAudio, 6f);
         Debug.Log($"Player daño: {currentLife}/{maxLife}");
         
-        cameraShake.Shake(duration, magnitude);
-        knockbackController.RecibirKnockBack(origenAtaque);
+        _knockbackController.RecibirKnockBack(origen);
+        MainCamera.GetComponent<CameraController>().cameraShake.Shake("Default");
 
-        if (healthUI != null)
-            healthUI.UpdateHealth(currentLife, maxLife);
+        if (_healthUI != null)
+            _healthUI.UpdateHealth(currentLife, maxLife);
 
         if (!isDead && currentLife <= 0)
         {
@@ -175,35 +174,35 @@ public class PlayerController : MonoBehaviour
 
         currentLife = Mathf.Min(currentLife + amount, maxLife);
         
-        audioSource.PlayOneShot(healAudio, 6f);
+        _audioSource.PlayOneShot(healAudio, 6f);
         lifeParticle.Play();
 
         Debug.Log($"Player curado: {currentLife}/{maxLife}");
 
-        if (healthUI != null)
-            healthUI.UpdateHealth(currentLife, maxLife);
+        if (_healthUI != null)
+            _healthUI.UpdateHealth(currentLife, maxLife);
     }
 
     private IEnumerator Spawn()
     {
         isDead = false;
-        playerInput.enabled = false;
-        rbPlayer.linearVelocity = Vector2.zero;
+        _playerInput.enabled = false;
+        _rbPlayer.linearVelocity = Vector2.zero;
 
         Instantiate(spawnParticle, transform.position, Quaternion.identity);
 
         yield return new WaitForSeconds(spawnLagTime);
 
-        StartCoroutine(fadeController.Desvanecimiento(spritePlayer, spawnFade, fadeTime));
+        StartCoroutine(_fadeController.Desvanecimiento(_spritesPlayer, spawnFade, fadeTime));
 
-        playerInput.enabled = true;
+        _playerInput.enabled = true;
     }
     private IEnumerator Die()
     {
         isDead = true;
 
-        playerInput.enabled = false;
-        rbPlayer.linearVelocity = Vector2.zero;
+        _playerInput.enabled = false;
+        _rbPlayer.linearVelocity = Vector2.zero;
 
         // Si tienes un Trigger llamado "Death" en el Animator
         // animador.SetTrigger("Death");
@@ -212,13 +211,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dieLagTime);
 
         yield return StartCoroutine(
-            fadeController.Desvanecimiento(spritePlayer, deadFade, fadeTime)
+            _fadeController.Desvanecimiento(_spritesPlayer, deadFade, fadeTime)
         );
 
         Instantiate(deadParticle, transform.position, Quaternion.identity);
 
-        menuCanvasGroup.blocksRaycasts  = false;
-        menuCanvasGroup.interactable = false;
+        _menuCanvasGroup.blocksRaycasts  = false;
+        _menuCanvasGroup.interactable = false;
         deadCanvasManager.ToggleMenu();
     }
 
@@ -232,10 +231,11 @@ public class PlayerController : MonoBehaviour
         {
             canJump = false;
             inAir = true;
+            canAnimateLand = true;
 
-            rbPlayer.linearVelocity = new Vector2(rbPlayer.linearVelocity.x, jumpForce);
+            _rbPlayer.linearVelocity = new Vector2(_rbPlayer.linearVelocity.x, jumpForce);
 
-            animador.SetBool("jump", true);
+            _animador.SetGrounded(false);
         }
     }
 
@@ -246,7 +246,7 @@ public class PlayerController : MonoBehaviour
 
         if (ctx.performed)
         {
-            timeStopController.TryTimeStop();
+            _timeStopController.TryTimeStop();
         }
     }
 
@@ -257,16 +257,6 @@ public class PlayerController : MonoBehaviour
             menuCanvasManager.ToggleMenu();
         }
     }
-
-    public void ParryAction(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed)
-        {
-            Debug.Log("Parry");
-            parryController.TryParry();
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collider)
     {
         switch (collider.gameObject.tag)
@@ -274,7 +264,7 @@ public class PlayerController : MonoBehaviour
             case "Ground":
                 canJump = true;
                 inAir = false;
-                animador.SetBool("jump", false);
+                _animador.SetGrounded(true);
                 break;
         }
     }

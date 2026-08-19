@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 115339769967795463}
   - component: {fileID: 4115027987201279582}
-  - component: {fileID: 2746458066853371694}
   - component: {fileID: 2249817723917189533}
   - component: {fileID: -5239206800906050129}
   m_Layer: 0
@@ -28,14 +27,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336505448879499961}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.12275576, w: 0.99243695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25.199, y: -3.55, z: 0}
   m_LocalScale: {x: 0.62368035, y: 0.51401716, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4851611375947227087}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 14.102}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4115027987201279582
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 7915a3dc60bf1f8478e800946bc33ee5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,19 +93,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2746458066853371694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336505448879499961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c08e3626d3f5145bf939b5d30cd9d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapon
-  cam: {fileID: 0}
 --- !u!114 &2249817723917189533
 MonoBehaviour:
   m_ObjectHideFlags: 0

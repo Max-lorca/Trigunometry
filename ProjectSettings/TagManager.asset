@@ -11,6 +11,7 @@ TagManager:
   - HighLight
   - Proyectil
   - Ataque
+  - Crosshair
   layers:
   - Default
   - TransparentFX
@@ -62,6 +63,21 @@ TagManager:
     locked: 0
   - name: Items
     uniqueID: 3204144923
+    locked: 0
+  - name: Projectile
+    uniqueID: 1407684735
+    locked: 0
+  - name: Particles
+    uniqueID: 644820567
+    locked: 0
+  - name: Text
+    uniqueID: 896572875
+    locked: 0
+  - name: CameraSortingLayer
+    uniqueID: 2429389551
+    locked: 0
+  - name: Crosshair
+    uniqueID: 2696518287
     locked: 0
   m_RenderingLayers:
   - Default

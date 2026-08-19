@@ -3,17 +3,24 @@ using Unity.Cinemachine;
 
 public class CameraShake : MonoBehaviour
 {
-    private CinemachineImpulseSource impulseSource;
+    [Header("Configuración default")]
+    [SerializeField] private float duration, magnitude;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
 
     void Awake()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
-    public void Shake(float duration, float magnitude)
+    public void Shake(string type)
     {
         if (impulseSource == null) return;
-        impulseSource.ImpulseDefinition.ImpulseDuration = duration;
-        impulseSource.GenerateImpulse(magnitude);
+        switch (type)
+        {
+            case "Default":
+                impulseSource.ImpulseDefinition.ImpulseDuration = this.duration;
+                impulseSource.GenerateImpulse(this.magnitude);
+                break;
+        }
     }
 }
