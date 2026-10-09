@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -7.32, y: -2.73}
-  m_SizeDelta: {x: 14.0866, y: 3.6402}
+  m_SizeDelta: {x: 5.2, y: 0.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4315983729091015090
 MeshRenderer:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 8.506423, w: 2.5297916}
+  m_margin: {x: 0, y: 0, z: 0.011740208, w: -0.01733303}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0

@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 public class KnockbackController : MonoBehaviour
 {
-    [SerializeField] private float forceX = 5f;
+    [SerializeField] private float forceX = 10f;
     [SerializeField] private float forceY = 2f;
-    [SerializeField] private float duration = 0.2f;
+    [SerializeField] private float duration = 0.6f;
 
     private Rigidbody2D _rb;
     private bool _enKnockback = false;
@@ -26,8 +26,8 @@ public class KnockbackController : MonoBehaviour
         _enKnockback = true;
 
         Vector2 dir = (transform.position - origen).normalized;
-        _rb.linearVelocity = Vector2.zero;
-        _rb.AddForce(new Vector2(dir.x*forceX, forceY), ForceMode2D.Impulse);
+        _rb.linearVelocity = Vector3.zero;
+        _rb.AddForce(new Vector2(dir.x*forceX, dir.y*forceY), ForceMode2D.Impulse);
         yield return new WaitForSeconds(duration);
         _enKnockback = false;
     }

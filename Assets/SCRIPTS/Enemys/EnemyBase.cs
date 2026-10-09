@@ -239,6 +239,7 @@ public abstract class EnemyBase : MonoBehaviour, IAnalizable
         Instantiate(deadParticlePrefab, transform.position, Quaternion.identity);
 
         TryDropHealingItem();
+        GameManager.Instance.AddPoints(10f);
         Destroy(this.gameObject);
     }
 

@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _CameraSortingLayerTexture:
-        m_Texture: {fileID: 2800000, guid: 8b6f0d17be430d04d98ace27d1b72085, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9e0d56515bf2b0241ab5eb9f4410993d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
@@ -45,12 +45,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.1
+    - _Alpha: 0
     - _Size: 0.1
     - _WaveDistanceFromCenter: -0.1
     - _WaveStrengh: 5
     m_Colors:
-    - _ColorFilter: {r: 0, g: 0.56529665, b: 1, a: 1}
+    - _ColorFilter: {r: 1, g: 1, b: 1, a: 1}
     - _RingSpawnPosition: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

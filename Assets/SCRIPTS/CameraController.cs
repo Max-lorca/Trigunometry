@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     private Transform _target;
     private bool _isZooming = false;
     private Transform _dummyTarget;
-
+    private Transform _player;
     private CinemachineCamera _cinemachineCamera;
 
     private float _defaultFOV;
@@ -23,8 +23,10 @@ public class CameraController : MonoBehaviour
         cameraShake = GetComponent<CameraShake>();
         _cinemachineCamera = GetComponent<CinemachineCamera>();
 
+        if(GameManager.Instance.Player != null) _player = GameManager.Instance.Player.transform;
+        
         _dummyTarget = new GameObject("CameraFocus").transform;
-        if (GameManager.Instance != null && GameManager.Instance.Player != null)
+        if (GameManager.Instance != null && _player != null)
             _dummyTarget.position = GameManager.Instance.Player.position;
 
         if (_cinemachineCamera != null)
@@ -37,10 +39,36 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        ZoomIn();
+        SpecialZoomIn();
     }
 
-    private void ZoomIn()
+    public void ZoomIn(Transform _target)
+{
+    if (_isZooming && _target != null)
+    {
+        // Zoom en el FOV
+        _cinemachineCamera.Lens.FieldOfView = Mathf.Lerp(
+            _cinemachineCamera.Lens.FieldOfView,
+            zoomAmount,
+            Time.unscaledDeltaTime * zoomSpeed);
+
+        // Mover la cámara hacia el target (opcional)
+        _cinemachineCamera.transform.position = Vector3.Lerp(
+            _cinemachineCamera.transform.position,
+            _target.position + new Vector3(0, 2, -5), // offset para no pegarse encima
+            Time.unscaledDeltaTime * zoomSpeed);
+    }
+    else
+    {
+        _cinemachineCamera.Lens.FieldOfView = Mathf.Lerp(
+            _cinemachineCamera.Lens.FieldOfView,
+            _defaultFOV,
+            Time.unscaledDeltaTime * zoomSpeed);
+    }
+}
+
+
+    private void SpecialZoomIn()
     {
         if (_isZooming && _target != null)
         {
@@ -52,7 +80,7 @@ public class CameraController : MonoBehaviour
             );
 
             // Calcular punto medio real en coordenadas del mundo entre jugador y objetivo
-            Vector3 puntoMedio = (GameManager.Instance.Player.position + _target.position) * 0.5f;
+            Vector3 puntoMedio = (_player.position + _target.position) * 0.5f;
             // Mover solo el dummy target para que la cámara mire al punto medio sin modificar al enemigo
             if (_dummyTarget != null)
                 _dummyTarget.position = puntoMedio;
@@ -66,7 +94,7 @@ public class CameraController : MonoBehaviour
                 Time.unscaledDeltaTime * zoomSpeed
             );
             // Volver a mirar al jugador moviendo el dummy (no cambiamos la posición de otros transform)
-            if (GameManager.Instance.Player != null && _dummyTarget != null)
+            if (_player != null && _dummyTarget != null)
                 _dummyTarget.position = GameManager.Instance.Player.position;
         }
     }

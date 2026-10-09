@@ -1,4 +1,4 @@
-﻿using Unity.Cinemachine;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +16,6 @@ public class PlayerWeaponAim : MonoBehaviour
         transform.position = rotationPoint.position;
         if (timeStopManager != null && timeStopManager.IsAnalysisActive)
             return;
-       
         _isGamepadActive = playerInput.currentControlScheme == "Gamepad";
 
         if (_isGamepadActive)

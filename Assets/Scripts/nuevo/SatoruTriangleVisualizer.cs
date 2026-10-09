@@ -6,13 +6,16 @@ public class SatoruTriangleVisualizer : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private LineRenderer triangleLine;
     [SerializeField] private GameObject labelPrefab;
+    [SerializeField] private Canvas canvas;
+    private RectTransform canvasRect;
+    [Header("Configuración")]
+    [SerializeField] private float lineWidth = 2f;
 
     [Header("Etiquetas")]
     [SerializeField] private float labelOffsetDistance = 0.5f;
-
     [SerializeField] private float fontSize = 10f;
-
-    private TMP_Text labelX;
+    private Material _material;
+    private TMP_Text labelX; 
     private TMP_Text labelY;
     private TMP_Text labelH;
     private TMP_Text labelAngle;
@@ -23,6 +26,7 @@ public class SatoruTriangleVisualizer : MonoBehaviour
 
     void Start()
     {
+        canvasRect = canvas.GetComponent<RectTransform>();
         if (triangleLine == null)
             triangleLine = GetComponent<LineRenderer>();
 
@@ -30,14 +34,23 @@ public class SatoruTriangleVisualizer : MonoBehaviour
         {
             triangleLine.startColor = Color.cyan;
             triangleLine.endColor = Color.cyan;
-            triangleLine.startWidth = 0.1f;
-            triangleLine.endWidth = 0.1f;
+            triangleLine.startWidth = lineWidth;
+            triangleLine.endWidth = lineWidth;
             triangleLine.positionCount = 4;
             triangleLine.enabled = false;
+            _material = triangleLine.material;
+
         }
 
         CrearLabels();
         ResetLados();
+    }
+    void Update()
+    {
+        if (triangleLine != null && triangleLine.enabled)
+        {
+            _material.SetFloat("_UnscaledTime", Time.unscaledTime);
+        }   
     }
 
     public void ResetLados()
@@ -63,7 +76,7 @@ public class SatoruTriangleVisualizer : MonoBehaviour
 
     private TMP_Text CrearLabel(string nombre)
     {
-        GameObject go = Instantiate(labelPrefab, transform);
+        GameObject go = Instantiate(labelPrefab, canvas.transform);
         go.name = nombre;
         go.SetActive(false);
         TMP_Text text = go.GetComponent<TMP_Text>();
@@ -136,7 +149,7 @@ public class SatoruTriangleVisualizer : MonoBehaviour
                 if (labelX != null)
                 {
                     labelX.text = $"CA: {Mathf.Abs(dx):F2}";
-                    labelX.transform.position = CalcularPosicionEtiqueta(jugador, proyeccion, enemigo, labelOffsetDistance);
+                    PosicionarLabelUI(labelX, CalcularPosicionEtiqueta(jugador, proyeccion, enemigo, labelOffsetDistance));
                     labelX.color = Color.blue;
                     labelX.fontSize = fontSize;
                     labelX.gameObject.SetActive(true);
@@ -144,7 +157,7 @@ public class SatoruTriangleVisualizer : MonoBehaviour
                 if (labelY != null)
                 {
                     labelY.text = $"CO: {Mathf.Abs(dy):F2}";
-                    labelY.transform.position = CalcularPosicionEtiqueta(proyeccion, enemigo, jugador, labelOffsetDistance);
+                    PosicionarLabelUI(labelY, CalcularPosicionEtiqueta(proyeccion, enemigo, jugador, labelOffsetDistance));
                     labelY.color = Color.red;
                     labelY.fontSize = fontSize;
                     labelY.gameObject.SetActive(true);
@@ -154,7 +167,7 @@ public class SatoruTriangleVisualizer : MonoBehaviour
                 if (labelY != null)
                 {
                     labelY.text = $"CO: {Mathf.Abs(dy):F2}";
-                    labelY.transform.position = CalcularPosicionEtiqueta(proyeccion, enemigo, jugador, labelOffsetDistance);
+                    PosicionarLabelUI(labelY, CalcularPosicionEtiqueta(proyeccion, enemigo, jugador, labelOffsetDistance));
                     labelY.color = Color.red;
                     labelY.fontSize = fontSize;
                     labelY.gameObject.SetActive(true);
@@ -162,7 +175,7 @@ public class SatoruTriangleVisualizer : MonoBehaviour
                 if (labelH != null)
                 {
                     labelH.text = $"H: {hipotenusa:F2}";
-                    labelH.transform.position = CalcularPosicionEtiqueta(jugador, enemigo, proyeccion, labelOffsetDistance);
+                    PosicionarLabelUI(labelH, CalcularPosicionEtiqueta(jugador, enemigo, proyeccion, labelOffsetDistance));
                     labelH.color = Color.green;
                     labelH.fontSize = fontSize;
                     labelH.gameObject.SetActive(true);
@@ -172,7 +185,7 @@ public class SatoruTriangleVisualizer : MonoBehaviour
                 if (labelX != null)
                 {
                     labelX.text = $"CA: {Mathf.Abs(dx):F2}";
-                    labelX.transform.position = CalcularPosicionEtiqueta(jugador, proyeccion, enemigo, labelOffsetDistance);
+                    PosicionarLabelUI(labelX, CalcularPosicionEtiqueta(proyeccion, enemigo, jugador, labelOffsetDistance));
                     labelX.color = Color.blue;
                     labelX.fontSize = fontSize;
                     labelX.gameObject.SetActive(true);
@@ -180,7 +193,7 @@ public class SatoruTriangleVisualizer : MonoBehaviour
                 if (labelH != null)
                 {
                     labelH.text = $"H: {hipotenusa:F2}";
-                    labelH.transform.position = CalcularPosicionEtiqueta(jugador, enemigo, proyeccion, labelOffsetDistance);
+                    PosicionarLabelUI(labelH, CalcularPosicionEtiqueta(jugador, enemigo, proyeccion, labelOffsetDistance));
                     labelH.color = Color.green;
                     labelH.fontSize = fontSize;
                     labelH.gameObject.SetActive(true);
@@ -191,13 +204,20 @@ public class SatoruTriangleVisualizer : MonoBehaviour
         if (labelAngle != null)
         {
             labelAngle.text = "θ";
-            labelAngle.transform.position = jugador + new Vector2(0.8f, 0.8f);
+            PosicionarLabelUI(labelAngle, jugador + new Vector2(0.8f, 0.8f));
             labelAngle.color = Color.white;
             labelAngle.fontSize = fontSize;
             labelAngle.gameObject.SetActive(true);
         }
 
         return ladosSeleccionados;
+    }
+    private void PosicionarLabelUI(TMP_Text label, Vector2 posicionMundo)
+    {
+        Camera cam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : Camera.main;
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(cam, posicionMundo);
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPoint, cam, out Vector2 localPoint))
+            label.rectTransform.anchoredPosition = localPoint;
     }
 
     public void OcultarTriangulo()

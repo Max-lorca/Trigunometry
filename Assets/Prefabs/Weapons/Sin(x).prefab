@@ -109,7 +109,12 @@ MonoBehaviour:
   projectileSpawn: {fileID: 4851611375947227087}
   particleShoot: {fileID: 7074570866716913716, guid: 651e7b42e7a50ee719c87519ea96205f, type: 3}
   shootAudioClip: {fileID: 8300000, guid: 5ff5bd936a30a904da907f35c8dd382e, type: 3}
-  shootCooldown: 0.5
+  weaponType: 1
+  baseDamage: 1
+  baseCooldown: 0.5
+  baseSpeed: 8
+  baseAmplitude: 0.5
+  baseFrequency: 5
 --- !u!82 &-5239206800906050129
 AudioSource:
   m_ObjectHideFlags: 0

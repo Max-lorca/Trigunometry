@@ -13,7 +13,7 @@ public class FadeController : MonoBehaviour
 
         while (tiempo < duracion)
         {
-            tiempo += Time.deltaTime;
+            tiempo += Time.unscaledDeltaTime;
 
             c.a = Mathf.Lerp(alphaInicial, alphaFinal, tiempo / duracion);
             renderer.color = c;
@@ -34,7 +34,7 @@ public class FadeController : MonoBehaviour
         float tiempo = 0f;
         while (tiempo < duracion)
         {
-            tiempo += Time.deltaTime;
+            tiempo += Time.unscaledDeltaTime;
             for (int i = 0; i < renderers.Count; i++)
             {
                 Color c = coloresIniciales[i];
@@ -59,7 +59,7 @@ public class FadeController : MonoBehaviour
 
         while (tiempo < duracion)
         {
-            tiempo += Time.deltaTime;
+            tiempo += Time.unscaledDeltaTime;
 
             c.a = Mathf.Lerp(alphaInicial, alphaFinal, tiempo / duracion);
             texto.color = c;

@@ -14,6 +14,7 @@ public class ProyectileController : MonoBehaviour
     private Vector2 direction;
     private WeaponData weaponData;
     private float time;
+    private float wavePhase;
     private Vector3 startPosition;
 
     void Start()
@@ -25,7 +26,7 @@ public class ProyectileController : MonoBehaviour
     {
         time += Time.deltaTime;
         Vector3 basePosition = startPosition + (Vector3)(direction * speed * time);
-        float wave = Mathf.Sin(time * waveFrequency) * waveAmplitude;
+        float wave = Mathf.Sin(time * waveFrequency + wavePhase) * waveAmplitude;
         Vector2 perpendicular = new Vector2(-direction.y, direction.x).normalized;
         transform.position = basePosition + (Vector3)(perpendicular * wave);
     }
@@ -103,5 +104,13 @@ public class ProyectileController : MonoBehaviour
             weaponData.ReleaseProjectile(gameObject);
         else
             Destroy(gameObject);
+    }
+    public void Configure(float newDamage, float newSpeed, float newAmplitude, float newFrequency, float phase = 0f)
+    {
+        damage = newDamage;
+        speed = newSpeed;
+        waveAmplitude = newAmplitude;
+        waveFrequency = newFrequency;
+        wavePhase = phase;
     }
 }

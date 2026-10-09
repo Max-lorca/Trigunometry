@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
     private FadeController _fadeController;
     private KnockbackController _knockbackController;
     private AudioSource _audioSource;
+    private CinemachineImpulseSource _cinemachineImpulseSource;
+    private InteractionDetector _interactionDetector;
     //Vectores
     private Vector2 _input;
 
@@ -77,6 +79,8 @@ public class PlayerController : MonoBehaviour
         _walkParticleTransform = _walkParticle.transform;
         _knockbackController = GetComponent<KnockbackController>();
         _audioSource = GetComponent<AudioSource>();
+        _cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+        _interactionDetector = GetComponentInChildren<InteractionDetector>();
 
         currentLife = maxLife;
 
@@ -155,7 +159,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"Player daño: {currentLife}/{maxLife}");
         
         _knockbackController.RecibirKnockBack(origen);
-        MainCamera.GetComponent<CameraController>().cameraShake.Shake("Default");
+        CameraShake.Instance.CameraShakeImpulse(_cinemachineImpulseSource);
+        
 
         if (_healthUI != null)
             _healthUI.UpdateHealth(currentLife, maxLife);
@@ -255,6 +260,17 @@ public class PlayerController : MonoBehaviour
         if (ctx.performed)
         {
             menuCanvasManager.ToggleMenu();
+        }
+    }
+    public void InteractAction(InputAction.CallbackContext ctx)
+    {
+        if (isDead)
+            return;
+        
+        if (ctx.performed)
+        {
+            Debug.Log("Intentando interactuar con un objeto...");
+            _interactionDetector.TryInteract();
         }
     }
     private void OnCollisionEnter2D(Collision2D collider)
