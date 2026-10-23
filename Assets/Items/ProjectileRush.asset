@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44cf827d836dbc4595afd95cfb5ff1f, type: 3}
+  m_Name: ProjectileRush
+  m_EditorClassIdentifier: Assembly-CSharp::ModifierItemData
+  itemName: Vomito de proyectiles
+  description: 
+  icon: {fileID: 48380099829707227, guid: ab99d0c456ad6ec40a8d22848a3a0e57, type: 3}
+  pickupPrefab: {fileID: 6539264268764579595, guid: 0117ec1b13abb0e4c939e8d1b3bd2c21, type: 3}
+  modifiers:
+  - weapon: 0
+    stat: 2
+    op: 0
+    value: -0.5
+  - weapon: 0
+    stat: 5
+    op: 0
+    value: 6
+  - weapon: 0
+    stat: 4
+    op: 0
+    value: 3.5
+  - weapon: 0
+    stat: 0
+    op: 1
+    value: -1.5

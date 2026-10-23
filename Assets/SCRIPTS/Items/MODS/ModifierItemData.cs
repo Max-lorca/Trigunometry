@@ -7,7 +7,7 @@ public class ModifierItemData : ScriptableObject
     public string itemName = "Modificador";
     [TextArea] public string description;
     public Sprite icon;
-
+    public GameObject pickupPrefab;
     // Un item puede tener varios efectos (ventajas y desventajas a la vez)
     public List<StatModifier> modifiers = new();
 }

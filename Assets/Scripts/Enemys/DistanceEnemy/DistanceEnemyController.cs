@@ -1,14 +1,18 @@
 using UnityEngine;
 using System.Collections;
 
-public class DistanceEnemyController : MonoBehaviour
+/// <summary>
+/// Enemigo a distancia. Hereda de EnemyBase (vida, daño, drop, debilidades,
+/// IAnalizable) pero NO usa su máquina de estados, porque este enemigo no tiene
+/// aparición oculta: reemplaza Update() con sus propios estados
+/// (regresar / perseguir / huir / atacar).
+/// </summary>
+public class DistanceEnemyController : EnemyBase
 {
-    // Valores
-    [SerializeField] private float vida;
+    [Header("Muerte")]
     [SerializeField] private float dieLagTime = 1f;
     [SerializeField] private float deadFadeAlpha = 0f;
     [SerializeField] private float deadFadeTime = 1.5f;
-    [SerializeField] private float velocidadMovimiento = 3f; 
 
     [Header("Distancias de Control")]
     [Tooltip("Distancia máxima a la que el enemigo detecta al jugador.")]
@@ -18,69 +22,60 @@ public class DistanceEnemyController : MonoBehaviour
     [Tooltip("Si el jugador está más cerca que esto, el enemigo huye.")]
     [SerializeField] private float minDistSafe = 4f;
 
-    private float distOfPlayer; 
-    private bool isDead = false;
-    private Vector2 posicionInicial; // Guardar el punto de origen
+    [Header("Debug")]
+    [Tooltip("Imprime en consola cada cambio de estado del enemigo")]
+    [SerializeField] private bool debugEstados = false;
 
-    // Referencias
-    private Rigidbody2D rb;
-    private Transform player;
+    private Vector2 posicionInicial;
     private DistEnemyWeapon weaponController;
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
     private FadeController fadeController;
     private Collider2D col;
 
-    // Estados
-    private enum Estados { regresar, perseguir, huir, atacar, muerto }
-    private Estados estadoActual = Estados.regresar; 
+    private enum EstadoDist { regresar, perseguir, huir, atacar }
+    private EstadoDist estadoDist = EstadoDist.regresar;
 
-    [Header("Drop")]
-    [SerializeField] private GameObject healingItemPrefab;
-    [SerializeField][Range(0f, 1f)] private float dropChance = 0.5f;
-
-    void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        // EnemyBase.Start() deja el sprite invisible (alpha 0) para su secuencia
+        // de aparición. Este enemigo es visible desde el inicio, así que
+        // guardamos el alpha original y lo restauramos después.
+        float alphaOriginal = GetComponent<SpriteRenderer>().color.a;
+
+        base.Start();
+
+        Color c = spriteEnemy.color;
+        c.a = alphaOriginal;
+        spriteEnemy.color = c;
+        isSpawn = true;
+
         fadeController = GetComponent<FadeController>();
         col = GetComponent<Collider2D>();
-
-        // Guardamos la posición donde spawnea el enemigo
         posicionInicial = transform.position;
 
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        Transform weaponTransform = transform.Find("Weapon");
-        if(weaponTransform != null)
-        {
-            weaponController = weaponTransform.GetComponent<DistEnemyWeapon>();
-        }
+        // Busca el arma en cualquier hijo (ya no depende de que se llame "Weapon")
+        weaponController = GetComponentInChildren<DistEnemyWeapon>();
+        if (weaponController == null)
+            Debug.LogWarning($"{name}: no se encontró ningún DistEnemyWeapon en sus hijos, no podrá disparar.");
     }
 
-    void Update()
+    protected override void Update()
     {
-        // Corrección de la lógica de muerte
+        spriteEnemy.material.SetFloat("_TiempoReal", Time.unscaledDeltaTime);
+
         if (vida <= 0 && !isDead)
         {
-            StartCoroutine(DieSecuence());
-            return; 
-        }
-
-        // Antes esto cortaba la ejecución y el cuerpo muerto seguía
-        // deslizándose con la última velocidad que tenía. Ahora dejamos
-        // que EjecutarEstado() corra igual para forzar velocidad 0 en
-        // el caso "muerto".
-        if (isDead)
-        {
-            EjecutarEstado();
+            StartCoroutine(DeadSecuence());
             return;
         }
+        if (isDead) return;
 
-        if (player != null)
+        // Durante el knockback no se mueve ni actúa (si no, pisaría la velocidad del empuje)
+        if (_knockbackController != null && _knockbackController.EstaEnKnockback)
+            return;
+
+        if (playerPosition != null)
         {
-            distOfPlayer = Vector2.Distance(transform.position, player.position);
+            distOfPlayer = Vector2.Distance(transform.position, playerPosition.position);
         }
 
         CambiarEstados();
@@ -89,61 +84,59 @@ public class DistanceEnemyController : MonoBehaviour
 
     private void CambiarEstados()
     {
-        // 1. Si el jugador está fuera del rango de detección -> Regresa a casa
-        if (distOfPlayer > minDistDetect || player == null)
-        {
-            estadoActual = Estados.regresar;
-        }
-        // 2. Si está demasiado cerca -> ¡Peligro! Huir a una distancia segura
+        EstadoDist nuevo;
+
+        if (playerPosition == null || distOfPlayer > minDistDetect)
+            nuevo = EstadoDist.regresar;        // fuera de rango -> vuelve a casa
         else if (distOfPlayer < minDistSafe)
-        {
-            estadoActual = Estados.huir;
-        }
-        // 3. Si está en el rango correcto -> Atacar
-        else if (distOfPlayer <= maxDistAttack && distOfPlayer >= minDistSafe)
-        {
-            estadoActual = Estados.atacar;
-        }
-        // 4. Si está detectado pero aún muy lejos para atacar -> Perseguir
-        else if (distOfPlayer > maxDistAttack && distOfPlayer <= minDistDetect)
-        {
-            estadoActual = Estados.perseguir;
-        }
+            nuevo = EstadoDist.huir;            // demasiado cerca -> huye
+        else if (distOfPlayer <= maxDistAttack)
+            nuevo = EstadoDist.atacar;          // rango correcto -> ataca
+        else
+            nuevo = EstadoDist.perseguir;       // detectado pero lejos -> se acerca
+
+        if (debugEstados && nuevo != estadoDist)
+            Debug.Log($"{name}: {estadoDist} -> {nuevo} (distancia {distOfPlayer:F1})");
+
+        estadoDist = nuevo;
     }
 
     private void EjecutarEstado()
     {
-        switch(estadoActual)
+        switch (estadoDist)
         {
-            case Estados.regresar:
+            case EstadoDist.regresar:
                 RegresarAPosicionInicial();
                 break;
-            case Estados.huir:
-                MoverseEnDireccion((transform.position - player.position).normalized); // Dirección opuesta al jugador
+            case EstadoDist.huir:
+                MoverseEnDireccion((transform.position - playerPosition.position).normalized);
                 break;
-            case Estados.perseguir:
-                MoverseEnDireccion((player.position - transform.position).normalized); // Dirección hacia el jugador
+            case EstadoDist.perseguir:
+                MoverseEnDireccion((playerPosition.position - transform.position).normalized);
                 break;
-            case Estados.atacar:
-                rb.linearVelocity = Vector2.zero;
-                animator.SetFloat("movement", 0f);
-                ControlarGiro(player.position.x - transform.position.x);
-                if (weaponController != null && weaponController.canShoot)
-                {
-                    animator.SetTrigger("ataque");
-                    StartCoroutine(weaponController.Shoot());
-                }
+            case EstadoDist.atacar:
+                EstadoAtacar();
                 break;
-            case Estados.muerto:
-                rb.linearVelocity = Vector2.zero;
-                animator.SetFloat("movement", 0f);
-                break;
+        }
+    }
+
+    // Requerido por EnemyBase (método abstracto)
+    protected override void EstadoAtacar()
+    {
+        rb.linearVelocity = Vector2.zero;
+        animator.SetFloat("movement", 0f);
+        ControlarGiro(playerPosition.position.x - transform.position.x);
+
+        if (weaponController != null && weaponController.canShoot)
+        {
+            animator.SetTrigger("ataque");
+            StartCoroutine(weaponController.Shoot());
         }
     }
 
     private void MoverseEnDireccion(Vector2 direccion)
     {
-        rb.linearVelocity = new Vector2(direccion.x, 0f) * velocidadMovimiento;
+        rb.linearVelocity = new Vector2(direccion.x, 0f) * velocityMovement;
         ControlarGiro(direccion.x);
         animator.SetFloat("movement", Mathf.Abs(rb.linearVelocity.x));
     }
@@ -152,7 +145,6 @@ public class DistanceEnemyController : MonoBehaviour
     {
         float distAlOrigen = Vector2.Distance(transform.position, posicionInicial);
 
-        // Si ya llegó cerca de su origen, se detiene
         if (distAlOrigen < 0.2f)
         {
             rb.linearVelocity = Vector2.zero;
@@ -160,59 +152,50 @@ public class DistanceEnemyController : MonoBehaviour
         }
         else
         {
-            Vector2 dirAlOrigen = ((Vector2)posicionInicial - (Vector2)transform.position).normalized;
+            Vector2 dirAlOrigen = (posicionInicial - (Vector2)transform.position).normalized;
             MoverseEnDireccion(dirAlOrigen);
         }
     }
 
     private void ControlarGiro(float direccionX)
     {
-        if (direccionX > 0.1f)      spriteRenderer.flipX = false;
-        else if (direccionX < -0.1f) spriteRenderer.flipX = true;
+        if (direccionX > 0.1f) spriteEnemy.flipX = false;
+        else if (direccionX < -0.1f) spriteEnemy.flipX = true;
     }
 
-    private IEnumerator DieSecuence()
+    // Secuencia de muerte propia (con fade), pero con las mismas recompensas
+    // que EnemyBase: puntos, item de vida y loot de modificadores.
+    protected override IEnumerator DeadSecuence()
     {
         isDead = true;
-        estadoActual = Estados.muerto;
 
-        // Frenamos el cuerpo de inmediato para que no siga deslizándose
-        // con la velocidad que traía justo antes de morir.
         rb.linearVelocity = Vector2.zero;
         animator.SetFloat("movement", 0f);
 
-        // Desactivamos el collider para que el "cadáver" no siga
-        // bloqueando al jugador ni recibiendo daño/disparos.
+        // El cadáver no debe bloquear al jugador ni recibir disparos
         if (col != null) col.enabled = false;
 
-        // Kinematic para que la física deje de aplicarle fuerzas
-        // (empujones, gravedad, etc.) mientras se desvanece.
+        // Kinematic para que la física no lo siga empujando mientras se desvanece
         rb.bodyType = RigidbodyType2D.Kinematic;
 
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(dieLagTime);
 
-        fadeController.Desvanecimiento(spriteRenderer, deadFadeAlpha, deadFadeTime);
-        TryDropHealingItem();
+        // Desvanecimiento es una corrutina (así la usa ShockWaveManager), hay que iniciarla
+        if (fadeController != null)
+            StartCoroutine(fadeController.Desvanecimiento(spriteEnemy, deadFadeAlpha, deadFadeTime));
 
-        // Esperamos a que termine el fade antes de destruir el objeto.
+        if (deadParticlePrefab != null)
+            Instantiate(deadParticlePrefab, transform.position, Quaternion.identity);
+
+        TryDropHealingItem();
+        if (GameManager.Instance != null) GameManager.Instance.AddPoints(10f);
+        GetComponent<EDropItem>()?.Drop();
+
         // Si tu FadeController ya destruye el GameObject al terminar,
-        // borrá esta espera y el Destroy de abajo para no duplicarlo.
+        // borra esta espera y el Destroy para no duplicarlo.
         yield return new WaitForSeconds(deadFadeTime);
 
         Destroy(gameObject);
-    }
-
-    public void TomarDaño(float damage)
-    {
-        this.vida -= damage;
-    }
-
-    private void TryDropHealingItem()
-    {
-        if(healingItemPrefab != null && Random.value <= dropChance)
-        {
-            Instantiate(healingItemPrefab, transform.position, Quaternion.identity);
-        }
     }
 }

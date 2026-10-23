@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum WeaponType { Sin, Cos, Tan }
-public enum StatType { Damage, Cooldown, ProjectileSpeed, Amplitude, Frequency, ProjectileCount, SpreadAngle }
+public enum StatType { Damage, Cooldown, ProjectileSpeed, Amplitude, Frequency, ProjectileCount, SpreadAngle, ShieldCooldown, MaxBlocks, ShieldRadius, ShieldCharge}
 public enum ModOp { Add, Multiply }
 
 [Serializable]

@@ -13,28 +13,40 @@ public class P_AnimationController : MonoBehaviour
     private List<Material> _spritesMaterials = new List<Material>();
     private float _eyeCurrentAngle;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _animator = GetComponent<Animator>();
         _spritesRenderer = new List<SpriteRenderer>(GetComponentsInChildren<SpriteRenderer>());
-        foreach(var sprite in _spritesRenderer)
+        foreach (var sprite in _spritesRenderer)
         {
             _spritesMaterials.Add(sprite.material);
         }
     }
+
     void Update()
     {
         RotateEye();
     }
+
     public void SetGrounded(bool grounded) => _animator.SetBool("IsGrounded", grounded);
+
     public void WalkAnimation(float movement)
     {
         _animator.SetFloat("movement", movement);
     }
+
+    // Nuevo método para controlar las animaciones de aire (Salto / Caída)
+    public void SetVerticalVelocity(float velocity)
+    {
+        _animator.SetFloat("verticalVelocity", velocity);
+    }
+    public void SetAnalisisModeAnimation() => _animator.SetTrigger("begginAnalisisMode");
+
+    public void SetOnAnalisisModeAnimation(bool estado) => _animator.SetBool("inAnalisisMode", estado);
+
     private void RotateEye()
     {
-        if(eyeSprite != null)
+        if (eyeSprite != null)
         {
             CrosshairController point = GameObject.FindWithTag("Crosshair").GetComponent<CrosshairController>();
 

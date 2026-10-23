@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class WeaponShoot : MonoBehaviour
 {
-    [SerializeField] public WeaponData currentWeapon;
+    [SerializeField] public WeaponData currentWeapon;  // vuelve a WeaponData
+    [SerializeField] private Tan_x shield;
     private SatoruChargeSystem chargeSystem;
 
     void Start()
@@ -13,10 +14,15 @@ public class WeaponShoot : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && currentWeapon != null)
-        {
-            currentWeapon.TryShoot();
-        }
+        if (!ctx.performed || currentWeapon == null) return;
+        if (shield != null && shield.IsBlocking) return;   // bloqueando = no dispara
+        currentWeapon.TryShoot();
+    }
+
+    public void OnBlock(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && shield != null)
+            shield.TryBlock();
     }
 
     public void OnHitEnemy()

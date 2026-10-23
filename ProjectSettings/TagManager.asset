@@ -12,6 +12,7 @@ TagManager:
   - Proyectil
   - Ataque
   - Crosshair
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - UI
   - Enemies
   - AtaqueEnemigo
-  - 
+  - LayerGround
   - 
   - 
   - 

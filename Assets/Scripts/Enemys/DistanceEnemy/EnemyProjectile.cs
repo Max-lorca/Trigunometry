@@ -35,26 +35,31 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Si golpea al player
+        // Golpea al player
         if (other.CompareTag("Player"))
         {
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.TakeDamage((int)damage, this.transform.position);
-                Debug.Log("💥 Proyectil enemigo golpeó al player!");
+                player.TakeDamage((int)damage, transform.position);
             }
             Destroy(gameObject);
+            return;
         }
-        // Si golpea el suelo, plataforma o cualquier obstáculo
-        else if (other.CompareTag("Ground"))
+
+        // Ignorar a cualquier enemigo (detecta por componente, no por tag:
+        // así funciona con todos los hijos de EnemyBase sin importar su tag)
+        if (other.GetComponentInParent<EnemyBase>() != null) return;
+
+        // Suelo / plataformas
+        if (other.CompareTag("Ground"))
         {
             Destroy(gameObject);
+            return;
         }
 
-        // Si golpea cualquier otra cosa que no sea el enemigo (para que no choque con otros enemigos)
-
-        else if (!other.CompareTag("DistanceEnemy") && !other.CompareTag("MeleeEnemy"))
+        // Cualquier otro sólido; los triggers (zonas, pickups, etc.) se ignoran
+        if (!other.isTrigger)
         {
             Destroy(gameObject);
         }

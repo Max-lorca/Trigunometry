@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [Header("Animation Config")]
     [SerializeField] private float dieLagTime;
     [SerializeField] private float spawnLagTime;
+    [SerializeField] private float minDistanceFromGround;
+    [SerializeField] private LayerMask groundRaycastLayermask;
     [Header("Audios")]
     [SerializeField] private AudioClip jumpAudio;
     [SerializeField] private AudioClip deadAudio;
@@ -33,11 +35,13 @@ public class PlayerController : MonoBehaviour
     private bool isSpawn = false;
     private bool inAir = false;
     private bool canAnimateLand = false;
+    private bool inGround;
 
     //Referencias
-    [SerializeField] private GameObject walkParticlePrefab;
+    [SerializeField] private ParticleSystem walkParticlePrefab;
     [SerializeField] private GameObject deadParticle;
     [SerializeField] private GameObject spawnParticle;
+    [SerializeField] private GameObject actualWeaponText;
     [SerializeField] private ParticleSystem lifeParticle;
     [SerializeField] private CanvasManager menuCanvasManager;
     [SerializeField] private CanvasManager deadCanvasManager;
@@ -61,13 +65,14 @@ public class PlayerController : MonoBehaviour
     //Vectores
     private Vector2 _input;
 
+
     void Start()
     {
         _rbPlayer = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
         _animador = GetComponent<P_AnimationController>();
         _spritesPlayer = new List<SpriteRenderer>(GetComponentsInChildren<SpriteRenderer>());
-        foreach(var materials in _spritesPlayer)
+        foreach (var materials in _spritesPlayer)
         {
             _spriteMaterials.Add(materials.material);
         }
@@ -85,8 +90,8 @@ public class PlayerController : MonoBehaviour
         currentLife = maxLife;
 
         _healthUI = FindFirstObjectByType<HealthUIController>();
-        
-        foreach(var sprite in _spritesPlayer)
+
+        foreach (var sprite in _spritesPlayer)
         {
             _fadeController.Desvanecimiento(sprite, 0f, 0f);
         }
@@ -108,18 +113,24 @@ public class PlayerController : MonoBehaviour
 
         _input = _playerInput.actions["Move"].ReadValue<Vector2>();
 
+        // Detectar si estamos cayendo o subiendo en el aire
+        // Envía constantemente la velocidad en Y al controlador de animaciones
+        _animador.SetVerticalVelocity(_rbPlayer.linearVelocity.y);
+
         _animador.WalkAnimation(Mathf.Abs(_input.x));
         // 1. Control de rotación y escala según la dirección del movimiento
         if (_input.x < 0 && _facingDirection != -1)
         {
             _facingDirection = -1;
-            _walkParticleTransform.localScale = new Vector3(-1, 1, 1);
+            actualWeaponText.transform.localScale = new Vector3(-1, 1, 1);
+            //_walkParticleTransform.localScale = new Vector3(-1, 1, 1);
             _animador.RotatePlayer(false);
         }
         else if (_input.x > 0 && _facingDirection != 1)
         {
             _facingDirection = 1;
-            _walkParticleTransform.localScale = new Vector3(1, 1, 1);
+            actualWeaponText.transform.localScale = new Vector3(1, 1, 1);
+            //_walkParticleTransform.localScale = new Vector3(1, 1, 1);
             _animador.RotatePlayer(true);
         }
         // 2. Control de emisión de partículas (¡La clave está aquí!)
@@ -146,7 +157,7 @@ public class PlayerController : MonoBehaviour
         if (isDead)
             return;
 
-        _rbPlayer.linearVelocity = new Vector2(_input.x * velocityMovement, _rbPlayer.linearVelocity.y);
+        if (_knockbackController != null && !_knockbackController.EstaEnKnockback) _rbPlayer.linearVelocity = new Vector2(_input.x * velocityMovement, _rbPlayer.linearVelocity.y);
     }
 
     public void TakeDamage(int damage, Vector2 origen)
@@ -157,10 +168,11 @@ public class PlayerController : MonoBehaviour
         currentLife -= damage;
         _audioSource.PlayOneShot(damageAudio, 6f);
         Debug.Log($"Player daño: {currentLife}/{maxLife}");
-        
+
+        _rbPlayer.linearVelocity = new Vector2(0f, _rbPlayer.linearVelocity.y);
         _knockbackController.RecibirKnockBack(origen);
         CameraShake.Instance.CameraShakeImpulse(_cinemachineImpulseSource);
-        
+
 
         if (_healthUI != null)
             _healthUI.UpdateHealth(currentLife, maxLife);
@@ -175,10 +187,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead)
             return;
-        
+
 
         currentLife = Mathf.Min(currentLife + amount, maxLife);
-        
+
         _audioSource.PlayOneShot(healAudio, 6f);
         lifeParticle.Play();
 
@@ -221,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
         Instantiate(deadParticle, transform.position, Quaternion.identity);
 
-        _menuCanvasGroup.blocksRaycasts  = false;
+        _menuCanvasGroup.blocksRaycasts = false;
         _menuCanvasGroup.interactable = false;
         deadCanvasManager.ToggleMenu();
     }
@@ -266,7 +278,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead)
             return;
-        
+
         if (ctx.performed)
         {
             Debug.Log("Intentando interactuar con un objeto...");

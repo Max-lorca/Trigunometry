@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 8913555839869767363}
   - component: {fileID: 5984407337433265420}
   - component: {fileID: 2584933877706209476}
+  - component: {fileID: 8952063507859487317}
   - component: {fileID: 4045342232878889038}
   - component: {fileID: 4475611590488675608}
-  - component: {fileID: 8952063507859487317}
-  - component: {fileID: 6047483375796006239}
+  - component: {fileID: 1402115825312227731}
+  - component: {fileID: 839195100539202348}
   m_Layer: 6
   m_Name: MeleeEnemy
-  m_TagString: MeleeEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,6 +171,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6814891, y: 1.302687}
   m_EdgeRadius: 0
+--- !u!95 &8952063507859487317
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3665854133921909830}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff7fc201ac445a5c4a8441e46486db1a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4045342232878889038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemyController
   vida: 4
+  debilidadAleatoria: 0
+  multiplicadorDebilidadAleatoria: 2
+  multiplicadores: []
   velocityMovement: 3.5
   minDistAttack: 2
   minDistSpawn: 10
@@ -210,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemyAttack
   damage: 1
   firstCooldown: 0.5
-  secondCooldown: 1.5
+  secondCooldown: 2
   radAttack: 2
   puntoAtaque: {fileID: 2015628773014410120}
   capaJugador:
@@ -218,29 +244,7 @@ MonoBehaviour:
     m_Bits: 8
   canAttack: 1
   estaEnFrameDeAtaque: 0
---- !u!95 &8952063507859487317
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3665854133921909830}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff7fc201ac445a5c4a8441e46486db1a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6047483375796006239
+--- !u!114 &1402115825312227731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,17 +253,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 3665854133921909830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecf5700a28a79a341a5c34891a8442e1, type: 3}
+  m_Script: {fileID: 11500000, guid: a0978f8f6a8c16a4d8d1679729aeb976, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnalizable
-  funcionTrigonometrica: sin
-  anguloGrados: 45
-  valorCorrecto: 0.7071
-  meleeEnemy: {fileID: 4045342232878889038}
-  distanceEnemy: {fileID: 0}
-  multiplicadorSeno: 0.5
-  multiplicadorCoseno: 2
-  multiplicadorTangente: 1
+  m_EditorClassIdentifier: Assembly-CSharp::EDropItem
+  lootTable:
+  - {fileID: 11400000, guid: 54736c27c729d684aa6128b2dc9b0ad7, type: 2}
+  - {fileID: 11400000, guid: 08d3e0ce080769c428561c9ef24d694b, type: 2}
+  pickupPrefab: {fileID: 6539264268764579595, guid: cffd222c8f8b34a4b9853194f4e287c3, type: 3}
+  modo: 0
+  separacionDrops: 0.5
+  dropChance: 1
+  forzarDrop: 0
+  maxReintentosForzado: 50
+--- !u!114 &839195100539202348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3665854133921909830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a168924c16b3cd988638e43c43b86e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KnockbackController
+  forceX: 3
+  forceY: 2
+  duration: 0.3
+  debugKnockback: 0
 --- !u!1 &5367611176163902383
 GameObject:
   m_ObjectHideFlags: 0

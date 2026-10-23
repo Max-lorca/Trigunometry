@@ -19,5 +19,5 @@ public interface IAnalizable
     void OnDeseleccionado();
 
     void OnAnalisisExitoso(float multiplicadorDano);
-    void RecibirDanoAnalisis(float daño);
+    void RecibirDanoAnalisis(float daño, Vector2 origen);
 }

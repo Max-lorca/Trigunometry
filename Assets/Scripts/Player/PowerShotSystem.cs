@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
@@ -7,16 +8,40 @@ public class PowerShotSystem : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private TimeStopManager timeStopManager;
     [SerializeField] private SatoruTriangleVisualizer triangleVisualizer;
+    [SerializeField] private Transform triangleBase;
 
     [Header("UI")]
     [SerializeField] private GameObject analysisUI;
     [SerializeField] private TMP_Text timerText;
+    [Tooltip("Image con Image Type = Filled. Se vacía a medida que se acaba el tiempo del modo análisis. Ponla como hijo de Analysis UI para que solo se vea en ese modo.")]
+    [SerializeField] private Image imageFill;
     [SerializeField] private TMP_Text feedbackText;
     [SerializeField] private TMP_Text weaponSelectedText;
 
     [Header("Configuración")]
-    [SerializeField] private float rayoDuration = 0.5f;
     [SerializeField] private float shootCooldown = 1.5f;
+    [Tooltip("Segundos que se mantiene la pantalla congelada DESPUÉS del impacto, antes de terminar el modo.")]
+    [SerializeField] private float retrasoSalidaAcierto = 0.8f;
+    [Tooltip("Segundos que se espera tras FALLAR antes de cerrar el modo (deja leer cuál era el arma correcta).")]
+    [SerializeField] private float retrasoSalidaFallo = 1.2f;
+
+    [Header("Efecto de disparo")]
+    [Tooltip("Prefab de la carga: aparece al entrar al modo análisis y se queda cargando. Si no hay Shot Prefab, esta misma carga sale disparada hacia el enemigo.")]
+    [SerializeField] private GameObject chargePrefab;
+    [Tooltip("Opcional: prefab del proyectil. Si está vacío, se lanza la propia carga.")]
+    [SerializeField] private GameObject shotPrefab;
+    [Tooltip("Opcional: efecto que aparece en el enemigo al impactar.")]
+    [SerializeField] private GameObject impactPrefab;
+    [Tooltip("Dónde aparece la carga. Si está vacío se usa Triangle Base.")]
+    [SerializeField] private Transform chargePoint;
+    [Tooltip("Velocidad del proyectil en unidades por segundo.")]
+    [SerializeField] private float shotSpeed = 25f;
+    [Tooltip("Pausa corta entre acertar y que salga el disparo (la carga 'se suelta').")]
+    [SerializeField] private float retrasoAntesDeDisparar = 0.2f;
+    [Tooltip("La cámara sigue al proyectil mientras vuela.")]
+    [SerializeField] private bool seguirProyectilConCamara = true;
+    [Tooltip("Al terminar el modo, llama a ResetZoom() de la cámara.")]
+    [SerializeField] private bool resetearZoomAlTerminar = true;
 
     [Header("Daño al acertar")]
     // Antes era un daño fijo de 99999 (mataba de un golpe).
@@ -29,6 +54,13 @@ public class PowerShotSystem : MonoBehaviour
     private int ladosMostrados = 0;
     private bool canShoot = true;
     private bool satoruJustActivated = false;
+    private GameObject _cargaInstancia;
+
+    // Se activa en cuanto el jugador resuelve su intento (acierta O falla).
+    // Efectos: el objetivo queda fijo (si no, al morir el enemigo se apaga su collider
+    // y el sistema saltaría al siguiente más cercano) y no se aceptan más intentos
+    // mientras el modo se cierra. Se libera cuando el modo termina.
+    private bool intentoUsado = false;
 
     void Start()
     {
@@ -39,6 +71,12 @@ public class PowerShotSystem : MonoBehaviour
     public bool IsSatoruActive()
     {
         return timeStopManager != null && timeStopManager.IsAnalysisActive;
+    }
+
+    // True si ya no se debe aceptar ninguna acción del jugador sobre el análisis
+    private bool InputBloqueado()
+    {
+        return intentoUsado || timeStopManager == null || timeStopManager.IsClosing;
     }
 
     void Update()
@@ -55,11 +93,26 @@ public class PowerShotSystem : MonoBehaviour
                 triangleVisualizer.ResetLados();
                 Debug.Log("Modo Satoru activado - ResetLados() llamado");
             }
+
+            IniciarCarga();
+        }
+
+        // El modo se está cerrando (tiempo agotado, fallo, acierto o salida manual):
+        // se oculta todo de inmediato y no se acepta nada más.
+        if (timeStopManager.IsClosing)
+        {
+            DetenerCarga();
+            if (analysisUI != null && analysisUI.activeSelf) analysisUI.SetActive(false);
+            if (triangleVisualizer != null) triangleVisualizer.OcultarTriangulo();
+            if (weaponSelectedText != null) weaponSelectedText.text = "";
+            return;
         }
 
         if (!timeStopManager.IsAnalysisActive)
         {
             satoruJustActivated = false;
+            intentoUsado = false; // al salir del modo, se libera
+            DetenerCarga();
             if (analysisUI != null && analysisUI.activeSelf) analysisUI.SetActive(false);
             if (triangleVisualizer != null) triangleVisualizer.OcultarTriangulo();
             if (weaponSelectedText != null) weaponSelectedText.text = "";
@@ -69,8 +122,19 @@ public class PowerShotSystem : MonoBehaviour
         if (timerText != null)
             timerText.text = $"{timeStopManager.TiempoRestante:F1}s";
 
+        ActualizarContador();
+
         if (analysisUI != null && !analysisUI.activeSelf)
             analysisUI.SetActive(true);
+
+        // Tras resolver el intento, no se busca otro objetivo
+        if (intentoUsado)
+        {
+            // Si el objetivo ya fue destruido, se oculta el triángulo
+            if (currentTarget == null && triangleVisualizer != null)
+                triangleVisualizer.OcultarTriangulo();
+            return;
+        }
 
         Collider2D[] enemigos = Physics2D.OverlapCircleAll(transform.position, 20f);
         Transform enemigoMasCercano = null;
@@ -78,7 +142,7 @@ public class PowerShotSystem : MonoBehaviour
 
         foreach (Collider2D col in enemigos)
         {
-            if (col.CompareTag("MeleeEnemy") || col.CompareTag("DistanceEnemy"))
+            if (col.CompareTag("Enemy") || col.CompareTag("DistanceEnemy"))
             {
                 float d = Vector2.Distance(transform.position, col.transform.position);
                 if (d < minDist)
@@ -94,15 +158,14 @@ public class PowerShotSystem : MonoBehaviour
             currentTarget = enemigoMasCercano;
 
             // 🔽 Zoom automático al enemigo más cercano
-            var camController = FindObjectOfType<CameraController>();
+            var camController = FindAnyObjectByType<CameraController>();
             if (camController != null)
                 camController.ZoomCamTo(currentTarget);
 
             if (triangleVisualizer != null)
             {
-                Vector2 jugadorPos = transform.position;
                 Vector2 enemigoPos = currentTarget.position;
-                ladosMostrados = triangleVisualizer.DibujarTriangulo(jugadorPos, enemigoPos);
+                ladosMostrados = triangleVisualizer.DibujarTriangulo(triangleBase.position, enemigoPos);
             }
         }
         else
@@ -111,15 +174,29 @@ public class PowerShotSystem : MonoBehaviour
             if (triangleVisualizer != null) triangleVisualizer.OcultarTriangulo();
 
             // 🔽 Reset de la cámara si no hay enemigos
-            var camController = FindObjectOfType<CameraController>();
+            var camController = FindAnyObjectByType<CameraController>();
             if (camController != null)
                 camController.ResetZoom();
         }
 
     }
 
+    // Barra/círculo con el tiempo que le queda al modo análisis:
+    // lleno al empezar, vacío cuando se acaba el tiempo.
+    private void ActualizarContador()
+    {
+        if (imageFill == null) return;
+
+        float total = timeStopManager.DuracionTotal;
+        imageFill.fillAmount = total > 0f
+            ? Mathf.Clamp01(timeStopManager.TiempoRestante / total)
+            : 0f;
+    }
+
     public void SeleccionarArma(string arma)
     {
+        if (InputBloqueado()) return;
+
         armaSeleccionada = arma;
         if (feedbackText != null)
             feedbackText.text = $"Arma: {arma}";
@@ -130,13 +207,16 @@ public class PowerShotSystem : MonoBehaviour
 
     public bool TryPowerShot()
     {
+        // Intento ya resuelto, o el modo se está cerrando (p. ej. se acabó el tiempo)
+        if (InputBloqueado()) return false;
+
         if (!canShoot)
         {
             if (feedbackText != null) feedbackText.text = "Espera...";
             return false;
         }
 
-        if (timeStopManager == null || !timeStopManager.IsAnalysisActive)
+        if (!timeStopManager.IsAnalysisActive)
             return false;
 
         if (currentTarget == null)
@@ -153,28 +233,20 @@ public class PowerShotSystem : MonoBehaviour
 
         string armaCorrecta = ObtenerArmaCorrecta();
 
+        // Acierte o falle, el intento se gasta
+        intentoUsado = true;
+
         if (armaSeleccionada == armaCorrecta)
         {
             if (feedbackText != null) feedbackText.text = $"¡ACERTÓ! ({armaSeleccionada})";
-
-            StartCoroutine(DibujarRayo(currentTarget.position));
-
-            // ✅ FIX: en vez de acoplarse a MeleeEnemyController / DistanceEnemyController
-            // por separado, usamos la interfaz IAnalizable que ya implementan ambos.
-            // Esto además hace que el sistema funcione automáticamente con cualquier
-            // enemigo nuevo que implemente IAnalizable, sin tener que tocar este script.
-            if (currentTarget.TryGetComponent<IAnalizable>(out var analizable))
-            {
-                // Garantiza el drop de vida al 100% (esto es lo que antes se perdía,
-                // porque TomarDaño() se llamaba directo sin pasar por OnAnalisisExitoso).
-                analizable.OnAnalisisExitoso(multiplicadorDropGarantizado);
-                analizable.RecibirDanoAnalisis(danoAlAcertar);
-            }
-
             if (weaponSelectedText != null) weaponSelectedText.text = "";
 
+            // Congela el reloj del modo y bloquea la salida manual hasta que impacte.
+            // El daño, el drop y el cierre del modo ocurren AL FINAL de DispararCoroutine.
+            timeStopManager.IniciarDisparo();
+            StartCoroutine(DispararCoroutine(currentTarget));
+
             StartCoroutine(ResetShootCooldown());
-            StartCoroutine(SalirDelModo());
             return true;
         }
         else
@@ -182,6 +254,7 @@ public class PowerShotSystem : MonoBehaviour
             if (feedbackText != null) feedbackText.text = $"Falló. Debe ser: {armaCorrecta}";
 
             StartCoroutine(ResetShootCooldown());
+            StartCoroutine(SalirDelModoTrasFallo(retrasoSalidaFallo));
             return false;
         }
     }
@@ -205,35 +278,144 @@ public class PowerShotSystem : MonoBehaviour
         }
     }
 
-    private IEnumerator DibujarRayo(Vector3 objetivo)
+    // ───────────────────────── Carga y disparo ─────────────────────────
+
+    private Transform PuntoDeCarga()
     {
-        GameObject rayoObj = new GameObject("Rayo");
-        rayoObj.transform.position = transform.position;
+        if (chargePoint != null) return chargePoint;
+        if (triangleBase != null) return triangleBase;
+        return transform;
+    }
 
-        LineRenderer rayo = rayoObj.AddComponent<LineRenderer>();
-        rayo.startColor = Color.cyan;
-        rayo.endColor = Color.white;
-        rayo.startWidth = 0.3f; 
-        rayo.endWidth = 0.1f;
-        rayo.positionCount = 2;
-        rayo.SetPosition(0, transform.position + new Vector3(0, 0.5f, 0));
-        rayo.SetPosition(1, objetivo);
-        rayo.material = new Material(Shader.Find("Sprites/Default"));
+    // Aparece al entrar al modo análisis y se queda "cargando" hasta que se dispara o se sale
+    private void IniciarCarga()
+    {
+        DetenerCarga();
+        if (chargePrefab == null) return;
 
-        float tiempo = rayoDuration;
-        while (tiempo > 0)
+        _cargaInstancia = Instantiate(chargePrefab, PuntoDeCarga().position, Quaternion.identity);
+        UsarTiempoReal(_cargaInstancia);
+    }
+
+    private void DetenerCarga()
+    {
+        if (_cargaInstancia == null) return;
+
+        Destroy(_cargaInstancia);
+        _cargaInstancia = null;
+    }
+
+    // El modo análisis detiene el tiempo (timeScale = 0), así que las partículas y
+    // animaciones del efecto deben usar tiempo real o se quedarían congeladas.
+    private void UsarTiempoReal(GameObject go)
+    {
+        foreach (ParticleSystem ps in go.GetComponentsInChildren<ParticleSystem>(true))
         {
-            tiempo -= Time.unscaledDeltaTime;
-            rayo.startWidth = Random.Range(0.1f, 0.6f);
+            var main = ps.main;
+            main.useUnscaledTime = true;
+        }
+
+        foreach (Animator anim in go.GetComponentsInChildren<Animator>(true))
+            anim.updateMode = AnimatorUpdateMode.UnscaledTime;
+    }
+
+    // Secuencia completa del disparo acertado:
+    // carga -> pausa -> vuelo hasta el enemigo -> impacto + daño -> pausa -> fin del modo
+    private IEnumerator DispararCoroutine(Transform objetivo)
+    {
+        Vector3 origen = PuntoDeCarga().position;
+        Vector3 ultimaPos = objetivo != null ? objetivo.position : origen;
+        CameraController cam = FindAnyObjectByType<CameraController>();
+
+        // 1) El proyectil: el Shot Prefab si existe; si no, la propia carga sale disparada
+        GameObject proyectil = null;
+        if (shotPrefab != null)
+        {
+            DetenerCarga();
+            proyectil = Instantiate(shotPrefab, origen, Quaternion.identity);
+            UsarTiempoReal(proyectil);
+        }
+        else if (_cargaInstancia != null)
+        {
+            proyectil = _cargaInstancia;
+            _cargaInstancia = null; // ya no es "la carga", es el proyectil
+        }
+
+        // 2) La carga "se suelta"
+        if (retrasoAntesDeDisparar > 0f)
+            yield return new WaitForSecondsRealtime(retrasoAntesDeDisparar);
+
+        // 3) Vuelo (en tiempo real: el juego sigue con timeScale = 0)
+        float distancia = Vector3.Distance(origen, ultimaPos);
+        float duracion = Mathf.Max(0.2f, distancia / Mathf.Max(0.01f, shotSpeed));
+        float t = 0f;
+
+        while (t < duracion)
+        {
+            t += Time.unscaledDeltaTime;
+            if (objetivo != null) ultimaPos = objetivo.position;
+
+            float k = Mathf.Clamp01(t / duracion);
+            k *= k; // acelera hacia el final
+
+            if (proyectil != null)
+            {
+                Vector3 anterior = proyectil.transform.position;
+                Vector3 nueva = Vector3.Lerp(origen, ultimaPos, k);
+                proyectil.transform.position = nueva;
+
+                // Que el proyectil apunte hacia donde va
+                Vector3 dir = nueva - anterior;
+                if (dir.sqrMagnitude > 0.00001f)
+                    proyectil.transform.right = dir.normalized;
+
+                if (seguirProyectilConCamara && cam != null)
+                    cam.ZoomCamTo(proyectil.transform);
+            }
+
             yield return null;
         }
 
-        Destroy(rayoObj);
+        // 4) Impacto
+        if (proyectil != null) Destroy(proyectil);
+
+        if (impactPrefab != null)
+        {
+            GameObject fx = Instantiate(impactPrefab, ultimaPos, Quaternion.identity);
+            UsarTiempoReal(fx);
+            Destroy(fx, 3f);
+        }
+
+        // ✅ En vez de acoplarse a cada tipo de enemigo, se usa la interfaz IAnalizable
+        // (la implementa EnemyBase), así funciona con cualquier enemigo nuevo.
+        if (objetivo != null && objetivo.TryGetComponent<IAnalizable>(out var analizable))
+        {
+            // Garantiza el drop de vida al 100%
+            analizable.OnAnalisisExitoso(multiplicadorDropGarantizado);
+            // El origen del golpe es donde salió el disparo (lado del knockback)
+            analizable.RecibirDanoAnalisis(danoAlAcertar, origen);
+        }
+
+        if (seguirProyectilConCamara && cam != null && objetivo != null)
+            cam.ZoomCamTo(objetivo);
+
+        // 5) Un momento para ver el impacto, y recién entonces termina el modo
+        yield return new WaitForSecondsRealtime(retrasoSalidaAcierto);
+
+        timeStopManager.FinalizarDisparo();
+        timeStopManager.CerrarModoAnalisis();
+
+        if (resetearZoomAlTerminar && cam != null)
+            cam.ResetZoom();
     }
 
-    private IEnumerator SalirDelModo()
+    private IEnumerator SalirDelModoTrasFallo(float retraso)
     {
-        yield return new WaitForSecondsRealtime(0.8f);
-        if (timeStopManager != null) timeStopManager.TryTimeStop();
+        yield return new WaitForSecondsRealtime(retraso);
+
+        // CerrarModoAnalisis solo cierra: si el modo ya se cerró por otro motivo
+        // (p. ej. se acabó el tiempo), no hace nada. Antes se usaba TryTimeStop,
+        // que alterna y podía ABRIR un modo nuevo en ese caso.
+        if (timeStopManager != null) timeStopManager.CerrarModoAnalisis();
     }
 }

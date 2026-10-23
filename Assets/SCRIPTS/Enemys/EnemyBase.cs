@@ -2,9 +2,20 @@ using UnityEngine;
 using System.Collections;
 
 /// <summary>
+/// Multiplicador de daño según el tipo de proyectil que impacta al enemigo.
+/// 2 = débil, 1 = normal, 0.5 = resistente, 0 = inmune.
+/// </summary>
+[System.Serializable]
+public struct MultiplicadorTipo
+{
+    public TipoProyectil tipo;
+    public float multiplicador;
+}
+
+/// <summary>
 /// Clase base para todos los enemigos. Contiene la lógica compartida:
 /// vida/daño/muerte, máquina de estados (oculto/aparecer/buscar/moverse/atacar),
-/// drop de items y la implementación de IAnalizable.
+/// drop de items, debilidades por tipo de proyectil y la implementación de IAnalizable.
 ///
 /// Es "abstract" porque no tiene sentido tener un GameObject con un
 /// "EnemyBase" pelado: siempre debe ser un enemigo concreto (Melee, Ranged, etc.)
@@ -14,6 +25,17 @@ public abstract class EnemyBase : MonoBehaviour, IAnalizable
     // ---------- Valores ----------
     [Header("Vida")]
     [SerializeField] protected float vida;
+
+    [Header("Debilidades")]
+    [Tooltip("Si está activo, al aparecer el enemigo elige una debilidad al azar (Seno, Coseno o Tangente) e ignora la lista manual de abajo.")]
+    [SerializeField] protected bool debilidadAleatoria = false;
+    [Tooltip("Multiplicador de daño para la debilidad elegida al azar")]
+    [SerializeField] protected float multiplicadorDebilidadAleatoria = 2f;
+    [Tooltip("Solo se usa si 'Debilidad Aleatoria' está desactivado. Tipos no listados hacen daño normal (x1).")]
+    [SerializeField] protected MultiplicadorTipo[] multiplicadores;
+
+    // Debilidad elegida al azar (solo tiene sentido si debilidadAleatoria está activo)
+    public TipoProyectil DebilidadActual { get; private set; } = TipoProyectil.Normal;
 
     [Header("Movimiento")]
     [SerializeField] protected float velocityMovement;
@@ -36,6 +58,7 @@ public abstract class EnemyBase : MonoBehaviour, IAnalizable
     protected Transform playerPosition;
     protected Animator animator;
     protected SpriteRenderer spriteEnemy;
+    protected KnockbackController _knockbackController;
 
     // ---------- Estados ----------
     protected enum Estados { oculto, moverse, atacar, buscar, aparecer }
@@ -57,16 +80,20 @@ public abstract class EnemyBase : MonoBehaviour, IAnalizable
 
     protected virtual void Start()
     {
+        // Inicialización de referencias
         rb = GetComponent<Rigidbody2D>();
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         spriteEnemy = GetComponent<SpriteRenderer>();
+        _knockbackController = GetComponent<KnockbackController>(); // opcional: puede ser null
 
         spriteEnemy.material.SetFloat("_UseOutline", 0f);
 
         Color c = spriteEnemy.color;
         c.a = 0f;
         spriteEnemy.color = c;
+
+        AplicarDebilidadAleatoria();
     }
 
     protected virtual void Update()
@@ -80,6 +107,11 @@ public abstract class EnemyBase : MonoBehaviour, IAnalizable
             return;
         }
         if (isDead) return;
+
+        // Durante el knockback el enemigo no se mueve ni actúa: si lo hiciera, su movimiento
+        // pisaría la velocidad del empuje en el siguiente frame y el knockback no se vería.
+        if (_knockbackController != null && _knockbackController.EstaEnKnockback)
+            return;
 
         SwitchEstados();
 
@@ -196,12 +228,84 @@ public abstract class EnemyBase : MonoBehaviour, IAnalizable
         animator.SetFloat("movement", Mathf.Abs(movement));
     }
 
+    // ---------- Debilidades ----------
+
+    /// <summary>
+    /// Si debilidadAleatoria está activo, elige Seno o Coseno al azar
+    /// y reemplaza la lista manual por una sola debilidad.
+    /// Si está desactivado, no toca nada y se usa la lista del Inspector.
+    /// </summary>
+    protected virtual void AplicarDebilidadAleatoria()
+    {
+        if (!debilidadAleatoria) return;
+
+        TipoProyectil[] posibles =
+        {
+            TipoProyectil.Seno,
+            TipoProyectil.Coseno,
+        };
+
+        DebilidadActual = posibles[Random.Range(0, posibles.Length)];
+
+        multiplicadores = new MultiplicadorTipo[]
+        {
+            new MultiplicadorTipo
+            {
+                tipo = DebilidadActual,
+                multiplicador = multiplicadorDebilidadAleatoria
+            }
+        };
+
+        Debug.Log($"{name}: debilidad aleatoria -> {DebilidadActual} (x{multiplicadorDebilidadAleatoria})");
+    }
+
+    protected float ObtenerMultiplicador(TipoProyectil tipo)
+    {
+        if (multiplicadores != null)
+        {
+            foreach (var m in multiplicadores)
+            {
+                if (m.tipo == tipo) return m.multiplicador;
+            }
+        }
+        return 1f; // tipos no listados: daño normal
+    }
+
     // ---------- Vida / daño / muerte ----------
 
-    public virtual void TomarDaño(float daño)
+    /// <summary>
+    /// Daño directo, sin tipo. "origen" es la posición de donde viene el golpe
+    /// (se usa para el lado del knockback).
+    /// </summary>
+    public virtual void TomarDaño(float daño, Vector2 origen)
     {
         animator.SetTrigger("takeDamage");
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+        // El KnockbackController es opcional: solo los enemigos que lo tengan serán empujados
+        if (_knockbackController != null)
+            _knockbackController.RecibirKnockBack(origen);
+
         vida -= daño;
+    }
+
+    /// <summary>
+    /// Daño según el tipo de proyectil: aplica el multiplicador configurado
+    /// (debilidad / resistencia / inmunidad).
+    /// </summary>
+    public virtual void TomarDaño(float daño, Vector2 origen, TipoProyectil tipo)
+    {
+        float mult = ObtenerMultiplicador(tipo);
+        TomarDaño(daño * mult, origen);
+        OnImpactoTipo(tipo, mult);
+    }
+
+    /// <summary>
+    /// Gancho para feedback según el resultado del impacto
+    /// (texto "¡Débil!", flash de color, sonido, etc.).
+    /// </summary>
+    protected virtual void OnImpactoTipo(TipoProyectil tipo, float multiplicador)
+    {
     }
 
     protected virtual void TryDropHealingItem()
@@ -240,6 +344,7 @@ public abstract class EnemyBase : MonoBehaviour, IAnalizable
 
         TryDropHealingItem();
         GameManager.Instance.AddPoints(10f);
+        GetComponent<EDropItem>()?.Drop();
         Destroy(this.gameObject);
     }
 
@@ -286,8 +391,8 @@ public abstract class EnemyBase : MonoBehaviour, IAnalizable
         // Espacio para feedback de error (sonido, flash rojo, etc.)
     }
 
-    public virtual void RecibirDanoAnalisis(float dano)
+    public virtual void RecibirDanoAnalisis(float dano, Vector2 origen)
     {
-        TomarDaño(dano);
+        TomarDaño(dano, origen);
     }
 }

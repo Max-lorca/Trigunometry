@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,6 +19,9 @@ public class WeaponSwitcher : MonoBehaviour
     private WeaponShoot weaponShootInput;
     private FadeController fadeController;
     private Coroutine fadeCoroutine;
+    private static readonly string[] analysisNames = { "Seno", "Coseno", "Tangente"};
+    private static readonly string[] displayNames = {"Sin(x)", "Cos(x)", "Tan(x)"};
+    private int analysisIndex = 0;
 
     void Start()
     {
@@ -111,8 +115,33 @@ public class WeaponSwitcher : MonoBehaviour
             CambiarTexto("Tangente");
             return;
         }
+    }
+    
+    public void SwitchRightGamepad(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed) CycleWeapon(1);
+    }
 
-        EquipWeapon(2);
-        CambiarTexto("Tan(x)");
+    public void SwitchLeftGamepad(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed) CycleWeapon(-1);
+    }
+
+    private void CycleWeapon(int dir)
+    {
+        PowerShotSystem ps = FindFirstObjectByType<PowerShotSystem>();
+
+        if (ps != null && ps.IsSatoruActive())
+        {
+            analysisIndex = (analysisIndex + dir + analysisNames.Length) % analysisNames.Length;
+            ps.SeleccionarArma(analysisNames[analysisIndex]);
+            CambiarTexto(analysisNames[analysisIndex]);
+            return;
+        }
+
+        int count = weaponsPrefabs.Count;
+        int next = (actualIndex + dir + count) % count;
+        EquipWeapon(next);
+        CambiarTexto(displayNames[next]);
     }
 }

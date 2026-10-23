@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44cf827d836dbc4595afd95cfb5ff1f, type: 3}
+  m_Name: AumentoBloqueos
+  m_EditorClassIdentifier: Assembly-CSharp::ModifierItemData
+  itemName: Bloqueo + 1
+  description: 
+  icon: {fileID: 1649869556742886736, guid: ab99d0c456ad6ec40a8d22848a3a0e57, type: 3}
+  pickupPrefab: {fileID: 6539264268764579595, guid: b91f5d629948ac146a95dcf620921873, type: 3}
+  modifiers:
+  - weapon: 2
+    stat: 8
+    op: 0
+    value: 1
+  - weapon: 2
+    stat: 7
+    op: 0
+    value: -1

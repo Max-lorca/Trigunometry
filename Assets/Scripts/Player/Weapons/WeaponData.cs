@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class WeaponData : MonoBehaviour
+public class WeaponData : MonoBehaviour, IWeapon
 {
     [Header("Referencias")]
     [SerializeField] private ProyectileController projectilePrefab;
@@ -24,6 +24,7 @@ public class WeaponData : MonoBehaviour
     private AudioSource audioSource;
     private ObjectPool<ProyectileController> _pool;
     private bool canShoot = true;
+    public WeaponType Type => weaponType;
 
     void Start()
     {
