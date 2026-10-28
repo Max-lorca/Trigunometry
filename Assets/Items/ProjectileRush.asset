@@ -31,5 +31,5 @@ MonoBehaviour:
     value: 3.5
   - weapon: 0
     stat: 0
-    op: 1
+    op: 0
     value: -1.5

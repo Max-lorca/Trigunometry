@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Transform Player;
 
     private AudioSource _musicSource;
+    private GameObject _restartButton;
     private bool _isLoading;
     private float _targetPoints;
     private Coroutine _pointsRoutine;
@@ -64,6 +66,33 @@ public class GameManager : MonoBehaviour
 
         GameObject music = GameObject.Find("BackgroundMusicManager");
         _musicSource = music != null ? music.GetComponent<AudioSource>() : null;
+
+        // Buscamos el botón de reinicio en la nueva escena
+        GameObject restartObj = GameObject.Find("RestartButton");
+        if (restartObj != null)
+        {
+            _restartButton = restartObj;
+            Button btnComponent = _restartButton.GetComponent<Button>();
+
+            if (btnComponent != null)
+            {
+                // Limpiamos listeners anteriores para evitar acumulación
+                btnComponent.onClick.RemoveAllListeners();
+
+                // Asignamos la función ResetScene() de tu propio GameManager al botón
+                btnComponent.onClick.AddListener(ResetScene);
+            }
+        }
+        else
+        {
+            _restartButton = null;
+        }
+
+        // Si usas un texto de puntos en la UI que se regenera al cambiar de escena, 
+        // puedes asegurarte de buscarlo o actualizarlo aquí si fuera necesario:
+        // GameObject textObj = GameObject.Find("PointsText");
+        // pointsText = textObj != null ? textObj.GetComponent<TextMeshProUGUI>() : null;
+        // UpdatePointsText();
     }
 
     // ---------- Carga de escenas ----------

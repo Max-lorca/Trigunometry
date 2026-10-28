@@ -41,8 +41,8 @@ public class WeaponData : MonoBehaviour, IWeapon
             actionOnGet: (proj) => proj.gameObject.SetActive(true),
             actionOnRelease: (proj) => proj.gameObject.SetActive(false),
             actionOnDestroy: (proj) => Destroy(proj.gameObject),
-            defaultCapacity: 15,
-            maxSize: 30
+            defaultCapacity: 20,
+            maxSize: 50
         );
     }
 
@@ -60,39 +60,39 @@ public class WeaponData : MonoBehaviour, IWeapon
     }
 
     private IEnumerator Shoot()
-{
-    canShoot = false;
-    Instantiate(particleShoot, projectileSpawn.position, projectileSpawn.rotation);
-    audioSource.PlayOneShot(shootAudioClip);
-
-    // Se redondea porque un multiplicador como x1.5 daría 1.5 disparos
-    int count = Mathf.Max(1, Mathf.RoundToInt(Stat(StatType.ProjectileCount, baseProjectileCount)));
-    float spread = Stat(StatType.SpreadAngle, baseSpreadAngle);
-
-    float damage = Stat(StatType.Damage, baseDamage);
-    float speed = Stat(StatType.ProjectileSpeed, baseSpeed);
-    float amplitude = Stat(StatType.Amplitude, baseAmplitude);
-    float frequency = Stat(StatType.Frequency, baseFrequency);
-
-    for (int i = 0; i < count; i++)
     {
-        // Reparte los proyectiles en abanico, centrado en la dirección de apuntado
-        float angle = count > 1 ? Mathf.Lerp(-spread / 2f, spread / 2f, i / (float)(count - 1)) : 0f;
-        Vector2 dir = Quaternion.Euler(0, 0, angle) * projectileSpawn.right;
+        canShoot = false;
+        Instantiate(particleShoot, projectileSpawn.position, projectileSpawn.rotation);
+        audioSource.PlayOneShot(shootAudioClip);
 
-        // Desfase de la onda: con 2 disparos quedan en espejo (doble hélice)
-        float phase = i * (2f * Mathf.PI / count);
+        // Se redondea porque un multiplicador como x1.5 daría 1.5 disparos
+        int count = Mathf.Max(1, Mathf.RoundToInt(Stat(StatType.ProjectileCount, baseProjectileCount)));
+        float spread = Stat(StatType.SpreadAngle, baseSpreadAngle);
 
-        ProyectileController proj = _pool.Get();
-        proj.ResetProyectile(projectileSpawn.position);
-        proj.SetDirection(dir);
-        proj.Configure(damage, speed, amplitude, frequency, phase);
+        float damage = Stat(StatType.Damage, baseDamage);
+        float speed = Stat(StatType.ProjectileSpeed, baseSpeed);
+        float amplitude = Stat(StatType.Amplitude, baseAmplitude);
+        float frequency = Stat(StatType.Frequency, baseFrequency);
+
+        for (int i = 0; i < count; i++)
+        {
+            // Reparte los proyectiles en abanico, centrado en la dirección de apuntado
+            float angle = count > 1 ? Mathf.Lerp(-spread / 2f, spread / 2f, i / (float)(count - 1)) : 0f;
+            Vector2 dir = Quaternion.Euler(0, 0, angle) * projectileSpawn.right;
+
+            // Desfase de la onda: con 2 disparos quedan en espejo (doble hélice)
+            float phase = i * (2f * Mathf.PI / count);
+
+            ProyectileController proj = _pool.Get();
+            proj.ResetProyectile(projectileSpawn.position);
+            proj.SetDirection(dir);
+            proj.Configure(damage, speed, amplitude, frequency, phase);
+        }
+
+        float cooldown = Mathf.Max(0.05f, Stat(StatType.Cooldown, baseCooldown));
+        yield return new WaitForSeconds(cooldown);
+        canShoot = true;
     }
-
-    float cooldown = Mathf.Max(0.05f, Stat(StatType.Cooldown, baseCooldown));
-    yield return new WaitForSeconds(cooldown);
-    canShoot = true;
-}
 
     public void ReleaseProjectile(GameObject proj)
     {

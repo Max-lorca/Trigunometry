@@ -1037,6 +1037,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1770535165}
     m_Modifications:
+    - target: {fileID: 4094911596646634974, guid: d754ba1c9552da343ab173aa2ced7751, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4362718185330781281, guid: d754ba1c9552da343ab173aa2ced7751, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3611,6 +3615,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2015628773014410120, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.023
@@ -93520,6 +93536,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2015628773014410120, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.023
@@ -99219,7 +99247,7 @@ GameObject:
   - component: {fileID: 1076273834}
   - component: {fileID: 1076273837}
   m_Layer: 5
-  m_Name: Button
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104642,6 +104670,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2902283218855829313, guid: 3b60440122af25547b42eac6cd135168, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.85858
@@ -105190,6 +105230,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2902283218855829313, guid: 3b60440122af25547b42eac6cd135168, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.85858
@@ -105547,6 +105599,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3665854133921909830, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy (5)
@@ -108470,6 +108534,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2902283218855829313, guid: 3b60440122af25547b42eac6cd135168, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.85858
@@ -108618,6 +108694,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3665854133921909830, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
@@ -112630,6 +112718,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: -4353643506545096478, guid: 3b60440122af25547b42eac6cd135168, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2902283218855829313, guid: 3b60440122af25547b42eac6cd135168, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.85858
@@ -113473,6 +113573,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3665854133921909830, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy (4)
@@ -114268,6 +114380,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: modo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: dropChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402115825312227731, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
+      propertyPath: separacionDrops
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2015628773014410120, guid: 6a8adf7cf673ebfde99b5b12a17fe333, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.023
